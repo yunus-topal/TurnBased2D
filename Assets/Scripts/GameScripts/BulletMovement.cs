@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,14 @@ public class BulletMovement : MonoBehaviour {
         _timeToLive -= Time.deltaTime;
         if (_timeToLive <= 0)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<EnemyMovement>().TakeDamage(50);
             Destroy(gameObject);
         }
     }

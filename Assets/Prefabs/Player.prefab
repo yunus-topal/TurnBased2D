@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5858870828318218987}
   - component: {fileID: 8172287858446614977}
   - component: {fileID: 9131868471485758764}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 1928981538614012608}
   speed: 0
   bulletSpeed: 0
+  attackCooldown: 0
 --- !u!58 &9131868471485758764
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1928981538614012608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

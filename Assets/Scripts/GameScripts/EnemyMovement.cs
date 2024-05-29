@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject _player;
+    private float _speed;
+    private float _health = 100;
+    private HudManager _hudManager;
+    public void Initialize(float speed, HudManager hudManager)
     {
-        
+        _hudManager = hudManager;
+        _speed = speed;
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        if(_player == null) return;
+        // find the direction to the player
+        Vector3 direction = (_player.transform.position - transform.position).normalized;
+        transform.position += direction * (Time.deltaTime * _speed);
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+        if(_health <= 0)
+        {
+            _hudManager.IncreaseScore(10);
+            Destroy(gameObject);
+        }
     }
 }

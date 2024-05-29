@@ -6,12 +6,15 @@ using UnityEngine.Serialization;
 public class EnemySpawner : MonoBehaviour {
     private int _spawnLevel;
     private bool _isSpawning = false;
-    
+
+    [SerializeField] private HudManager hudManager;
     [SerializeField] private float spawnRate;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform[] spawnPoints;
     
+    
     public void StartSpawning(int level) {
+        _isSpawning = true;
         StartCoroutine(SpawnEnemies());
     }
     
@@ -22,7 +25,8 @@ public class EnemySpawner : MonoBehaviour {
     private IEnumerator SpawnEnemies() {
         while (_isSpawning) {
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-            Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, Quaternion.identity);
+            enemy.GetComponent<EnemyMovement>().Initialize(5, hudManager);
             yield return new WaitForSeconds(spawnRate);
         }
         yield return null;
