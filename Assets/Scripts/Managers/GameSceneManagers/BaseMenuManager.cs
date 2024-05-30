@@ -1,16 +1,27 @@
+
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseMenuManager : MonoBehaviour {
     private PreparationManager _preparationManager;
     [SerializeField] private GameObject baseMenuPanel;
     [SerializeField] private TextMeshProUGUI warningText;
+    [SerializeField] private GameObject draggableButtonContainer;
+    [SerializeField] private GameObject draggableButtonPrefab;
+    [SerializeField] private Character[] characters;
     [SerializeField] private Transform[] snapPositions;
     private DraggableButton[] _snappedButtons;
 
     private void Start() {
         _preparationManager = FindObjectOfType<PreparationManager>();
         _snappedButtons = new DraggableButton[snapPositions.Length];
+        /*
+        foreach (Character character in characters) {
+            GameObject o = Instantiate(draggableButtonPrefab, Vector3.zero, Quaternion.identity, draggableButtonContainer.transform);
+            o.GetComponent<Image>().sprite = character.CharSprite;
+        }
+        */
     }
 
     // lots of loops, not efficient

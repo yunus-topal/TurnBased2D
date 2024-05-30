@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0958a48abf594f4d94baf8660be20b8, type: 3}
+  m_Name: Emir
+  m_EditorClassIdentifier: 
+  charName: Emir
+  charSprite: {fileID: 21300000, guid: 3724994f0a0c7f341b55933365980843, type: 3}
+  charPrefab: {fileID: 2018252796135598160, guid: 72eaeb3a0da8ace4ba039e03c711da8e, type: 3}

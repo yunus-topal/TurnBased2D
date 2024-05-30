@@ -12,6 +12,8 @@ public class PreparationManager : MonoBehaviour {
     [SerializeField] private GameObject preparationPanel;
     // When I change this type to Image, it becomes null on play mode.
     [SerializeField] private GameObject[] characterImages;
+    [SerializeField] private Character[] characters;
+
     
     private EnemySpawner _enemySpawner;
     private int _level = 0;
@@ -35,6 +37,13 @@ public class PreparationManager : MonoBehaviour {
         preparationPanel.SetActive(false);
         Time.timeScale = 1;
         _enemySpawner.StartSpawning(_level);
+        // TODO instantiate player
+        foreach (Character character in characters) {
+            if(character.CharSprite == characterImages[0].GetComponent<Image>().sprite) {
+                // Instantiate character
+                Instantiate(character.CharPrefab, Vector3.zero, Quaternion.identity);
+            }
+        }
     }
 
     public void ReturnToBaseMenu() {
@@ -42,9 +51,8 @@ public class PreparationManager : MonoBehaviour {
     }
 
     public void SetCharacterIcons(DraggableButton[] buttons) {
-        for (int i = 0; i < characterImages.Length; i++) {
-            if (buttons[i] == null) continue;
-            characterImages[i].GetComponent<Image>().sprite = buttons[i].gameObject.GetComponent<Image>().sprite;
+        for(int i = 0; i < buttons.Length; i++){
+            characterImages[i].GetComponent<Image>().sprite = buttons[i].GetComponent<Image>().sprite;
         }
     }
 }
