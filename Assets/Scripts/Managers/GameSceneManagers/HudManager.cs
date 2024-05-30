@@ -11,13 +11,7 @@ public class HudManager : MonoBehaviour {
         scoreText.text = "Score: " + score;
     }
 
-    public void UpdateHealth(int health) {
-        healthSlider.value = health/100f;
-    }
-    
-    public void IncreaseScore(int score) {
-        int currentScore = int.Parse(scoreText.text.Split(' ')[1]);
-        currentScore += score;
-        scoreText.text = "Score: " + currentScore;
+    public void UpdateHealth(int health, int maxHealth) {
+        healthSlider.value = health/(float)maxHealth;
     }
 }

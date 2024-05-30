@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 5858870828318218987}
   - component: {fileID: 8172287858446614977}
   - component: {fileID: 9131868471485758764}
+  - component: {fileID: 3064483399062278236}
+  - component: {fileID: -8246311221942397412}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Salih
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,9 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6185236888782659487, guid: 9bcb5a4f7980c5746830c6481958f167, type: 3}
   bulletSpawnPoint: {fileID: 1928981538614012608}
-  speed: 0
-  bulletSpeed: 0
-  attackCooldown: 0
+  speed: 10
+  bulletSpeed: 50
+  attackCooldown: 0.2
 --- !u!58 &9131868471485758764
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +141,47 @@ CircleCollider2D:
   m_Offset: {x: 0.12, y: 0.04}
   serializedVersion: 2
   m_Radius: 2.1392694
+--- !u!114 &3064483399062278236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018252796135598160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88824fa90efa254f9d93c9deb503c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  invincibilityTime: 0.5
+--- !u!50 &-8246311221942397412
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018252796135598160}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8151449438362676235
 GameObject:
   m_ObjectHideFlags: 0

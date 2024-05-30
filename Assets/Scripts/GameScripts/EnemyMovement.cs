@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,8 +29,18 @@ public class EnemyMovement : MonoBehaviour
         _health -= damage;
         if(_health <= 0)
         {
-            _hudManager.IncreaseScore(10);
+            if(_player != null)
+            {
+                _player.GetComponent<PlayerStatus>().IncreaseScore(10);
+            }
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerStatus>().TakeDamage(10);
         }
     }
 }
