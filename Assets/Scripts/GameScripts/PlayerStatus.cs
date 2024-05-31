@@ -10,30 +10,24 @@ public class PlayerStatus : MonoBehaviour {
     [SerializeField] private float invincibilityTime;
     private float _lastHitTime;
     
-    private HudManager _hudManager;
+    private RoundManager _roundManager;
     private string _name;
     private int _attack;
     private int _defense;
     private int _speed;
     private int _level;
     private int _experience;
-    private int _score;
 
     private void Start() {
-        _hudManager = FindObjectOfType<HudManager>();
+        _roundManager = FindObjectOfType<RoundManager>();
         _health = maxHealth;
-    }
-
-    public void IncreaseScore(int score) {
-        _score += score;
-        _hudManager.UpdateScore(_score);
     }
     
     public void TakeDamage(int damage) {
         if(Time.time - _lastHitTime < invincibilityTime) return;
         _lastHitTime = Time.time;
         _health -= damage;
-        _hudManager.UpdateHealth(_health, maxHealth);
+        _roundManager.UpdateHealth(_health, maxHealth);
         if (_health <= 0) {
             Die();
         }

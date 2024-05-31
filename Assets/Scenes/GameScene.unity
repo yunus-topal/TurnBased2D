@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba1b8dbbf5bdde49b595728db6e50f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudManager: {fileID: 1131945669}
+  roundManager: {fileID: 1131945669}
   spawnRate: 1
   enemyPrefab: {fileID: 238048121990572275, guid: d490e3a11e84ca44b8201cabe2ad826f, type: 3}
   spawnPoints:
@@ -2736,7 +2736,7 @@ GameObject:
   - component: {fileID: 1131945668}
   - component: {fileID: 1131945669}
   m_Layer: 0
-  m_Name: HudManager
+  m_Name: RoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2771,6 +2771,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2000002204}
   healthSlider: {fileID: 742548291}
+  enemySpawner: {fileID: 963538873}
+  preparationPanel: {fileID: 324705999}
 --- !u!1 &1150113128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,7 +2807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -300}
+  m_AnchoredPosition: {x: 200, y: -300}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1150113130
@@ -4950,7 +4952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -300}
+  m_AnchoredPosition: {x: -200, y: -300}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043360565

@@ -36,14 +36,14 @@ public class PreparationManager : MonoBehaviour {
     public void StartGame() {
         preparationPanel.SetActive(false);
         Time.timeScale = 1;
-        _enemySpawner.StartSpawning(_level);
-        // TODO instantiate player
+        // spawn player before all enemies
         foreach (Character character in characters) {
             if(character.CharSprite == characterImages[0].GetComponent<Image>().sprite) {
                 // Instantiate character
                 Instantiate(character.CharPrefab, Vector3.zero, Quaternion.identity);
             }
         }
+        _enemySpawner.StartSpawning(_level);
     }
 
     public void ReturnToBaseMenu() {

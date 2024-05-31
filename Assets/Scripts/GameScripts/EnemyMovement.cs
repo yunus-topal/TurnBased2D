@@ -8,10 +8,10 @@ public class EnemyMovement : MonoBehaviour
     private GameObject _player;
     private float _speed;
     private float _health = 100;
-    private HudManager _hudManager;
-    public void Initialize(float speed, HudManager hudManager)
+    private RoundManager _roundManager;
+    public void Initialize(float speed, RoundManager roundManager)
     {
-        _hudManager = hudManager;
+        _roundManager = roundManager;
         _speed = speed;
         _player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -31,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if(_player != null)
             {
-                _player.GetComponent<PlayerStatus>().IncreaseScore(10);
+                _roundManager.IncreaseScore(10);
             }
             Destroy(gameObject);
         }
