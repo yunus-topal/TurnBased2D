@@ -2190,6 +2190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainPanel: {fileID: 1316676212}
   _characterNames: {fileID: 1327443402}
+  dummyEnemy: {fileID: 11400000, guid: a81f9733e5697df43a810edd48ad12e2, type: 2}
 --- !u!4 &1963333632
 Transform:
   m_ObjectHideFlags: 0

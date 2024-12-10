@@ -15,11 +15,13 @@ namespace Helpers {
             HealthText.text = $"{maxHealth}/{maxHealth}";
             HealthBar.maxValue = maxHealth;
             HealthBar.value = maxHealth;
+            Sprite.color = Color.green;
         }
         
         public void UpdateHealth(int health) {
             HealthText.text = $"{health}/{HealthBar.maxValue}";
             HealthBar.value = health;
+            Sprite.color = Color.Lerp(Color.red, Color.green, health / HealthBar.maxValue);
         }
     }
 }

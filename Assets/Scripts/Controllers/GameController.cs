@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Models;
 using Models.Combatants;
+using Models.Scriptables;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Controllers {
         private CombatController _combatController;
         private List<Character> _characters;
         private List<Enemy> _enemies;
+        [SerializeField] private EnemyScriptable dummyEnemy;
 
         private void Start() {
             TryGetComponent(out _combatController);
@@ -21,6 +23,9 @@ namespace Controllers {
             }
             _characters = new List<Character>();
             _enemies = new List<Enemy>();
+            // for testing purposes.
+            _enemies.Add(new Enemy(dummyEnemy));
+            
         }
 
         public void AddCharacter(Character character) {
@@ -35,14 +40,7 @@ namespace Controllers {
             }
         }
         
-        // test method to create an enemy.
-        public void CreateEnemy() {
-            var enemy = new Enemy("Enemy", new CombatStats(5, 5, 5, 5, 5), 100, 50, null, null);
-            _enemies.Add(enemy);
-        }
-        
         public void StartCombat() {
-            if(_enemies.Count == 0) CreateEnemy();
             
             _mainPanel.SetActive(false);
             var combatants = new List<Combatant>();

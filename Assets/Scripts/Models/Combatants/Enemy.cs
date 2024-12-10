@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Models.Scriptables;
 using UnityEngine;
 
 namespace Models.Combatants {
@@ -17,6 +18,16 @@ namespace Models.Combatants {
             _experienceReward = experienceReward;
             _enemySprite = enemySprite;
             _skills = skills ?? new List<Skill>(); // Default to an empty list
+        }
+        
+        public Enemy(EnemyScriptable enemyScriptable)
+        {
+            _enemyName = enemyScriptable.EnemyName;
+            _combatStats = new CombatStats(5, 5, 5, 5, 5);
+            Health = enemyScriptable.MaxHealth;
+            _experienceReward = enemyScriptable.ExperienceReward;
+            _enemySprite = enemyScriptable.EnemySprite;
+            _skills = new List<Skill>();
         }
         
         #region Properties
