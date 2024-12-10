@@ -13,7 +13,7 @@ namespace Models.Combatants {
         {
             _enemyName = enemyName;
             _combatStats = combatStats;
-            _health = health;
+            Health = health;
             _experienceReward = experienceReward;
             _enemySprite = enemySprite;
             _skills = skills ?? new List<Skill>(); // Default to an empty list
@@ -45,12 +45,6 @@ namespace Models.Combatants {
             get => _combatStats;
             set => _combatStats = value;
         }
-
-        public int Health1 {
-            get => _health;
-            set => _health = value;
-        }
-
         #endregion
     }
 }

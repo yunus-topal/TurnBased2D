@@ -1,7 +1,7 @@
 ﻿namespace Models.Combatants {
     public abstract class Combatant {
         internal CombatStats _combatStats;
-        internal int _health;
+        private int _health;
         
         public int Health {
             get => _health;

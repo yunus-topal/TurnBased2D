@@ -22,7 +22,7 @@ namespace Models.Combatants {
             _experience = experience;
             _characterSprite = characterSprite;
             _combatStats = combatStats;
-            _health = health;
+            Health = health;
             _equipments = equipments ?? new List<Equipment>(); // Default to an empty list
             _skills = skills ?? new List<Skill>();             // Default to an empty list
         }

@@ -1,28 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Models;
+using Helpers;
 using Models.Combatants;
 using UnityEngine;
 
 namespace Controllers {
     public class CombatController : MonoBehaviour {
-        
-        [SerializeField] private GameObject _combatPanel;
+        [SerializeField] private CombatPanelHelper combatPanel;
         
         private List<Combatant> _combatants;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            if(_combatPanel == null) {
+            if(combatPanel == null) {
                 Debug.LogError("Combat Panel is not set in the Combat Controller");
             }
         }
 
         public void StartCombat(List<Combatant> combatants) {
             _combatants = combatants;
-            _combatPanel.SetActive(true);
+            combatPanel.gameObject.SetActive(true);
+            foreach (var combatant in _combatants) {
+                if(combatant is Character) {
+                    Character character = combatant as Character;
+                    combatPanel.AddCharacter(character.CharacterSprite, character.CharacterName, character.Health);
+                } else {
+                    Enemy enemy = combatant as Enemy;
+                    combatPanel.AddEnemy(enemy.EnemySprite, enemy.EnemyName, enemy.Health);
+                }
+            }
             CalculateInitiative();
             StartCoroutine(HandleCombatTurns());
         }
@@ -76,7 +84,7 @@ namespace Controllers {
         
         private void EndCombat()
         {
-            _combatPanel.SetActive(false);
+            combatPanel.gameObject.SetActive(false);
             Debug.Log("Combat has ended!");
         }
 

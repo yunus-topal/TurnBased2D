@@ -37,11 +37,13 @@ namespace Controllers {
         
         // test method to create an enemy.
         public void CreateEnemy() {
-            var enemy = new Enemy("Enemy", new CombatStats(5, 5, 5, 5, 5), 100);
+            var enemy = new Enemy("Enemy", new CombatStats(5, 5, 5, 5, 5), 100, 50, null, null);
             _enemies.Add(enemy);
         }
         
         public void StartCombat() {
+            if(_enemies.Count == 0) CreateEnemy();
+            
             _mainPanel.SetActive(false);
             var combatants = new List<Combatant>();
             combatants.AddRange(_characters);
