@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Helpers;
+using Models.Scriptables;
 using UnityEngine;
 
 namespace Models.Combatants {
@@ -26,6 +28,11 @@ namespace Models.Combatants {
             _equipments = equipments ?? new List<Equipment>(); // Default to an empty list
             _skills = skills ?? new List<Skill>();             // Default to an empty list
         }
+        
+        public Character(CharacterScriptable characterScriptable) : 
+            this(characterScriptable.CharacterName, characterScriptable.Level, characterScriptable.Experience, 
+                characterScriptable.CharacterSprite, Tester.GetDummyCombatStats(), characterScriptable.Health, 
+                characterScriptable.Equipments, characterScriptable.Skills) { }
 
         #region Properties
 

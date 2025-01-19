@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Models.Scriptables {
@@ -8,6 +9,7 @@ namespace Models.Scriptables {
         [SerializeField] private int maxHealth;
         [SerializeField] private int experienceReward;
         [SerializeField] private Sprite enemySprite;
+        [SerializeField] private List<Skill> skills;
         
         public string EnemyName {
             get => enemyName;
@@ -27,6 +29,11 @@ namespace Models.Scriptables {
         public Sprite EnemySprite {
             get => enemySprite;
             set => enemySprite = value;
+        }
+        
+        public List<Skill> Skills {
+            get => skills;
+            set => skills = value;
         }
     }
 }

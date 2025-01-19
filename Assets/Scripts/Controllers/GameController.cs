@@ -14,7 +14,10 @@ namespace Controllers {
         private CombatController _combatController;
         private List<Character> _characters;
         private List<Enemy> _enemies;
+        // for testing purposes
         [SerializeField] private EnemyScriptable dummyEnemy;
+        // for testing purposes
+        [SerializeField] private CharacterScriptable dummyCharacter;
 
         private void Start() {
             TryGetComponent(out _combatController);
@@ -22,6 +25,7 @@ namespace Controllers {
                 Debug.LogError("Combat Controller is not set in the Game Controller");
             }
             _characters = new List<Character>();
+            _characters.Add(new Character(dummyCharacter));
             _enemies = new List<Enemy>();
             // for testing purposes.
             _enemies.Add(new Enemy(dummyEnemy));

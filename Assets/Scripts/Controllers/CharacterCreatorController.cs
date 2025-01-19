@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Helpers;
 using Models;
 using Models.Combatants;
 using TMPro;
@@ -39,7 +40,7 @@ namespace Controllers {
         
         public void CreateCharacter() {
             // TODO: check if character name is not empty
-            var character = new Character(characterName.text, 1, 0, _selectedSprite, new CombatStats(5, 5, 5, 5, 5), 100);
+            var character = new Character(characterName.text, 1, 0, _selectedSprite, Tester.GetDummyCombatStats(), 100);
             _gameController.AddCharacter(character);
             // reset fields
             characterName.text = "";

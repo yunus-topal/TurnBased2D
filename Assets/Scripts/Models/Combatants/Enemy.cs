@@ -27,7 +27,7 @@ namespace Models.Combatants {
             Health = enemyScriptable.MaxHealth;
             _experienceReward = enemyScriptable.ExperienceReward;
             _enemySprite = enemyScriptable.EnemySprite;
-            _skills = new List<Skill>();
+            _skills = enemyScriptable.Skills;
         }
         
         #region Properties

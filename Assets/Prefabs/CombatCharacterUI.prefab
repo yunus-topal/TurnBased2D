@@ -281,6 +281,7 @@ MonoBehaviour:
   Name: {fileID: 1833952110893544955}
   HealthText: {fileID: 1778005542089093908}
   HealthBar: {fileID: 5751346928358930344}
+  HealthBarImage: {fileID: 172152700035698304}
 --- !u!1 &3454226865495085285
 GameObject:
   m_ObjectHideFlags: 0
