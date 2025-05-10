@@ -1235,7 +1235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1316676213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2355,6 +2355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombatPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1338648179748265479, guid: 8594882c6fe81ff43936f443fb153124, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2398417971338790827, guid: 8594882c6fe81ff43936f443fb153124, type: 3}
       propertyPath: portrait
       value: 
@@ -2461,7 +2465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6435626252563972428, guid: 8594882c6fe81ff43936f443fb153124, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
