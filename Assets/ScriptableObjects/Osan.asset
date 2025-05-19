@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3151a7f14e6f43a40ad15b8011552167, type: 3}
-  m_Name: DummyCharacter
+  m_Name: Osan
   m_EditorClassIdentifier: 
-  characterName: TestCharr
+  characterName: Osan
   level: 1
   experience: 0
-  characterSprite: {fileID: 3063046214964611066, guid: e7a49db7f761c534189b5c6642f04cfc, type: 3}
-  health: 100
-  skills:
-  - {fileID: 11400000, guid: d3d96b81dee71094d8225b4a1d4d3188, type: 2}
+  characterSprite: {fileID: 5942910363712652389, guid: 201072189d999ed4e8f642120f0843e8, type: 3}
+  combatStats:
+    _strength: 10
+    _dexterity: 10
+    _intelligence: 10
+    _constitution: 10
+    _luck: 10
+  equipments: []
+  skills: []

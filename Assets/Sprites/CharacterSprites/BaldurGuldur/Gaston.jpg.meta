@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 878f8e95d1ef56b4288899f689784112
+guid: f48b41e6347486044b204259b591d915
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1367466170583532216
-    second: SwordSkillIcon_0
+      213: -1301994542403100704
+    second: Gaston_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SwordSkillIcon_0
+      name: Gaston_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2048
+        width: 110
+        height: 173
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 84d310453c8c50de0800000000000000
-      internalID: -1367466170583532216
+      spriteID: 0efd098acd26eede0800000000000000
+      internalID: -1301994542403100704
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SwordSkillIcon_0: -1367466170583532216
+      Gaston_0: -1301994542403100704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

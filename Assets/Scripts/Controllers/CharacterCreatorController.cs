@@ -40,7 +40,7 @@ namespace Controllers {
         
         public void CreateCharacter() {
             // TODO: check if character name is not empty
-            var character = new Character(characterName.text, 1, 0, _selectedSprite, Tester.GetDummyCombatStats(), 100);
+            var character = new Character(characterName.text, 1, 0, _selectedSprite, Tester.GetDummyCombatStats());
             _gameController.AddCharacter(character);
             // reset fields
             characterName.text = "";

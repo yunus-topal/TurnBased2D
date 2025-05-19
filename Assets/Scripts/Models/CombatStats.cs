@@ -1,9 +1,16 @@
 ﻿namespace Models {
+
+    [System.Serializable]
     public class CombatStats {
+        [UnityEngine.SerializeField]
         private int _strength;
+        [UnityEngine.SerializeField]
         private int _dexterity;
+        [UnityEngine.SerializeField]
         private int _intelligence;
+        [UnityEngine.SerializeField]
         private int _constitution;
+        [UnityEngine.SerializeField]
         private int _luck;
         
         public CombatStats(int strength, int dexterity, int intelligence, int constitution, int luck)

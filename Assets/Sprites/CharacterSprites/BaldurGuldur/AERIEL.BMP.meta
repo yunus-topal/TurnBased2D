@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f48b41e6347486044b204259b591d915
+guid: b3c71f2f41df60d41959fa38d0e9ffb0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1301994542403100704
-    second: Gaston_0
+      213: -7774727037256131402
+    second: AERIEL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gaston_0
+      name: AERIEL_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 110
-        height: 173
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0efd098acd26eede0800000000000000
-      internalID: -1301994542403100704
+      spriteID: 6bc19bea3fe9a1490800000000000000
+      internalID: -7774727037256131402
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AERIEL_0: -7774727037256131402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

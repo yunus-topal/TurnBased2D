@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3c71f2f41df60d41959fa38d0e9ffb0
+guid: 8e900a10df37fdc48abb5f090ccf38c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7774727037256131402
-    second: AERIEL_0
+      213: 426291125136398902
+    second: BarbarL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AERIEL_0
+      name: BarbarL_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6bc19bea3fe9a1490800000000000000
-      internalID: -7774727037256131402
+      spriteID: 63a18ac058d7ae500800000000000000
+      internalID: 426291125136398902
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BarbarL_0: 426291125136398902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

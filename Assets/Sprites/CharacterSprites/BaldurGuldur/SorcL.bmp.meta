@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 165fe91fca1d1784dbd51fa5df5eee3d
+guid: 0328548e3e95ccd41b1df7a78c93db87
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -863166496788241630
-    second: DryadL_0
+      213: 6507510549181006310
+    second: SorcL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DryadL_0
+      name: SorcL_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 210
-        height: 330
+        height: 331
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2232be8f4aa6504f0800000000000000
-      internalID: -863166496788241630
+      spriteID: 6e18a00cd525f4a50800000000000000
+      internalID: 6507510549181006310
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SorcL_0: 6507510549181006310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

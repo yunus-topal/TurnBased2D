@@ -17,21 +17,21 @@ namespace Models.Combatants {
         private List<Equipment> _equipments;
         private List<Skill> _skills;
         
-        public Character(string characterName, int level, int experience, Sprite characterSprite, CombatStats combatStats, int health, List<Equipment> equipments = null, List<Skill> skills = null)
+        public Character(string characterName, int level, int experience, Sprite characterSprite, CombatStats combatStats, List<Equipment> equipments = null, List<Skill> skills = null)
         {
             _characterName = characterName;
             _level = level;
             _experience = experience;
             _characterSprite = characterSprite;
             _combatStats = combatStats;
-            Health = health;
+            Health = CalculateHealth(combatStats);
             _equipments = equipments ?? new List<Equipment>(); // Default to an empty list
             _skills = skills ?? new List<Skill>();             // Default to an empty list
         }
         
         public Character(CharacterScriptable characterScriptable) : 
             this(characterScriptable.CharacterName, characterScriptable.Level, characterScriptable.Experience, 
-                characterScriptable.CharacterSprite, Tester.GetDummyCombatStats(), characterScriptable.Health, 
+                characterScriptable.CharacterSprite, Tester.GetDummyCombatStats(), 
                 characterScriptable.Equipments, characterScriptable.Skills) { }
 
         #region Properties
@@ -74,5 +74,11 @@ namespace Models.Combatants {
 
         #endregion Properties
 
+
+        private int CalculateHealth(CombatStats combatStats)
+        {
+            // TODO: Implement a proper health calculation based on combat stats.
+            return 100;
+        }
     }
 }

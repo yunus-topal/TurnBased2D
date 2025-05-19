@@ -1,4 +1,6 @@
-﻿namespace Helpers
+﻿using UnityEngine;
+
+namespace Helpers
 {
     
     // use this class for static string values.
@@ -12,5 +14,8 @@
         // ui texts
         public static readonly string musicText = "Music";
         public static readonly string soundText = "Sound";
+
+        // save file location
+        public static readonly string saveFileLocation = Application.persistentDataPath + "/Saves/";
     }
 }

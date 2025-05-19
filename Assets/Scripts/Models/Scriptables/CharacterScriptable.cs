@@ -5,11 +5,12 @@ namespace Models.Scriptables {
     [CreateAssetMenu(fileName = "CharacterScriptable", menuName = "Scriptable Objects/CharacterScriptable")]
     public class CharacterScriptable : ScriptableObject
     {
+        // health will be automatically calculated from combat stats.
         [SerializeField] private string characterName;
         [SerializeField] private int level;
         [SerializeField] private int experience;
         [SerializeField] private Sprite characterSprite;
-        [SerializeField] private int health;
+        [SerializeField] private CombatStats combatStats;
         [SerializeField] private List<Equipment> equipments;
         [SerializeField] private List<Skill> skills;
         
@@ -41,11 +42,6 @@ namespace Models.Scriptables {
         public List<Equipment> Equipments {
             get => equipments;
             set => equipments = value;
-        }
-        
-        public int Health {
-            get => health;
-            set => health = value;
         }
     }
 }

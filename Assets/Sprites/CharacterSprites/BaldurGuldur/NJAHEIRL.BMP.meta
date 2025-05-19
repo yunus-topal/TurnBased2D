@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 211f3499fcf600a478b356ce64786539
+guid: 83e9c86fe71060846a264bb6b22a57f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7733275733526363767
-    second: ZeldaL_0
+      213: 7121278720319570214
+    second: NJAHEIRL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ZeldaL_0
+      name: NJAHEIRL_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 210
-        height: 325
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77ebcf69e4d125b60800000000000000
-      internalID: 7733275733526363767
+      spriteID: 6214237144dd3d260800000000000000
+      internalID: 7121278720319570214
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NJAHEIRL_0: 7121278720319570214
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

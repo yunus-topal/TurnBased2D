@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ccba7f7e1e0f32d468b2f8946c5c2983
+guid: 0af87d23053ee2c4e89a9b37dd67c05c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1817060305782440824
-    second: AMELINL_0
+      213: -412509735920409931
+    second: ALICIAL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AMELINL_0
+      name: ALICIAL_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88cff52774188c6e0800000000000000
-      internalID: -1817060305782440824
+      spriteID: 5b2e21ca498764af0800000000000000
+      internalID: -412509735920409931
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ALICIAL_0: -412509735920409931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8e900a10df37fdc48abb5f090ccf38c8
+guid: 3c94b4b95585ed7489a7616f92ff10e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 426291125136398902
-    second: BarbarL_0
+      213: 4131496302152129140
+    second: salih_0
+  - first:
+      213: 6475462162548714005
+    second: salih_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BarbarL_0
+      name: salih_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 210
-        height: 330
+        x: 124
+        y: 15
+        width: 263
+        height: 492
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 63a18ac058d7ae500800000000000000
-      internalID: 426291125136398902
+      spriteID: 47a1e984ff5065930800000000000000
+      internalID: 4131496302152129140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: salih_1
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 505
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ae23347867dd950800000000000000
+      internalID: 6475462162548714005
       vertices: []
       indices: 
       edges: []
