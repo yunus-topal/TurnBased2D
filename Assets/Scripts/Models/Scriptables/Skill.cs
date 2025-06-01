@@ -1,58 +1,55 @@
-﻿using UnityEngine;
+﻿using Models.Combatants;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Models.Scriptables {
-    [CreateAssetMenu(fileName = "Skill", menuName = "Scriptable Objects/Skill")]
-    public class Skill : ScriptableObject {
-        [SerializeField] private Sprite skillIcon;
-        [SerializeField] private string skillName;
-        [SerializeField] private int level;
-        [SerializeField] private int cost;
-        [SerializeField] private int cooldown;
-        [SerializeField] private SkillType skillType;
-        [SerializeField] private SkillTarget skillTarget;
-        [SerializeField] private string description;
-        
-        public Sprite SkillIcon {
-            get => skillIcon;
-            set => skillIcon = value;
-        }
-        public string SkillName {
-            get => skillName;
-            set => skillName = value;
-        }
+    [System.Serializable]
+    public struct Skill
+    {
+        public SkillDataSO data;           // serialized reference to the data asset
+        public SkillBehaviorSO behavior;   // serialized reference to the behavior asset
 
-        public int Level {
-            get => level;
-            set => level = value;
-        }
-
-        public int Cost {
-            get => cost;
-            set => cost = value;
-        }
-
-        public int Cooldown {
-            get => cooldown;
-            set => cooldown = value;
-        }
-
-        public SkillType SkillType {
-            get => skillType;
-            set => skillType = value;
-        }
-
-        public SkillTarget SkillTarget {
-            get => skillTarget;
-            set => skillTarget = value;
-        }
-        
-        public string Description {
-            get => description;
-            set => description = value;
+        public Skill(SkillDataSO data, SkillBehaviorSO behavior)
+        {
+            this.data = data;
+            this.behavior = behavior;
         }
     }
-    
+
+    [CreateAssetMenu(fileName = "NewSkillData", menuName = "Combat/SkillData")]
+    public class SkillDataSO : ScriptableObject
+    {
+        [Header("Basic Info")]
+        public string SkillName = "New Skill";
+        [TextArea] public string description;
+        public Sprite SkillIcon;
+
+        [Header("Cost & Cooldown")]
+        public int ManaCost = 10;
+        public float Cooldown = 1f;
+
+        [Header("Effect Parameters")]
+        public float BaseDamage = 50f;
+        public float Range = 10f; // most likely irrelevant since it will be a 2d game at the beginning. can be useful later.
+        public SkillType SkillType;
+        public SkillTarget SkillTarget;
+
+        [Header("VFX / SFX References")]
+        public GameObject VfxPrefab;
+        public AudioClip SfxClip;
+    }
+
+    [CreateAssetMenu(fileName = "NewSkillBehavior", menuName = "Combat/SkillBehavior")]
+    public abstract class SkillBehaviorSO : ScriptableObject
+    {
+        /// <summary>
+        /// Called at runtime whenever a character tries to use a skill.
+        /// </summary>
+        /// <param name="data">The SkillDataSO containing values (damage, VFX, etc.).</param>
+        /// <param name="caster">The Character who is casting.</param>
+        /// <param name="target">The Character being targeted (can be null if this is an AOE or self-buff, etc.).</param>
+        public abstract void Execute(SkillDataSO data, Character caster, Character target);
+    }
     public enum SkillType {
         Active,
         Passive,

@@ -6,8 +6,8 @@ namespace Helpers {
     public class SkillUIHelper : MonoBehaviour
     {
         private Skill[] _skills = new Skill[4];
-        private Skill _selectedSkill = null;
-        
+        private Skill _selectedSkill;
+
         [SerializeField]
         private Image portrait;
         
@@ -23,7 +23,7 @@ namespace Helpers {
                 Debug.LogError("Index out of range");
                 return;
             }
-            skillButtons[index].GetComponent<Image>().sprite = skill.SkillIcon;
+            skillButtons[index].GetComponent<Image>().sprite = skill.data.SkillIcon;
             _skills[index] = skill;
         }
         
@@ -38,7 +38,7 @@ namespace Helpers {
                 Debug.LogError("Index out of range");
                 return;
             }
-            Debug.Log($"Selected skill: {_skills[index].SkillName}");
+            Debug.Log($"Selected skill: {_skills[index].data.SkillName}");
             _selectedSkill = _skills[index];
         }
         
