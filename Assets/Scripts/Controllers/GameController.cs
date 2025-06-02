@@ -15,9 +15,9 @@ namespace Controllers {
         private List<Character> _characters;
         private List<Enemy> _enemies;
         // for testing purposes
-        [SerializeField] private EnemyScriptable dummyEnemy;
+        [SerializeField] private EnemySO dummyEnemy;
         // for testing purposes
-        [SerializeField] private CharacterScriptable dummyCharacter;
+        [SerializeField] private CharacterSO dummyCharacter;
 
         private void Start() {
             TryGetComponent(out _combatController);

@@ -29,7 +29,7 @@ namespace Models.Combatants {
             _skills = skills ?? new List<Skill>();             // Default to an empty list
         }
         
-        public Character(CharacterScriptable characterScriptable) : 
+        public Character(CharacterSO characterScriptable) : 
             this(characterScriptable.CharacterName, characterScriptable.Level, characterScriptable.Experience, 
                 characterScriptable.CharacterSprite, Tester.GetDummyCombatStats(), 
                 characterScriptable.Equipments, characterScriptable.Skills) { }

@@ -23,7 +23,7 @@ namespace Helpers {
                 Debug.LogError("Index out of range");
                 return;
             }
-            skillButtons[index].GetComponent<Image>().sprite = skill.data.SkillIcon;
+            skillButtons[index].GetComponent<Image>().sprite = skill.SkillIcon;
             _skills[index] = skill;
         }
         
@@ -38,7 +38,7 @@ namespace Helpers {
                 Debug.LogError("Index out of range");
                 return;
             }
-            Debug.Log($"Selected skill: {_skills[index].data.SkillName}");
+            Debug.Log($"Selected skill: {_skills[index].SkillName}");
             _selectedSkill = _skills[index];
         }
         

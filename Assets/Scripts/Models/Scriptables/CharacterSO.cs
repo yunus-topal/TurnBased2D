@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Models.Scriptables {
     [CreateAssetMenu(fileName = "CharacterScriptable", menuName = "Scriptable Objects/CharacterScriptable")]
-    public class CharacterScriptable : ScriptableObject
+    public class CharacterSO : ScriptableObject
     {
         // health will be automatically calculated from combat stats.
         [SerializeField] private string characterName;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Models.Scriptables {
     [CreateAssetMenu(fileName = "EnemyScriptable", menuName = "Scriptable Objects/EnemyScriptable")]
-    public class EnemyScriptable : ScriptableObject
+    public class EnemySO : ScriptableObject
     {
         [SerializeField] private string enemyName;
         [SerializeField] private int maxHealth;

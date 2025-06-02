@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FireballSkillData
+  m_EditorClassIdentifier: Assembly-CSharp:Models.Scriptables:SkillDataSO
+  SkillName: Fireball
+  description: Throws a fireball
+  SkillIcon: {fileID: -1367466170583532216, guid: 878f8e95d1ef56b4288899f689784112, type: 3}
+  ManaCost: 10
+  Cooldown: 1
+  BaseDamage: 50
+  Range: 10
+  SkillType: 0
+  SkillTarget: 1
+  VfxPrefab: {fileID: 0}
+  SfxClip: {fileID: 0}
