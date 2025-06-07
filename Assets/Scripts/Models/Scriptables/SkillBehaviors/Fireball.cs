@@ -2,7 +2,7 @@ using Models.Combatants;
 using Models.Scriptables;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Fireball", menuName = "Scriptable Objects/Fireball")]
+[CreateAssetMenu(fileName = "Fireball", menuName = "Scriptable Objects/Skill/Fireball")]
 public class Fireball : Skill
 {
     public override void Cast(Character caster, Character target)

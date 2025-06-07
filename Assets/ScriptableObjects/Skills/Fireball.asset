@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: FireballSkillData
-  m_EditorClassIdentifier: Assembly-CSharp:Models.Scriptables:SkillDataSO
+  m_Script: {fileID: 11500000, guid: c7ef45856700cc74a9c7e8eb120989c0, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: 
   SkillName: Fireball
-  description: Throws a fireball
-  SkillIcon: {fileID: -1367466170583532216, guid: 878f8e95d1ef56b4288899f689784112, type: 3}
+  description: Throw a fireball into an area.
+  SkillIcon: {fileID: 0}
   ManaCost: 10
   Cooldown: 1
   BaseDamage: 50
   Range: 10
   SkillType: 0
-  SkillTarget: 1
+  SkillTarget: 0
   VfxPrefab: {fileID: 0}
   SfxClip: {fileID: 0}
