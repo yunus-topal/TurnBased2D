@@ -1688,6 +1688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1963333632}
   - component: {fileID: 1963333633}
+  - component: {fileID: 1963333634}
   m_Layer: 0
   m_Name: CombatTester
   m_TagString: Untagged
@@ -1725,6 +1726,21 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: f62b2c6cabe9ec743b907c1c23b39795, type: 2}
   - {fileID: 11400000, guid: 60309d53afc7a2d4abeeb519c1af5a5b, type: 2}
+  allies: []
+  enemies: []
+--- !u!114 &1963333634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963333629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181337e80037ff04e933fbeb0980544f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatPanel: {fileID: 616516822487730751}
 --- !u!1001 &2026367138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1960,6 +1976,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8594882c6fe81ff43936f443fb153124, type: 3}
+--- !u!114 &616516822487730751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 38224056497533342, guid: 8594882c6fe81ff43936f443fb153124, type: 3}
+  m_PrefabInstance: {fileID: 616516822487730750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105f615912fde254db580404ddafbf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8224940093876441520
 PrefabInstance:
   m_ObjectHideFlags: 0
