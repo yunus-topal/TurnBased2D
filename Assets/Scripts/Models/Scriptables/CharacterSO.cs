@@ -6,42 +6,12 @@ namespace Models.Scriptables {
     public class CharacterSO : ScriptableObject
     {
         // health will be automatically calculated from combat stats.
-        [SerializeField] private string characterName;
-        [SerializeField] private int level;
-        [SerializeField] private int experience;
-        [SerializeField] private Sprite characterSprite;
-        [SerializeField] private CombatStats combatStats;
-        [SerializeField] private List<Equipment> equipments;
-        [SerializeField] private List<Skill> skills;
+        [SerializeField] public string characterName;
+        [SerializeField] public int level;
+        [SerializeField] public Sprite characterSprite;
+        [SerializeField] public CombatStats combatStats;
+        [SerializeField] public List<Equipment> equipments;
+        [SerializeField] public List<Skill> skills;
         
-        public string CharacterName {
-            get => characterName;
-            set => characterName = value;
-        }
-
-        public int Level {
-            get => level;
-            set => level = value;
-        }
-
-        public int Experience {
-            get => experience;
-            set => experience = value;
-        }
-
-        public Sprite CharacterSprite {
-            get => characterSprite;
-            set => characterSprite = value;
-        }
-        
-        public List<Skill> Skills {
-            get => skills;
-            set => skills = value;
-        }
-        
-        public List<Equipment> Equipments {
-            get => equipments;
-            set => equipments = value;
-        }
     }
 }

@@ -2,7 +2,7 @@ using Models.Scriptables;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Helpers {
+namespace Combat.UI {
     public class SkillUIHelper : MonoBehaviour
     {
         private Skill[] _skills = new Skill[4];

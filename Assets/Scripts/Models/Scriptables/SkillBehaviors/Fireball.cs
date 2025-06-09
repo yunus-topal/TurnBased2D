@@ -1,12 +1,14 @@
-using Models.Combatants;
-using Models.Scriptables;
+using Models;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Fireball", menuName = "Scriptable Objects/Skill/Fireball")]
-public class Fireball : Skill
+namespace Models.Scriptables.SkillBehaviors
 {
-    public override void Cast(Character caster, Character target)
+    [CreateAssetMenu(fileName = "Fireball", menuName = "Scriptable Objects/Skill/Fireball")]
+    public class Fireball : Skill
     {
-        Debug.Log($"Casting {SkillName} on {target.CharacterName} by {caster.CharacterName}.");
+        public override void Cast(Character caster, Character target)
+        {
+            Debug.Log($"Casting {SkillName} on {target.Name} by {caster.Name}.");
+        }
     }
 }

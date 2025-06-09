@@ -20,7 +20,7 @@ namespace MenuScripts
 
         public void LoadNewGameScene()
         {
-            SceneManager.LoadScene("CharacterCreationScene");
+            SceneManager.LoadScene("StartingMenu");
         }
 
         public void QuitApplication()

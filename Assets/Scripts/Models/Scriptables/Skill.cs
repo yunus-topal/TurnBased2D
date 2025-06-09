@@ -1,5 +1,4 @@
-﻿using Models.Combatants;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Models.Scriptables {
 
