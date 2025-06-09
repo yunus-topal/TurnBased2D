@@ -1,4 +1,6 @@
+using System.Linq;
 using Combat.UI;
+using Helpers;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
@@ -27,7 +29,17 @@ public class CharacterSelectionPanel : MonoBehaviour
         }
         // Start the game logic here, e.g., load the combat scene
         Debug.Log("Starting game with selected characters.");
-        // TODO create a save file and transition to the game scene.
+        // Serialize 4 characters and 
+
+        SaveFile saveFile = new SaveFile
+        {
+            Characters = charactersToStart.Select(c => c.ToData()).ToArray(),
+            SaveName = "New Game",
+            SaveDate = System.DateTime.Now
+        };
+
+        // save to persistent storage
+
     }
 
 }

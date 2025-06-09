@@ -1109,6 +1109,8 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: f62b2c6cabe9ec743b907c1c23b39795, type: 2}
   - {fileID: 11400000, guid: 60309d53afc7a2d4abeeb519c1af5a5b, type: 2}
+  - {fileID: 11400000, guid: 1e9f93f0d2db07d4a996210964a06230, type: 2}
+  - {fileID: 11400000, guid: b872d067c6c583942862044ecde7beab, type: 2}
   characterSelectors:
   - {fileID: 8224940093876441521}
   - {fileID: 59376099}

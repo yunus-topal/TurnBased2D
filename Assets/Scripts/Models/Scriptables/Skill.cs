@@ -13,11 +13,11 @@ namespace Models.Scriptables {
 
         [Header("Cost & Cooldown")]
         public int ManaCost = 10;
-        public float Cooldown = 1f;
+        public int Cooldown = 1;
 
         [Header("Effect Parameters")]
         public float BaseDamage = 50f;
-        public float Range = 10f; // most likely irrelevant since it will be a 2d game at the beginning. can be useful later.
+        
         public SkillType SkillType;
         public SkillTarget SkillTarget;
 

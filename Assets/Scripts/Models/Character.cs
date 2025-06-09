@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Helpers;
 using Models.Scriptables;
@@ -7,17 +8,17 @@ namespace Models {
     public class Character
     {
         // character info
-        public string Name { get; private set; } 
-        public int Level { get; private set; }
-        public int XP { get; private set; }
-        public Sprite Sprite { get; private set; }
-        public int MaxHealth { get; private set; } 
+        public string Name { get; set; } 
+        public int Level { get; set; }
+        public int XP { get; set; }
+        public Sprite Sprite { get; set; }
+        public int MaxHealth { get; set; } 
         public int CurrentHealth { get; set; } 
-        public CombatStats CombatStats { get; private set; } 
+        public CombatStats CombatStats { get; set; } 
 
         // equipment and skills and potentially new features.
-        public List<Equipment> Equipments { get; private set; }
-        public List<Skill> Skills { get; private set; }
+        public List<Equipment> Equipments { get; set; }
+        public List<Skill> Skills { get; set; }
         
         public Character(CharacterSO characterScriptable)
         {
