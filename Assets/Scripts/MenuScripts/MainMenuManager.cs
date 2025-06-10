@@ -7,14 +7,25 @@ namespace MenuScripts
     public class MainMenuManager : MonoBehaviour
     {
         [SerializeField] private GameObject mainPanel;
-        [SerializeField] private GameObject[] otherPanels;
+        [SerializeField] private GameObject savePanel;
+        [SerializeField] private GameObject optionsPanel;
 
         private void Start()
         {
-            mainPanel.SetActive(true);
-            foreach (var panel in otherPanels)
+            // get player prefs
+            var lastUsedSave = PlayerPrefs.GetString(Helpers.Constants.lastUsedSaveKey, string.Empty);
+            // try to load the last used save file
+            var lastSave = Helpers.SaveHelper.LoadSaveFileFromFileName(lastUsedSave);
+            if (lastSave != null)
             {
-                panel.SetActive(false);
+                DisableAllPanels();
+                mainPanel.SetActive(true);
+            }
+            else
+            {
+                // enable create save file panel. disable others.
+                DisableAllPanels();
+                savePanel.SetActive(true);
             }
         }
 
@@ -26,11 +37,13 @@ namespace MenuScripts
         public void QuitApplication()
         {
             Application.Quit();
-        }
+        } 
 
-        public void FetchSaveFiles()
+        private void DisableAllPanels()
         {
-            // fetch all the save files from the save file location
+            mainPanel.SetActive(false);
+            savePanel.SetActive(false);
+            optionsPanel.SetActive(false);
         }
 
     }

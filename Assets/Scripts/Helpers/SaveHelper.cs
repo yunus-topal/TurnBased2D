@@ -7,23 +7,30 @@ using UnityEngine;
 
 namespace Helpers
 {
-    public static class SaveManager
+    public static class SaveHelper
     {
-        /// <summary>Write the given object as JSON to disk.</summary>
-        public static void Save<T>(T data, string filePath)
+        public static SaveFile[] GetAllSaveFiles()
         {
-            string json = JsonUtility.ToJson(data, prettyPrint: true);
-            File.WriteAllText(filePath, json);
+            var saveFiles = Directory.GetFiles(Application.persistentDataPath, "*.json")
+                .Select(file => Path.GetFileNameWithoutExtension(file))
+                .Select(fileName => LoadSaveFileFromFileName(fileName))
+                .Where(saveFile => saveFile != null)
+                .ToArray();
+            return saveFiles;
         }
 
-        /// <summary>Read JSON from disk and deserialize into T (or default(T) if missing).</summary>
-        public static T Load<T>(string filePath)
+        /// <summary>Read JSON from disk and deserialize into SaveFile</summary>
+        public static SaveFile LoadSaveFileFromFileName(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+                return null;
+            var filePath = Path.Combine(Application.persistentDataPath, $"{fileName}.json");
+
             if (!File.Exists(filePath))
-                return default;
+                return null;
 
             string json = File.ReadAllText(filePath);
-            return JsonUtility.FromJson<T>(json);
+            return JsonUtility.FromJson<SaveFile>(json);
         }
 
         public static CharacterData ToData(this Character c)
