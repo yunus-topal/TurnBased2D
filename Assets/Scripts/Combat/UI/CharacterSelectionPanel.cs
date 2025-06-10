@@ -35,7 +35,7 @@ public class CharacterSelectionPanel : MonoBehaviour
         {
             Characters = charactersToStart.Select(c => c.ToData()).ToArray(),
             SaveName = "New Game",
-            SaveDate = System.DateTime.Now
+            //SaveDate = System.DateTime.Now
         };
 
         // save to persistent storage

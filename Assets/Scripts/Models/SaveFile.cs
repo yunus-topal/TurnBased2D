@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Models
 {
@@ -8,9 +9,9 @@ namespace Models
     public class SaveFile
     {
         // party of the current run
-        public CharacterData[] Characters { get; set; }
+        [MaybeNull] public CharacterData[] Characters { get; set; }
         public string SaveName { get; set; } // Name of the save file
-        public DateTime SaveDate { get; set; } // Date when the last save was made
+        //public DateTime SaveDate { get; set; } // Date when the last save was made
     }
 
     [Serializable]

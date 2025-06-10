@@ -23,21 +23,43 @@ public class CreateSaveMenuManager : MonoBehaviour
             backButton.gameObject.SetActive(false);
         }
 
-        // get all save files.
+        SetupSaveScrollView();
+    }
+
+    public void CreateNewSave()
+    {
+        var saveName = CreateSaveInput.GetComponentInChildren<TMPro.TMP_InputField>().text;
+        if (string.IsNullOrEmpty(saveName))
+        {
+            Debug.LogError("Save name cannot be empty.");
+            return;
+        }
+        // Create a new save file with the given name
+        var newSaveFile = new SaveFile { SaveName = saveName };
+        // Save the new save file to disk
+        Helpers.SaveHelper.SaveSaveFile(newSaveFile);
+    }
+
+    public void SetupSaveScrollView()
+    {
+        // Clear existing save file entries
+        foreach (Transform child in saveFileListContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        // Get all save files
         var saveFiles = Helpers.SaveHelper.GetAllSaveFiles();
-        // populate list with save files
+        // Populate the scroll view with save files
         foreach (var saveFile in saveFiles)
         {
-            var saveFileObject = Instantiate(saveFilePrefab, transform);
-            saveFileObject.transform.SetParent(saveFileListContainer, false); // Set parent without changing local scale/position
-
+            var saveFileObject = Instantiate(saveFilePrefab, saveFileListContainer);
+            // set parent
+            var saveFileUIHelper = saveFileObject.GetComponent<SaveFileUIHelper>();
+            if (saveFileUIHelper != null)
+            {
+                saveFileUIHelper.Initialize(saveFile);
+            }
         }
     }
-
-    public void OnCreateNewSaveClicked()
-    {
-        CreateSaveInput.SetActive(true);
-    }
-
 
 }

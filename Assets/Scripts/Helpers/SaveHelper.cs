@@ -1,4 +1,5 @@
 
+using System;
 using System.IO;
 using System.Linq;
 using Models;
@@ -9,6 +10,25 @@ namespace Helpers
 {
     public static class SaveHelper
     {
+        public static void SetupSaveFolder()
+        {
+            if (!Directory.Exists(Constants.saveFileLocation))
+            {
+                try
+                {
+                    Directory.CreateDirectory(Constants.saveFileLocation);
+                    Debug.Log($"Save file directory created at {Constants.saveFileLocation}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Failed to create save file directory: {ex.Message}");
+                }
+            }
+            else
+            {
+                Debug.Log($"Save file directory already exists at {Constants.saveFileLocation}");
+            }
+        }
         public static SaveFile[] GetAllSaveFiles()
         {
             var saveFiles = Directory.GetFiles(Application.persistentDataPath, "*.json")
@@ -19,17 +39,48 @@ namespace Helpers
             return saveFiles;
         }
 
+        internal static void SaveSaveFile(SaveFile newSaveFile)
+        {
+            if (newSaveFile == null)
+            {
+                Debug.LogError("Cannot save a null SaveFile.");
+                return;
+            }
+            if (string.IsNullOrEmpty(newSaveFile.SaveName))
+            {
+                Debug.LogError("SaveFile must have a valid SaveName.");
+                return;
+            }
+            //newSaveFile.SaveDate = DateTime.Now; // Update the save date to current time
+
+            var filePath = Path.Combine(Constants.saveFileLocation, $"{newSaveFile.SaveName}.json");
+            try
+            {
+                Debug.Log($"save name: {newSaveFile.SaveName}");
+                string json = JsonUtility.ToJson(newSaveFile, true);
+                Debug.Log($"Saving save file to {filePath} with content: {json}");
+                File.WriteAllText(filePath, json);
+                Debug.Log($"Save file '{newSaveFile.SaveName}' saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Failed to save the save file: {ex.Message}");
+            }
+
+        }
+
         /// <summary>Read JSON from disk and deserialize into SaveFile</summary>
         public static SaveFile LoadSaveFileFromFileName(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
                 return null;
-            var filePath = Path.Combine(Application.persistentDataPath, $"{fileName}.json");
+            var filePath = Path.Combine(Constants.saveFileLocation, $"{fileName}.json");
 
             if (!File.Exists(filePath))
                 return null;
 
             string json = File.ReadAllText(filePath);
+            Debug.Log($"[LoadSaveFileFromFileName] Loading save file from {filePath} with content: {json}");
             return JsonUtility.FromJson<SaveFile>(json);
         }
 
@@ -77,6 +128,5 @@ namespace Helpers
             };
             return character;
         }
-
     }
 }

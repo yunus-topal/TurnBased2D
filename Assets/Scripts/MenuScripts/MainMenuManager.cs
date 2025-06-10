@@ -1,4 +1,6 @@
 using System;
+using Helpers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +11,11 @@ namespace MenuScripts
         [SerializeField] private GameObject mainPanel;
         [SerializeField] private GameObject savePanel;
         [SerializeField] private GameObject optionsPanel;
+        [SerializeField] private TextMeshProUGUI saveNameText;
 
         private void Start()
         {
+            SaveHelper.SetupSaveFolder(); // Ensure the save folder is set up at the start
             // get player prefs
             var lastUsedSave = PlayerPrefs.GetString(Helpers.Constants.lastUsedSaveKey, string.Empty);
             // try to load the last used save file
@@ -20,6 +24,7 @@ namespace MenuScripts
             {
                 DisableAllPanels();
                 mainPanel.SetActive(true);
+                saveNameText.text = lastSave.SaveName; // Display the last used save name
             }
             else
             {
