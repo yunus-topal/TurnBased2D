@@ -12,6 +12,12 @@ namespace Models
         [MaybeNull] public CharacterData[] Characters { get; set; }
         public string SaveName { get; set; } // Name of the save file
         //public DateTime SaveDate { get; set; } // Date when the last save was made
+
+        // override to string method
+        public override string ToString()
+        {
+            return $"SaveFile: {SaveName}, Characters: {Characters?.Length ?? 0}";
+        }
     }
 
     [Serializable]

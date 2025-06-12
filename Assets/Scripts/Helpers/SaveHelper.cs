@@ -5,6 +5,7 @@ using System.Linq;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Helpers
 {
@@ -31,7 +32,7 @@ namespace Helpers
         }
         public static SaveFile[] GetAllSaveFiles()
         {
-            var saveFiles = Directory.GetFiles(Application.persistentDataPath, "*.json")
+            var saveFiles = Directory.GetFiles(Constants.saveFileLocation, "*.json")
                 .Select(file => Path.GetFileNameWithoutExtension(file))
                 .Select(fileName => LoadSaveFileFromFileName(fileName))
                 .Where(saveFile => saveFile != null)
@@ -57,7 +58,9 @@ namespace Helpers
             try
             {
                 Debug.Log($"save name: {newSaveFile.SaveName}");
-                string json = JsonUtility.ToJson(newSaveFile, true);
+                // write newtonsoft json to file
+                string json = JsonConvert.SerializeObject(newSaveFile, Formatting.Indented);
+
                 Debug.Log($"Saving save file to {filePath} with content: {json}");
                 File.WriteAllText(filePath, json);
                 Debug.Log($"Save file '{newSaveFile.SaveName}' saved successfully.");
@@ -81,7 +84,9 @@ namespace Helpers
 
             string json = File.ReadAllText(filePath);
             Debug.Log($"[LoadSaveFileFromFileName] Loading save file from {filePath} with content: {json}");
-            return JsonUtility.FromJson<SaveFile>(json);
+            var saveFile = JsonConvert.DeserializeObject<SaveFile>(json);
+            Debug.Log($"Save file '{fileName}' loaded successfully with {saveFile?.Characters?.Length ?? 0} characters.");
+            return saveFile;
         }
 
         public static CharacterData ToData(this Character c)
