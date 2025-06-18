@@ -13,9 +13,14 @@ namespace MenuScripts
         [SerializeField] private GameObject optionsPanel;
         [SerializeField] private TextMeshProUGUI saveNameText;
 
-        private void Start()
+        private void Awake()
         {
             SaveHelper.SetupSaveFolder(); // Ensure the save folder is set up at the start
+            CheckSaveFiles();
+        }
+
+        public void CheckSaveFiles()
+        {
             // get player prefs
             var lastUsedSave = PlayerPrefs.GetString(Helpers.Constants.lastUsedSaveKey, string.Empty);
             // try to load the last used save file

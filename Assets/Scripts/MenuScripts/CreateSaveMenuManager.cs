@@ -11,6 +11,9 @@ public class CreateSaveMenuManager : MonoBehaviour
     [SerializeField] private Transform saveFileListContainer;
 
     [SerializeField] private GameObject CreateSaveInput;
+
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject savePanel;
     private void OnEnable()
     {
         CreateSaveInput.SetActive(false);
@@ -57,7 +60,7 @@ public class CreateSaveMenuManager : MonoBehaviour
             var saveFileUIHelper = saveFileObject.GetComponent<SaveFileUIHelper>();
             if (saveFileUIHelper != null)
             {
-                saveFileUIHelper.Initialize(saveFile);
+                saveFileUIHelper.Initialize(saveFile, mainPanel, savePanel);
             }
         }
     }
