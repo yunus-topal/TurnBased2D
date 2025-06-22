@@ -41,7 +41,7 @@ namespace MenuScripts
             // Create a new save file with the given name
             var newSaveFile = new SaveFile { SaveName = saveName };
             // Save the new save file to disk
-            Helpers.SaveHelper.SaveSaveFile(newSaveFile);
+            Helpers.SaveHelper.SaveNewSaveFile(newSaveFile);
         }
 
         public void SetupSaveScrollView()

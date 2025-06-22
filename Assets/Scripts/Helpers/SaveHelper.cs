@@ -11,6 +11,9 @@ namespace Helpers
 {
     public static class SaveHelper
     {
+        private static SaveFile currentSaveFile;
+        public static SaveFile CurrentSaveFile => currentSaveFile;
+        
         public static void SetupSaveFolder()
         {
             if (!Directory.Exists(Constants.saveFileLocation))
@@ -40,7 +43,7 @@ namespace Helpers
             return saveFiles;
         }
 
-        internal static void SaveSaveFile(SaveFile newSaveFile)
+        internal static void SaveNewSaveFile(SaveFile newSaveFile)
         {
             if (newSaveFile == null)
             {
@@ -53,23 +56,15 @@ namespace Helpers
                 return;
             }
             //newSaveFile.SaveDate = DateTime.Now; // Update the save date to current time
+            WriteToDisk(newSaveFile);
+        }
 
-            var filePath = Path.Combine(Constants.saveFileLocation, $"{newSaveFile.SaveName}.json");
-            try
-            {
-                Debug.Log($"save name: {newSaveFile.SaveName}");
-                // write newtonsoft json to file
-                string json = JsonConvert.SerializeObject(newSaveFile, Formatting.Indented);
-
-                Debug.Log($"Saving save file to {filePath} with content: {json}");
-                File.WriteAllText(filePath, json);
-                Debug.Log($"Save file '{newSaveFile.SaveName}' saved successfully.");
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Failed to save the save file: {ex.Message}");
-            }
-
+        internal static void UpdateSaveFile(Character[] characters)
+        {
+            currentSaveFile.Characters = characters.Select(x => x.ToData()).ToArray();
+            
+            // write back to same file.
+            WriteToDisk(currentSaveFile);
         }
 
         /// <summary>Read JSON from disk and deserialize into SaveFile</summary>
@@ -86,7 +81,27 @@ namespace Helpers
             Debug.Log($"[LoadSaveFileFromFileName] Loading save file from {filePath} with content: {json}");
             var saveFile = JsonConvert.DeserializeObject<SaveFile>(json);
             Debug.Log($"Save file '{fileName}' loaded successfully with {saveFile?.Characters?.Length ?? 0} characters.");
+            currentSaveFile = saveFile;
             return saveFile;
+        }
+
+        private static void WriteToDisk(SaveFile saveFile)
+        {
+            var filePath = Path.Combine(Constants.saveFileLocation, $"{saveFile.SaveName}.json");
+            try
+            {
+                Debug.Log($"save name: {saveFile.SaveName}");
+                // write newtonsoft json to file
+                string json = JsonConvert.SerializeObject(saveFile, Formatting.Indented);
+
+                Debug.Log($"Saving save file to {filePath} with content: {json}");
+                File.WriteAllText(filePath, json);
+                Debug.Log($"Save file '{saveFile.SaveName}' saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Failed to save the save file: {ex.Message}");
+            }
         }
 
         public static CharacterData ToData(this Character c)
