@@ -1,11 +1,10 @@
-using Combat.UI;
 using Helpers;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MenuScripts
+namespace MenuScripts.StartingMenu
 {
     public class CharacterSelectionPanel : MonoBehaviour
     {

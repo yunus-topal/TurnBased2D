@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MenuScripts
+namespace MenuScripts.StartingMenu
 {
     // TODO show more details of the selected character.
     public class CharacterSelector : MonoBehaviour

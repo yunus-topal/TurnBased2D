@@ -11,12 +11,26 @@ namespace Models
         // party of the current run
         [MaybeNull] public CharacterData[] Characters { get; set; }
         public string SaveName { get; set; } // Name of the save file
+        public int SeedNumber { get; set; }
         //public DateTime SaveDate { get; set; } // Date when the last save was made
 
+        public SaveFile(string saveName, CharacterData[] characters = null)
+        {
+            this.SaveName = saveName;
+            this.Characters = characters;
+            Random random = new Random();
+            this.SeedNumber = random.Next();
+        }
+
+        public void SetSeed(int seed)
+        {
+            this.SeedNumber = seed;
+        }
+        
         // override to string method
         public override string ToString()
         {
-            return $"SaveFile: {SaveName}, Characters: {Characters?.Length ?? 0}";
+            return $"SaveFile: {SaveName}, Characters: {Characters?.Length ?? 0}, SeedNumber: {SeedNumber}";
         }
     }
 

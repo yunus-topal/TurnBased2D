@@ -2,7 +2,7 @@ using Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MenuScripts
+namespace MenuScripts.MainMenu
 {
     public class CreateSaveMenuManager : MonoBehaviour
     {
@@ -39,7 +39,7 @@ namespace MenuScripts
                 return;
             }
             // Create a new save file with the given name
-            var newSaveFile = new SaveFile { SaveName = saveName };
+            var newSaveFile = new SaveFile(saveName);
             // Save the new save file to disk
             Helpers.SaveHelper.SaveNewSaveFile(newSaveFile);
         }

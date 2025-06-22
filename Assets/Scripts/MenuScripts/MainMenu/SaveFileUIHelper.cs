@@ -1,7 +1,7 @@
 using Models;
 using UnityEngine;
 
-namespace MenuScripts
+namespace MenuScripts.MainMenu
 {
     public class SaveFileUIHelper : MonoBehaviour
     {

@@ -1,10 +1,9 @@
-using System;
 using Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MenuScripts
+namespace MenuScripts.MainMenu
 {
     public class MainMenuManager : MonoBehaviour
     {
