@@ -4,7 +4,7 @@ using Helpers;
 using Models;
 using UnityEngine;
 
-namespace MenuScripts.GameScene
+namespace Map
 {
     class Node {
         public Encounter type;
@@ -22,19 +22,19 @@ namespace MenuScripts.GameScene
         [Tooltip("Distance between each column of nodes in a floor.")]
         [SerializeField] private float nodeDistance = 50f;
         
-        private List<List<Node>> map = new List<List<Node>>();
+        private List<List<Node>> _gameMap = new List<List<Node>>();
         private void Start()
         {
-            map = GenerateMap(SaveHelper.CurrentSaveFile.SeedNumber);
-            foreach (var floor in map)
+            _gameMap = GenerateMap(SaveHelper.CurrentSaveFile.SeedNumber);
+            foreach (var floor in _gameMap)
             {
                 // place nodes in the map.
                 var newFloor = Instantiate(floorPrefab, mapAnchor);
 
                 for (var i = 0; i < floor.Count; i++)
                 {
-                    var node = floor[i];
-                    Instantiate(nodePrefab, newFloor.transform);
+                    var node = Instantiate(nodePrefab, newFloor.transform);
+                    node.GetComponent<MapNodeHelper>().Initialize(floor[i].type);
                 }
             }
             
@@ -45,7 +45,9 @@ namespace MenuScripts.GameScene
             var map = new List<List<Node>>();
 
             for (int floor = 0; floor < floors; floor++) {
-                int nodeCount = rng.Next(minNodes, maxNodes + 1);
+                // 1 node for first and last floor.
+                int nodeCount = (floor == 0 || floor == floors - 1) ? 1 : rng.Next(minNodes, maxNodes + 1);
+                
                 var layer = new List<Node>();
 
                 for (int i = 0; i < nodeCount; i++) {
@@ -88,29 +90,6 @@ namespace MenuScripts.GameScene
                 < 85 => Encounter.Merchant,
                 _ => Encounter.MiniBoss,
             };
-        }
-
-        // calculate x positions of nodes.
-        private List<float> CalculateNodePositions(int count)
-        {
-            if (count < 1)
-            {
-                Debug.LogError("node count < 1");
-                return new List<float>(count);
-            }
-            
-            if(count == 1) return new List<float>() { 0 };
-
-            var firstNodePosition = -(count / 2) * nodeDistance;
-            if (count % 2 == 0) firstNodePosition += nodeDistance / 2;
-            
-            var positions  = new List<float>();
-            for(int i = 0; i < count; i++)
-            {
-                positions.Add(firstNodePosition);
-                firstNodePosition += nodeDistance;
-            }
-            return positions;
         }
     }
 }
