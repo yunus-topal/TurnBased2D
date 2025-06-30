@@ -12,8 +12,18 @@ namespace Helpers
     public static class SaveHelper
     {
         private static SaveFile currentSaveFile;
-        public static SaveFile CurrentSaveFile => currentSaveFile;
-        
+        public static SaveFile CurrentSaveFile
+        {
+            get
+            {
+                if (currentSaveFile == null)
+                {
+                    var lastUsedSave = PlayerPrefs.GetString(Constants.lastUsedSaveKey, string.Empty);
+                    currentSaveFile = LoadSaveFileFromFileName(lastUsedSave);
+                }
+                return currentSaveFile;
+            }
+        }        
         public static void SetupSaveFolder()
         {
             if (!Directory.Exists(Constants.saveFileLocation))
