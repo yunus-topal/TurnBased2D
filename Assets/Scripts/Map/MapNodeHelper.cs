@@ -45,11 +45,63 @@ namespace Map
             {
                 Debug.LogError($"No sprite found for encounter type {_encounterType}");
             }
+
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(OnNodeSelected);
+            switch (_encounterType)
+            {
+                case Encounter.Merchant:
+                    button.onClick.AddListener(MerchantSetup);
+                    break;
+                case Encounter.Boss:
+                    button.onClick.AddListener(BossSetup);
+                    break;
+                case Encounter.Combat:
+                    button.onClick.AddListener(CombatSetup);
+                    break;
+                case Encounter.Rest:
+                    button.onClick.AddListener(RestSetup);
+                    break;
+                case Encounter.MiniBoss:
+                    button.onClick.AddListener(MiniBossSetup);
+                    break;
+            }
+            
         }
 
         public void SetNodeInteractable(bool interactable)
         {
             button.interactable = interactable;
+        }
+
+        private void OnNodeSelected()
+        {
+            nodeImage.color = Color.forestGreen;
+        }
+        private void CombatSetup()
+        {
+            // enable combat panel
+            // pick enemies for the encounter.
+        }
+
+        private void BossSetup()
+        {
+            
+        }
+
+        private void MiniBossSetup()
+        {
+            
+        }
+
+        private void RestSetup()
+        {
+            
+        }
+
+        private void MerchantSetup()
+        {
+            
         }
     }
 }
