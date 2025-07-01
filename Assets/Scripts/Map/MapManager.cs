@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Helpers;
 using Models;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Map
 {
     class Node {
         public Encounter type;
         public List<Node> connections = new();
+		public GameObject view;
     }
     
     public class MapManager : MonoBehaviour
@@ -16,7 +18,8 @@ namespace Map
         [SerializeField] private GameObject nodePrefab;
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private Transform mapAnchor;
-        
+		[SerializeField] private GameObject linePrefab;
+         
         [Tooltip("Distance between each row of nodes in the map.")]
         [SerializeField] private float floorDistance = 50f;
         [Tooltip("Distance between each column of nodes in a floor.")]
@@ -26,16 +29,21 @@ namespace Map
         private void Start()
         {
             _gameMap = GenerateMap(SaveHelper.CurrentSaveFile.SeedNumber);
-            foreach (var floor in _gameMap)
+            for (var floorIndex = 0; floorIndex < _gameMap.Count; floorIndex++)
             {
+                var floor = _gameMap[floorIndex];
                 // place nodes in the map.
                 var newFloor = Instantiate(floorPrefab, mapAnchor);
 
                 for (var i = 0; i < floor.Count; i++)
                 {
-                    var node = Instantiate(nodePrefab, newFloor.transform);
-                    node.GetComponent<MapNodeHelper>().Initialize(floor[i].type);
+                    var node = floor[i];
+                    var go = Instantiate(nodePrefab, newFloor.transform);
+                    go.GetComponent<MapNodeHelper>().Initialize(node.type);
+                    node.view = go; 
                 }
+                // TODO: implement this properly in the future.
+                //CreateConnections(floor);
             }
             
         }
@@ -81,7 +89,36 @@ namespace Map
 
             return map;
         }
-        
+
+        void CreateConnections(List<Node> floor)
+        {
+            var container = new GameObject();
+            container.transform.parent = mapAnchor;
+            foreach (var node in floor)
+            {
+                foreach (var connection in node.connections)
+                {
+                    var line =  Instantiate(linePrefab, container.transform);
+                }
+            }
+        }
+        void DrawLine(RectTransform from, RectTransform to)
+        {
+            Vector3 startPos = from.position;
+            Vector3 endPos = to.position;
+
+            Vector3 dir = (endPos - startPos).normalized;
+            float distance = Vector3.Distance(startPos, endPos);
+
+            GameObject line = Instantiate(linePrefab, mapAnchor); // must be under the same Canvas
+            RectTransform rt = line.GetComponent<RectTransform>();
+            rt.position = startPos;
+            rt.sizeDelta = new Vector2(distance, 4); // width, height
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            rt.rotation = Quaternion.Euler(0, 0, angle);
+
+        }
+
         Encounter GetRandomEncounter(System.Random rng) {
             int roll = rng.Next(100);
             return roll switch {

@@ -587,6 +587,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 4340886920299711816, guid: 6ee183fbd46df2d4e8173679e25264a2, type: 3}
   floorPrefab: {fileID: 1789767659101945383, guid: 4620e36b8e975cf49a3f045dd02d70e5, type: 3}
   mapAnchor: {fileID: 1131350449}
+  linePrefab: {fileID: 3494109835163572721, guid: 6aabf30f31927aa45b81f0419c6391b2, type: 3}
   floorDistance: 150
   nodeDistance: 150
 --- !u!1 &846769869
@@ -838,7 +839,7 @@ MonoBehaviour:
     m_Top: 50
     m_Bottom: 50
   m_ChildAlignment: 1
-  m_Spacing: 25
+  m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1

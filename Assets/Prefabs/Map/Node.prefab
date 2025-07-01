@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 90}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2878256946114962954
 CanvasRenderer:
@@ -133,15 +133,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b795960fa125af44eb642c540c03c224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeImage: {fileID: 7511616003806898451}
   encounterSprites:
   - encounterType: 0
-    sprite: {fileID: 2057982276877841581, guid: d07dbb818ed518b4c969b0da069aedba, type: 3}
+    sprite: {fileID: 21300000, guid: 73f54d1ee414b9141b515dca6cfa9a19, type: 3}
   - encounterType: 1
-    sprite: {fileID: 352380278474461802, guid: 13bdd22b58a725e4f89beec8bc58698c, type: 3}
+    sprite: {fileID: 21300000, guid: 0cd44c218dcf1a14fac2f3f0f2b9ce61, type: 3}
   - encounterType: 2
-    sprite: {fileID: 1327647984808908093, guid: 97fd65bd50c6ab244898c4b744377785, type: 3}
+    sprite: {fileID: 21300000, guid: 8d1ef79c698402c46b585ba1eea83141, type: 3}
   - encounterType: 3
-    sprite: {fileID: 9048161016722300731, guid: cf4a4a656a8bc60498d5fec7ab3ede3e, type: 3}
+    sprite: {fileID: 21300000, guid: 324921c437d94f6449ff157a3b55af9e, type: 3}
   - encounterType: 4
-    sprite: {fileID: -6084711936022183385, guid: 45df5f17a19140446bbc4ce914f71525, type: 3}
+    sprite: {fileID: 21300000, guid: a3be2ff5ef273e242a0c55368e23627e, type: 3}

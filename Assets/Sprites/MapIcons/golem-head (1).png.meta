@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 13bdd22b58a725e4f89beec8bc58698c
+guid: 8d1ef79c698402c46b585ba1eea83141
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 352380278474461802
-    second: warlord-helmet_0
+      213: 1185223678677378172
+    second: golem-head (1)_0
+  - first:
+      213: -5906842262958927651
+    second: golem-head (1)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: warlord-helmet_0
+      name: golem-head (1)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 41
+        y: 43
+        width: 431
+        height: 445
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a62d25c0ff7e3e400800000000000000
-      internalID: 352380278474461802
+      spriteID: c7462faf7a2c27010800000000000000
+      internalID: 1185223678677378172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: golem-head (1)_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 24
+        width: 222
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd09114f14ea60ea0800000000000000
+      internalID: -5906842262958927651
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      warlord-helmet_0: 352380278474461802
+      golem-head (1)_0: 1185223678677378172
+      golem-head (1)_1: -5906842262958927651
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
