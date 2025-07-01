@@ -19,5 +19,6 @@ namespace Helpers
         // check player prefs using this
         public static readonly string lastUsedSaveKey = "lastUsedSave";
 
+        public static readonly System.Random Rng = new System.Random(SaveHelper.CurrentSaveFile.SeedNumber);
     }
 }

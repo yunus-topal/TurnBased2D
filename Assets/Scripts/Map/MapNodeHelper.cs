@@ -16,6 +16,7 @@ namespace Map
     {
         private Image nodeImage;
         private Button button;
+        private GameManager _gameManager;
         
         [SerializeField] private List<EncounterSpriteMapping> encounterSprites;
 
@@ -33,6 +34,10 @@ namespace Map
                 if (!_spriteLookup.ContainsKey(mapping.encounterType))
                     _spriteLookup.Add(mapping.encounterType, mapping.sprite);
             }
+            
+            _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            if (_gameManager == null)
+                Debug.LogError("GameManager not found");
         }
         public void Initialize(Encounter encounterType)
         {
@@ -80,8 +85,9 @@ namespace Map
         }
         private void CombatSetup()
         {
-            // enable combat panel
             // pick enemies for the encounter.
+            _gameManager.SetActiveCombatPanel(true);
+            _gameManager.SetActiveMapPanel(false);
         }
 
         private void BossSetup()

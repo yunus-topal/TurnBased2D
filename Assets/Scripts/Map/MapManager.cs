@@ -50,8 +50,9 @@ namespace Map
             StartCoroutine(scrollView.SmoothScrollToBottom());
         }
 
-        private List<List<Node>> GenerateMap(int seed, int floors = 7, int minNodes = 1, int maxNodes = 4) {
-            var rng = new System.Random(seed);
+        private List<List<Node>> GenerateMap(int seed, int floors = 7, int minNodes = 1, int maxNodes = 4)
+        {
+            var rng = Constants.Rng;
             var map = new List<List<Node>>();
 
             for (int floor = 0; floor < floors; floor++) {
