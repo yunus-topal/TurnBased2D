@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 8d1ef79c698402c46b585ba1eea83141
+guid: f42ac7ab34337f5458afa4f0e86cad19
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1185223678677378172
-    second: golem-head (1)_0
+      213: 7295946912258373126
+    second: price-tag (2)_0
   - first:
-      213: -5906842262958927651
-    second: golem-head (1)_1
+      213: -1639675035396914617
+    second: price-tag (2)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: golem-head (1)_0
+      name: price-tag (2)_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 43
-        width: 431
-        height: 445
+        x: 18
+        y: 41
+        width: 433
+        height: 430
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7462faf7a2c27010800000000000000
-      internalID: 1185223678677378172
+      spriteID: 606b445af09604560800000000000000
+      internalID: 7295946912258373126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: golem-head (1)_1
+      name: price-tag (2)_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 24
-        width: 222
-        height: 64
+        x: 338
+        y: 52
+        width: 156
+        height: 384
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd09114f14ea60ea0800000000000000
-      internalID: -5906842262958927651
+      spriteID: 74247102e34be39e0800000000000000
+      internalID: -1639675035396914617
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      golem-head (1)_0: 1185223678677378172
-      golem-head (1)_1: -5906842262958927651
+      price-tag (2)_0: 7295946912258373126
+      price-tag (2)_1: -1639675035396914617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -14,9 +14,9 @@ namespace Map
     }
     public class MapNodeHelper : MonoBehaviour
     {
-        // TODO: keep track of each image associated with each encounter type and assign it.
-        
         private Image nodeImage;
+        private Button button;
+        
         [SerializeField] private List<EncounterSpriteMapping> encounterSprites;
 
         private Encounter _encounterType;
@@ -25,6 +25,7 @@ namespace Map
         private void Awake()
         {
             nodeImage = GetComponent<Image>();
+            button = GetComponent<Button>();
             // Convert list to dictionary for quick lookup
             _spriteLookup = new Dictionary<Encounter, Sprite>();
             foreach (var mapping in encounterSprites)
@@ -33,7 +34,6 @@ namespace Map
                     _spriteLookup.Add(mapping.encounterType, mapping.sprite);
             }
         }
-        
         public void Initialize(Encounter encounterType)
         {
             _encounterType = encounterType;
@@ -45,6 +45,11 @@ namespace Map
             {
                 Debug.LogError($"No sprite found for encounter type {_encounterType}");
             }
+        }
+
+        public void SetNodeInteractable(bool interactable)
+        {
+            button.interactable = interactable;
         }
     }
 }

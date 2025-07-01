@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Helpers;
 using Models;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Map
 {
     class Node {
         public Encounter type;
         public List<Node> connections = new();
-		public GameObject view;
+		public MapNodeHelper view;
     }
     
     public class MapManager : MonoBehaviour
@@ -19,6 +18,7 @@ namespace Map
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private Transform mapAnchor;
 		[SerializeField] private GameObject linePrefab;
+        [SerializeField] private ScrollViewHelper scrollView;
          
         [Tooltip("Distance between each row of nodes in the map.")]
         [SerializeField] private float floorDistance = 50f;
@@ -40,12 +40,14 @@ namespace Map
                     var node = floor[i];
                     var go = Instantiate(nodePrefab, newFloor.transform);
                     go.GetComponent<MapNodeHelper>().Initialize(node.type);
-                    node.view = go; 
+                    node.view = go.GetComponent<MapNodeHelper>();
                 }
                 // TODO: implement this properly in the future.
                 //CreateConnections(floor);
             }
             
+            UpdateMapState();
+            StartCoroutine(scrollView.SmoothScrollToBottom());
         }
 
         private List<List<Node>> GenerateMap(int seed, int floors = 7, int minNodes = 1, int maxNodes = 4) {
@@ -127,6 +129,54 @@ namespace Map
                 < 85 => Encounter.Merchant,
                 _ => Encounter.MiniBoss,
             };
+        }
+
+        public void UpdateMapState()
+        {
+            // check the current floor number. set interactable true for next floor node buttons.
+            var floorNumber = SaveHelper.CurrentSaveFile.floorNumber;
+
+            // player just started the game. only first node should be available.
+            if (floorNumber == -1)
+            {
+                DisableAllNodes();
+                _gameMap[0][0].view.SetNodeInteractable(true);
+                return;
+            }
+            
+            if (floorNumber < 0 || floorNumber >= _gameMap.Count)
+            {
+                Debug.LogError("floor number is wrong!");
+                return;
+            }
+            
+            var nodeNumber = SaveHelper.CurrentSaveFile.nodeNumber;
+            if (nodeNumber < 0 || nodeNumber >= _gameMap[floorNumber].Count)
+            {
+                Debug.LogError("node number is wrong!");
+                return;
+            }
+            
+            int nextFloor = floorNumber + 1;
+            if(nextFloor >= _gameMap[floorNumber].Count) return;
+
+            // if there is a next floor availabe, make them interactable.
+            DisableAllNodes();
+            foreach (var node in _gameMap[nextFloor])
+            {
+                node.view.SetNodeInteractable(true);
+            }
+        }
+
+        private void DisableAllNodes()
+        {
+            foreach (var floor in _gameMap)
+            {
+                foreach (var node in floor)
+                {
+                    node.view.SetNodeInteractable(false);
+                }
+            }
         }
     }
 }

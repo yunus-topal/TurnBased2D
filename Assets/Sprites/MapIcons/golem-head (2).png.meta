@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: 0cd44c218dcf1a14fac2f3f0f2b9ce61
+guid: 00921019839303241bdd463e094a0bf6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3925312645587705303
-    second: warlord-helmet (1)_0
+      213: 5769621430658923910
+    second: golem-head (2)_0
   - first:
-      213: -7915474588897291837
-    second: warlord-helmet (1)_1
-  - first:
-      213: 7547202059106721701
-    second: warlord-helmet (1)_2
-  - first:
-      213: 5749698217354767694
-    second: warlord-helmet (1)_3
-  - first:
-      213: -385806224922660301
-    second: warlord-helmet (1)_4
-  - first:
-      213: -8449923076510961119
-    second: warlord-helmet (1)_5
+      213: 5202105312230050111
+    second: golem-head (2)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: warlord-helmet (1)_0
+      name: golem-head (2)_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 233
-        width: 132
-        height: 240
+        x: 41
+        y: 43
+        width: 431
+        height: 445
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 922656f22fc7689c0800000000000000
-      internalID: -3925312645587705303
+      spriteID: 68df7e65f10d11050800000000000000
+      internalID: 5769621430658923910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: warlord-helmet (1)_1
+      name: golem-head (2)_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 27
-        width: 254
-        height: 318
+        x: 146
+        y: 24
+        width: 222
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,96 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c15524acc5962290800000000000000
-      internalID: -7915474588897291837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: warlord-helmet (1)_2
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 278
-        width: 138
-        height: 109
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5af1725394c0db860800000000000000
-      internalID: 7547202059106721701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: warlord-helmet (1)_3
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 233
-        width: 132
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4da023c0180bcf40800000000000000
-      internalID: 5749698217354767694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: warlord-helmet (1)_4
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 39
-        width: 117
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 332b953584755aaf0800000000000000
-      internalID: -385806224922660301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: warlord-helmet (1)_5
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 39
-        width: 117
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12230354bb7dbba80800000000000000
-      internalID: -8449923076510961119
+      spriteID: f3905a33837913840800000000000000
+      internalID: 5202105312230050111
       vertices: []
       indices: 
       edges: []
@@ -273,12 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      warlord-helmet (1)_0: -3925312645587705303
-      warlord-helmet (1)_1: -7915474588897291837
-      warlord-helmet (1)_2: 7547202059106721701
-      warlord-helmet (1)_3: 5749698217354767694
-      warlord-helmet (1)_4: -385806224922660301
-      warlord-helmet (1)_5: -8449923076510961119
+      golem-head (2)_0: 5769621430658923910
+      golem-head (2)_1: 5202105312230050111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

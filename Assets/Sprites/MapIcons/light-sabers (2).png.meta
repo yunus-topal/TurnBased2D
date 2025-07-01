@@ -1,37 +1,37 @@
 fileFormatVersion: 2
-guid: 73f54d1ee414b9141b515dca6cfa9a19
+guid: 53b7f43c449e5c94b8b88f2e188e27d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3417558247415654179
-    second: light-sabers (1)_0
+      213: 3051264712438410760
+    second: light-sabers (2)_0
   - first:
-      213: 8638436747409965972
-    second: light-sabers (1)_1
+      213: -1455133189767732715
+    second: light-sabers (2)_1
   - first:
-      213: -4139172125183497934
-    second: light-sabers (1)_2
+      213: 5351345462043590040
+    second: light-sabers (2)_2
   - first:
-      213: 8320178070900566034
-    second: light-sabers (1)_3
+      213: -4743117870636411391
+    second: light-sabers (2)_3
   - first:
-      213: 806556977899998959
-    second: light-sabers (1)_4
+      213: -4529563952043850900
+    second: light-sabers (2)_4
   - first:
-      213: 2152871181168192394
-    second: light-sabers (1)_5
+      213: 5166855265428907087
+    second: light-sabers (2)_5
   - first:
-      213: -74260395115934532
-    second: light-sabers (1)_6
+      213: -7651170111864183287
+    second: light-sabers (2)_6
   - first:
-      213: -3692078620379119937
-    second: light-sabers (1)_7
+      213: 860431430561865719
+    second: light-sabers (2)_7
   - first:
-      213: 9084966609561068901
-    second: light-sabers (1)_8
+      213: 4008438479291731043
+    second: light-sabers (2)_8
   - first:
-      213: 3184012390952300769
-    second: light-sabers (1)_9
+      213: 2017959579537910964
+    second: light-sabers (2)_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -140,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: light-sabers (1)_0
+      name: light-sabers (2)_0
       rect:
         serializedVersion: 2
         x: 20
@@ -155,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 327aa687e1b9d6f20800000000000000
-      internalID: 3417558247415654179
+      spriteID: 80e6394f615485a20800000000000000
+      internalID: 3051264712438410760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_1
+      name: light-sabers (2)_1
       rect:
         serializedVersion: 2
         x: 86
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4934d001474e1e770800000000000000
-      internalID: 8638436747409965972
+      spriteID: 5126303d2145ecbe0800000000000000
+      internalID: -1455133189767732715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_2
+      name: light-sabers (2)_2
       rect:
         serializedVersion: 2
         x: 133
@@ -199,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2392d36e1e4be86c0800000000000000
-      internalID: -4139172125183497934
+      spriteID: 89db187585cc34a40800000000000000
+      internalID: 5351345462043590040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_3
+      name: light-sabers (2)_3
       rect:
         serializedVersion: 2
         x: 83
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 218e5009fd5377370800000000000000
-      internalID: 8320178070900566034
+      spriteID: 106d8e04d6f0d2eb0800000000000000
+      internalID: -4743117870636411391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_4
+      name: light-sabers (2)_4
       rect:
         serializedVersion: 2
         x: 98
@@ -243,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fee87de4c47713b00800000000000000
-      internalID: 806556977899998959
+      spriteID: c6303039591c321c0800000000000000
+      internalID: -4529563952043850900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_5
+      name: light-sabers (2)_5
       rect:
         serializedVersion: 2
         x: 196
@@ -265,14 +265,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8ba4b0dee880ed10800000000000000
-      internalID: 2152871181168192394
+      spriteID: f442fbd1d7b54b740800000000000000
+      internalID: 5166855265428907087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_6
+      name: light-sabers (2)_6
       rect:
         serializedVersion: 2
         x: 354
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbc0c38609c28fef0800000000000000
-      internalID: -74260395115934532
+      spriteID: 906ef36225591d590800000000000000
+      internalID: -7651170111864183287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_7
+      name: light-sabers (2)_7
       rect:
         serializedVersion: 2
         x: 384
@@ -309,14 +309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbefc756e0a13ccc0800000000000000
-      internalID: -3692078620379119937
+      spriteID: 7ff983cc3ddd0fb00800000000000000
+      internalID: 860431430561865719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_8
+      name: light-sabers (2)_8
       rect:
         serializedVersion: 2
         x: 21
@@ -331,14 +331,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5652c274ff8441e70800000000000000
-      internalID: 9084966609561068901
+      spriteID: 36cc03e2f85d0a730800000000000000
+      internalID: 4008438479291731043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-sabers (1)_9
+      name: light-sabers (2)_9
       rect:
         serializedVersion: 2
         x: 407
@@ -353,8 +353,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e077236662ef2c20800000000000000
-      internalID: 3184012390952300769
+      spriteID: 4bc2475cb8b310c10800000000000000
+      internalID: 2017959579537910964
       vertices: []
       indices: 
       edges: []
@@ -373,16 +373,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      light-sabers (1)_0: 3417558247415654179
-      light-sabers (1)_1: 8638436747409965972
-      light-sabers (1)_2: -4139172125183497934
-      light-sabers (1)_3: 8320178070900566034
-      light-sabers (1)_4: 806556977899998959
-      light-sabers (1)_5: 2152871181168192394
-      light-sabers (1)_6: -74260395115934532
-      light-sabers (1)_7: -3692078620379119937
-      light-sabers (1)_8: 9084966609561068901
-      light-sabers (1)_9: 3184012390952300769
+      light-sabers (2)_0: 3051264712438410760
+      light-sabers (2)_1: -1455133189767732715
+      light-sabers (2)_2: 5351345462043590040
+      light-sabers (2)_3: -4743117870636411391
+      light-sabers (2)_4: -4529563952043850900
+      light-sabers (2)_5: 5166855265428907087
+      light-sabers (2)_6: -7651170111864183287
+      light-sabers (2)_7: 860431430561865719
+      light-sabers (2)_8: 4008438479291731043
+      light-sabers (2)_9: 2017959579537910964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

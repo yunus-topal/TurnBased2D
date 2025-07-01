@@ -12,6 +12,8 @@ namespace Models
         [MaybeNull] public CharacterData[] Characters { get; set; }
         public string SaveName { get; set; } // Name of the save file
         public int SeedNumber { get; set; }
+        public int floorNumber { get; set; }
+        public int nodeNumber { get; set; }
         //public DateTime SaveDate { get; set; } // Date when the last save was made
 
         public SaveFile(string saveName, CharacterData[] characters = null)
@@ -20,6 +22,8 @@ namespace Models
             this.Characters = characters;
             Random random = new Random();
             this.SeedNumber = random.Next();
+            this.floorNumber = -1;
+            this.nodeNumber = -1;
         }
 
         public void SetSeed(int seed)
