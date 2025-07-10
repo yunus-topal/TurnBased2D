@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3151a7f14e6f43a40ad15b8011552167, type: 3}
-  m_Name: Ali
+  m_Name: DummyEnemy
   m_EditorClassIdentifier: 
-  characterName: Ali
+  characterName: Skeleton
   level: 1
-  characterSprite: {fileID: -7626213646343515624, guid: 944810c08d3ffff43a11377b574d1239, type: 3}
+  characterSprite: {fileID: -1817060305782440824, guid: ccba7f7e1e0f32d468b2f8946c5c2983, type: 3}
   combatStats:
     _strength: 10
     _dexterity: 10
@@ -22,6 +22,4 @@ MonoBehaviour:
     _constitution: 10
     _luck: 10
   equipments: []
-  skills:
-  - {fileID: 11400000, guid: 86473e01778de1247a9087cc19082293, type: 2}
-  - {fileID: 11400000, guid: 4b71252682666294d9cf5231eab4bc79, type: 2}
+  skills: []

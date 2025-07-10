@@ -23,4 +23,5 @@ MonoBehaviour:
     _luck: 10
   equipments: []
   skills:
-  - {fileID: 11400000, guid: 889acce390d0b174eb06776ac1d24955, type: 2}
+  - {fileID: 11400000, guid: 86473e01778de1247a9087cc19082293, type: 2}
+  - {fileID: 11400000, guid: 4b71252682666294d9cf5231eab4bc79, type: 2}

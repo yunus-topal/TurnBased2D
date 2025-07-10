@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfce7f53753b4511b0d531fc6e7eb8ab, type: 3}
+  m_Name: Flashbang
+  m_EditorClassIdentifier: 
+  skillName: Flashbang
+  description: Deploying degoy.
+  skillIcon: {fileID: -1367466170583532216, guid: 878f8e95d1ef56b4288899f689784112, type: 3}
+  manaCost: 10
+  cooldown: 1
+  skillType: 0
+  targetType: 3
+  effects:
+  - effectType: 2
+    magnitude: 0
+    statusEffect: 1
+    durationInTurns: 1
+  vfxPrefab: {fileID: 0}
+  sfxClip: {fileID: 0}

@@ -23,7 +23,7 @@ namespace Combat.UI {
                 Debug.LogError("Index out of range");
                 return;
             }
-            skillButtons[index].GetComponent<Image>().sprite = skill.SkillIcon;
+            skillButtons[index].GetComponent<Image>().sprite = skill.skillIcon;
             _skills[index] = skill;
         }
         
@@ -38,7 +38,7 @@ namespace Combat.UI {
                 Debug.LogError("Index out of range");
                 return;
             }
-            Debug.Log($"Selected skill: {_skills[index].SkillName}");
+            Debug.Log($"Selected skill: {_skills[index].skillName}");
             _selectedSkill = _skills[index];
         }
         

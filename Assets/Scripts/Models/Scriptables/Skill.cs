@@ -1,49 +1,86 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Models.Scriptables {
 
+    public enum SkillType
+    {
+        Active,
+        Passive
+    }
+
+    public enum SkillTarget
+    {
+        Self,
+        SingleEnemy,
+        SingleAlly,
+        AllEnemies,
+        AllAllies
+    }
+
+    public enum EffectType
+    {
+        Damage,
+        Heal,
+        Status
+    }
+
+    public enum StatusEffectType
+    {
+        None,
+        Stun,
+        Sleep,
+        Burn,
+        Poison,
+        Bleed,
+        Slow,
+        Rush
+    }
+    
+    [Serializable]
+    public class SkillEffect
+    {
+        [Header("Effect Core")]
+        public EffectType effectType;
+
+        [Tooltip("For Damage/Heal: amount; for Status: ignored")]
+        public int magnitude;
+
+        [Tooltip("If effectType == Status, which status to apply")]
+        public StatusEffectType statusEffect;
+
+        [Tooltip("Duration in turns (only for status effects)")]
+        public int durationInTurns;
+    }
+    
     // this class acts as a base class to encapsulate skill behaviors and can not be instantiated directly.
     //[CreateAssetMenu(fileName = "NewSkillBehavior", menuName = "Skill/SkillBehavior")]
     public abstract class Skill : ScriptableObject
     {
-        [Header("Basic Info")]
-        public string SkillName = "New Skill";
+        [Header("Identity")]
+        public string skillName = "New Skill";
         [TextArea] public string description;
-        public Sprite SkillIcon;
+        public Sprite skillIcon;
 
         [Header("Cost & Cooldown")]
-        public int ManaCost = 10;
-        public int Cooldown = 1;
+        public int manaCost = 10;
+        public int cooldown = 1;
 
-        [Header("Effect Parameters")]
-        public float BaseDamage = 50f;
+        [Header("Classification")]
+        public SkillType skillType;
+        public SkillTarget targetType;
         
-        public SkillType SkillType;
-        public SkillTarget SkillTarget;
+        [Header("Effects")]
+        [Tooltip("You can add multiple effects: Damage + Status, Heal + Buff, etc.")]
+        public List<SkillEffect> effects = new List<SkillEffect>();
 
         [Header("VFX / SFX References")]
-        public GameObject VfxPrefab;
-        public AudioClip SfxClip;
-
-        /// <summary>
-        /// Called at runtime whenever a character tries to use a skill.
-        /// </summary>
-        /// <param name="data">The SkillDataSO containing values (damage, VFX, etc.).</param>
-        /// <param name="caster">The Character who is casting.</param>
-        /// <param name="target">The Character being targeted (can be null if this is an AOE or self-buff, etc.).</param>
+        public GameObject vfxPrefab;
+        public AudioClip sfxClip;
+        
         public abstract void Cast(Character caster, Character target);
     }
-    public enum SkillType {
-        Active,
-        Passive,
-        Toggle
-    }
-    
-    public enum SkillTarget{
-        Self,
-        Enemy,
-        Ally,
-        AllEnemies,
-        AllAllies
-    }
+
 }

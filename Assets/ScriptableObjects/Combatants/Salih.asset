@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Salih
   level: 1
-  experience: 0
   characterSprite: {fileID: 4131496302152129140, guid: 3c94b4b95585ed7489a7616f92ff10e7, type: 3}
   combatStats:
     _strength: 10
@@ -24,4 +23,5 @@ MonoBehaviour:
     _luck: 10
   equipments: []
   skills:
-  - {fileID: 11400000, guid: 889acce390d0b174eb06776ac1d24955, type: 2}
+  - {fileID: 11400000, guid: 86473e01778de1247a9087cc19082293, type: 2}
+  - {fileID: 11400000, guid: 4b71252682666294d9cf5231eab4bc79, type: 2}
