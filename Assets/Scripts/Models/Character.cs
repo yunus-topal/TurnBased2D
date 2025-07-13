@@ -40,5 +40,20 @@ namespace Models {
             // TODO: Implement a proper health calculation based on combat stats.
             return 100;
         }
+
+        public void ApplyHeal(int heal)
+        {
+            
+        }
+        
+        public void ApplyDamage(int damage)
+        {
+            
+        }
+
+        public void ApplyStatus(StatusEffectType statusEffectType, int durationInTurns)
+        {
+            
+        } 
     }
 }

@@ -42,6 +42,9 @@ namespace Models.Scriptables {
     [Serializable]
     public class SkillEffect
     {
+        [Header("Skill Target")]
+        public SkillTarget targetType;
+        
         [Header("Effect Core")]
         public EffectType effectType;
 
@@ -55,9 +58,8 @@ namespace Models.Scriptables {
         public int durationInTurns;
     }
     
-    // this class acts as a base class to encapsulate skill behaviors and can not be instantiated directly.
-    //[CreateAssetMenu(fileName = "NewSkillBehavior", menuName = "Skill/SkillBehavior")]
-    public abstract class Skill : ScriptableObject
+    [CreateAssetMenu(fileName = "NewSkill", menuName = "Skill/SkillBehavior")]
+    public class Skill : ScriptableObject, ICastable
     {
         [Header("Identity")]
         public string skillName = "New Skill";
@@ -67,10 +69,6 @@ namespace Models.Scriptables {
         [Header("Cost & Cooldown")]
         public int manaCost = 10;
         public int cooldown = 1;
-
-        [Header("Classification")]
-        public SkillType skillType;
-        public SkillTarget targetType;
         
         [Header("Effects")]
         [Tooltip("You can add multiple effects: Damage + Status, Heal + Buff, etc.")]
@@ -79,8 +77,38 @@ namespace Models.Scriptables {
         [Header("VFX / SFX References")]
         public GameObject vfxPrefab;
         public AudioClip sfxClip;
-        
-        public abstract void Cast(Character caster, Character target);
+
+        [Header("Casting Logic")]
+        public CastBehavior castBehavior; 
+        public void Cast(Character caster, List<Character> target)
+        {
+            if (castBehavior != null)
+                castBehavior.Cast(caster, target);
+            else
+                DefaultCast(caster, target);
+        }
+
+        // your built-in “basic” logic based on skillType, targetType, effects…
+        private void DefaultCast(Character caster, List<Character> targets)
+        {
+            // check each effect 1 by 1 and apply their effects.
+            // prioritize Heal > Damage > Status
+            foreach (var effect in effects)
+            {
+                switch (effect.effectType)
+                {
+                    case EffectType.Heal:
+                        targets.ForEach(t => t.ApplyHeal(effect.magnitude));
+                        break;
+                    case EffectType.Damage:
+                        targets.ForEach(t => t.ApplyDamage(effect.magnitude));
+                        break;
+                    case EffectType.Status:
+                        targets.ForEach(t => t.ApplyStatus(effect.statusEffect, effect.durationInTurns));
+                        break;
+                }
+            }
+        }
     }
 
 }

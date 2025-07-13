@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfce7f53753b4511b0d531fc6e7eb8ab, type: 3}
-  m_Name: Flashbang
+  m_Script: {fileID: 11500000, guid: 80e79285b325418380c36c432bd58ac1, type: 3}
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  skillName: Flashbang
-  description: Deploying degoy.
-  skillIcon: {fileID: -1367466170583532216, guid: 878f8e95d1ef56b4288899f689784112, type: 3}
+  skillName: Fireball
+  description: Throw a fireball to an enemy.
+  skillIcon: {fileID: 0}
   manaCost: 10
   cooldown: 1
-  skillType: 0
-  targetType: 3
   effects:
-  - effectType: 2
+  - targetType: 0
+    effectType: 0
     magnitude: 0
-    statusEffect: 1
-    durationInTurns: 1
+    statusEffect: 0
+    durationInTurns: 0
   vfxPrefab: {fileID: 0}
   sfxClip: {fileID: 0}
+  castBehavior: {fileID: 0}
