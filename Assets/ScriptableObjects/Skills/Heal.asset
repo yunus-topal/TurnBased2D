@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80e79285b325418380c36c432bd58ac1, type: 3}
-  m_Name: NewSkill 1
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  skillName: New Skill
-  description: 
+  skillName: Heal
+  description: Heal a target
   skillIcon: {fileID: 0}
   manaCost: 10
   cooldown: 1
-  skillType: 0
-  targetType: 0
   effects:
-  - effectType: 0
-    magnitude: 0
+  - targetType: 2
+    effectType: 1
+    magnitude: 5
     statusEffect: 0
     durationInTurns: 0
   vfxPrefab: {fileID: 0}

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80e79285b325418380c36c432bd58ac1, type: 3}
-  m_Name: Fireball
+  m_Name: Firecone
   m_EditorClassIdentifier: 
-  skillName: Fireball
-  description: Throw a fireball to an enemy.
+  skillName: Firecone
+  description: a firecone that damages all enemies.
   skillIcon: {fileID: 0}
   manaCost: 10
-  cooldown: 1
+  cooldown: 2
   effects:
-  - targetType: 1
+  - targetType: 3
     effectType: 0
-    magnitude: 10
+    magnitude: 3
     statusEffect: 0
     durationInTurns: 0
   vfxPrefab: {fileID: 0}

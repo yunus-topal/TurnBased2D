@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Combat;
+using Helpers;
 using Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,9 +16,13 @@ namespace Map
     }
     public class MapNodeHelper : MonoBehaviour
     {
+        private int floorIndex;
+        private int nodeIndex;
         private Image nodeImage;
         private Button button;
         private GameManager _gameManager;
+        private CombatManager _combatManager;
+        private double nodeSeed;
         
         [SerializeField] private List<EncounterSpriteMapping> encounterSprites;
 
@@ -35,12 +41,16 @@ namespace Map
                     _spriteLookup.Add(mapping.encounterType, mapping.sprite);
             }
             
-            _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            if (_gameManager == null)
-                Debug.LogError("GameManager not found");
+            _gameManager = FindAnyObjectByType<GameManager>();
+            _combatManager = FindAnyObjectByType<CombatManager>();
+            if (_gameManager == null || _combatManager == null)
+                Debug.LogError("GameManager or CombatManager not found");
         }
-        public void Initialize(Encounter encounterType)
+        public void Initialize(Encounter encounterType, int floorIndex, int nodeIndex, double nodeSeed)
         {
+            this.floorIndex = floorIndex;
+            this.nodeIndex = nodeIndex;
+            this.nodeSeed = nodeSeed;
             _encounterType = encounterType;
             if (_spriteLookup.TryGetValue(_encounterType, out Sprite sprite))
             {
@@ -88,6 +98,8 @@ namespace Map
             // pick enemies for the encounter.
             _gameManager.SetActiveCombatPanel(true);
             _gameManager.SetActiveMapPanel(false);
+            
+            _combatManager.SetupCombat(nodeSeed);
         }
 
         private void BossSetup()

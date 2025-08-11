@@ -10,6 +10,7 @@ namespace Map
         public Encounter type;
         public List<Node> connections = new();
 		public MapNodeHelper view;
+        public double nodeSeed;
     }
     
     public class MapManager : MonoBehaviour
@@ -39,7 +40,7 @@ namespace Map
                 {
                     var node = floor[i];
                     var go = Instantiate(nodePrefab, newFloor.transform);
-                    go.GetComponent<MapNodeHelper>().Initialize(node.type);
+                    go.GetComponent<MapNodeHelper>().Initialize(node.type, floorIndex, i, node.nodeSeed);
                     node.view = go.GetComponent<MapNodeHelper>();
                 }
                 // TODO: implement this properly in the future.
@@ -63,6 +64,7 @@ namespace Map
 
                 for (int i = 0; i < nodeCount; i++) {
                     Node node = new();
+                    node.nodeSeed = rng.NextDouble();
                     if (floor == 0)
                         node.type = Encounter.Combat;
                     else if (floor == floors - 1)
