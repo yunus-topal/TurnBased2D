@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Models;
@@ -114,6 +115,10 @@ namespace Helpers
             }
         }
 
+        public static List<CharacterData> ToData(this List<Character> characters)
+        {
+            return characters.Select(c => c.ToData()).ToList();
+        }
         public static CharacterData ToData(this Character c)
         {
             return new CharacterData
@@ -134,11 +139,16 @@ namespace Helpers
             };
         }
 
-        public static Character FromData(this CharacterData d, CharacterSO template)
+        public static List<Character> FromData(this List<CharacterData> datas)
+        {
+            return datas.Select(item => item.FromData()).ToList();
+        }
+
+        public static Character FromData(this CharacterData d)
         {
             // You can load the Sprite by Resources.Load<Sprite>(d.spriteAssetPath)
             // Then pass it into your Character constructor or a factory method
-            var character = new Character(template)
+            var character = new Character
             {
                 Name = d.name,
                 Level = d.level,

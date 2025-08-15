@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using Helpers;
+using Models;
 using Models.Scriptables;
 using UnityEngine;
 
@@ -7,6 +10,7 @@ namespace Combat
     public class CombatManager : MonoBehaviour
     {
         [SerializeField] private List<EnemyGroup> enemyGroups;
+        [SerializeField] private GameObject combatPanel;
         
         public void Initialize()
         {
@@ -23,11 +27,9 @@ namespace Combat
         public void SetupCombat(double combatSeed)
         {
             var enemyGroup = PickEnemyGroup(combatSeed);
-            // TODO: spawn enemy and player groups in ui.
-            
-            // TODO: start combat cycle.
-
-
+            combatPanel.SetActive(true);
+            var characterDatas = SaveHelper.CurrentSaveFile.Characters;
+            combatPanel.GetComponent<CombatPanelHelper>().Initialize(characterDatas.ToList().FromData(), enemyGroup);
         }
 
         private EnemyGroup PickEnemyGroup(double combatSeed)

@@ -33,6 +33,7 @@ namespace Models {
             MaxHealth = CalculateHealth(CombatStats);
             CurrentHealth = MaxHealth; // Initialize current health to max health.
         }
+        public Character(){}
 
 
         private int CalculateHealth(CombatStats combatStats)
