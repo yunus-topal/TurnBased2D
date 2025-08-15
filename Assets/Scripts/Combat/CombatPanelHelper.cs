@@ -27,21 +27,36 @@ namespace Combat
 
         public void Initialize(List<Character> characters, EnemyGroup enemyGroup)
         {
-            if (characters.Count > _playerLimit)
-                Debug.LogWarning($"Player Character Limit Exceeded, Only first {_playerLimit} characters will be used.");
-            if (enemyGroup.characters.Count > _enemyLimit)
-                Debug.LogWarning($"Enemy Character Limit Exceeded, Only first {_enemyLimit} characters will be used.");
+            if (characters == null) throw new ArgumentNullException(nameof(characters));
+            if (enemyGroup == null) throw new ArgumentNullException(nameof(enemyGroup));
 
-            // initialize players
-            for (int i = 0; i < Math.Min(_playerLimit, characters.Count); i++)
+            var enemies = enemyGroup.Characters; // use a single canonical property
+
+            int playerCount = ClampAndWarn(characters.Count, _playerLimit, "Player");
+            int enemyCount  = ClampAndWarn(enemies.Count,     _enemyLimit,  "Enemy");
+
+            // Players
+            for (int i = 0; i < playerCharacterUIs.Count; i++)
             {
-                playerCharacterUIs[i].Initialize(characters[i]);
+                bool active = i < playerCount;
+                playerCharacterUIs[i].gameObject.SetActive(active);
+                if (active) playerCharacterUIs[i].Initialize(characters[i]);
             }
-            // initialize enemies
-            for (int i = 0; i < Math.Min(_enemyLimit,enemyGroup.characters.Count); i++)
+
+            // Enemies
+            for (int i = 0; i < enemyCharacterUIs.Count; i++)
             {
-                enemyCharacterUIs[i].Initialize(new Character(enemyGroup.characters[i]));
-            } 
+                bool active = i < enemyCount;
+                enemyCharacterUIs[i].gameObject.SetActive(active);
+                if (active) enemyCharacterUIs[i].Initialize(new Character(enemies[i]));
+            }
+        }
+        
+        private static int ClampAndWarn(int actual, int limit, string label)
+        {
+            if (actual > limit)
+                Debug.LogWarning($"{label} Character Limit exceeded; only first {limit} will be used.");
+            return Math.Min(actual, limit);
         }
     }
 }

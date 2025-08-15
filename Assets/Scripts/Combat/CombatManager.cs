@@ -11,18 +11,7 @@ namespace Combat
     {
         [SerializeField] private List<EnemyGroup> enemyGroups;
         [SerializeField] private GameObject combatPanel;
-        
-        public void Initialize()
-        {
-            
-        }
 
-        // for dummy purposes. Spawn some enemies and enter combat mode.
-        public void StartDummyCombat()
-        {
-            
-        }
-        
         // node should feed this seed to here.
         public void SetupCombat(double combatSeed)
         {
