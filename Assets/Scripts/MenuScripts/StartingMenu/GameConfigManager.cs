@@ -2,6 +2,7 @@ using System;
 using Helpers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MenuScripts.StartingMenu
 {
@@ -23,6 +24,11 @@ namespace MenuScripts.StartingMenu
         public void ChangeSeedNumber()
         {
             // TODO: update current save file with new seed.
+        }
+
+        public void GoBackToMainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

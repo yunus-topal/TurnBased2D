@@ -40,6 +40,8 @@ namespace MenuScripts.MainMenu
 
         public void LoadNewGameScene()
         {
+            // generate new seed.
+            SaveHelper.UpdateSaveFileSeed();
             SceneManager.LoadScene("StartingMenu");
         }
 

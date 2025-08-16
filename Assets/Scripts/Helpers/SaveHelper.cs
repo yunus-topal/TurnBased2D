@@ -7,6 +7,7 @@ using Models;
 using Models.Scriptables;
 using UnityEngine;
 using Newtonsoft.Json;
+using Random = System.Random;
 
 namespace Helpers
 {
@@ -54,6 +55,12 @@ namespace Helpers
             return saveFiles;
         }
 
+        public static void UpdateSaveFileSeed()
+        {
+            Random rand =  new Random();
+            currentSaveFile.SeedNumber = rand.Next();
+            WriteToDisk(currentSaveFile);
+        }
         internal static void SaveNewSaveFile(SaveFile newSaveFile)
         {
             if (newSaveFile == null)
