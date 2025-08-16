@@ -129,13 +129,7 @@ namespace Helpers
                 maxHealth = c.MaxHealth,
                 currentHealth = c.CurrentHealth,
                 combatStats = c.CombatStats,         // if CombatStats is serializable
-                spriteAssetPath = c.Sprite.name,     // or AssetDatabase path in Editor
-                equipmentResourcePaths = c.Equipments
-                                      .Select(s => $"Equipments/{s.name}") // Assuming Equipment has a name property
-                                      .ToArray(),
-                skillResourcePaths = c.Skills
-                                  .Select(s => $"Skills/{s.name}")
-                                  .ToArray()
+                scriptableObjectPath = c.scriptableObjectPath,
             };
         }
 
@@ -148,7 +142,22 @@ namespace Helpers
         {
             // You can load the Sprite by Resources.Load<Sprite>(d.spriteAssetPath)
             // Then pass it into your Character constructor or a factory method
-            var character = new Character
+            try
+            {
+                var c = Resources.Load<CharacterSO>(d.scriptableObjectPath);
+                var character = new Character(c);
+                return character;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+
+            
+            Debug.LogError($"Failed to load character {d.name}");
+            
+            // TODO: should be unreachable
+            return new Character
             {
                 Name = d.name,
                 Level = d.level,
@@ -156,17 +165,7 @@ namespace Helpers
                 MaxHealth = d.maxHealth,
                 CurrentHealth = d.currentHealth,
                 CombatStats = d.combatStats,
-                Sprite = Resources.Load<Sprite>(d.spriteAssetPath),
-                Equipments = d.equipmentResourcePaths
-                             .Select(path => Resources.Load<Equipment>(path))
-                             .Where(e => e != null)
-                             .ToList(),
-                Skills = d.skillResourcePaths
-                         .Select(path => Resources.Load<Skill>(path))
-                         .Where(s => s != null)
-                         .ToList()
             };
-            return character;
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Models
         public CombatStats combatStats;
 
         // Store only the data you need; e.g. asset path instead of Sprite
-        public string spriteAssetPath;
+        public string scriptableObjectPath;
 
         public string[] equipmentResourcePaths;
         public string[] skillResourcePaths;

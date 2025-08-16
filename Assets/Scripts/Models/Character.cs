@@ -7,6 +7,8 @@ using UnityEngine;
 namespace Models {
     public class Character
     {
+        private const string characterResourcePath = "Combatants/";
+        
         // character info
         public string Name { get; set; } 
         public int Level { get; set; }
@@ -20,6 +22,8 @@ namespace Models {
         public List<Equipment> Equipments { get; set; }
         public List<Skill> Skills { get; set; }
         
+        public string scriptableObjectPath { get; set; }
+        
         public Character(CharacterSO characterScriptable)
         {
             Name = characterScriptable.characterName;
@@ -32,6 +36,7 @@ namespace Models {
             // Calculate health based on combat stats.
             MaxHealth = CalculateHealth(CombatStats);
             CurrentHealth = MaxHealth; // Initialize current health to max health.
+            scriptableObjectPath = characterResourcePath + characterScriptable.name;
         }
         public Character(){}
 

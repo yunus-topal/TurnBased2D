@@ -33,6 +33,8 @@ namespace MenuScripts.StartingMenu
             // save to persistent storage
             SaveHelper.UpdateSaveFile(charactersToStart);
             
+            Constants.SetRngWithSeed(SaveHelper.CurrentSaveFile.SeedNumber);
+            
             // load game scene
             SceneManager.LoadScene("GameScene");
         }

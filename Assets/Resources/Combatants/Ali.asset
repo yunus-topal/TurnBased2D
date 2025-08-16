@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3151a7f14e6f43a40ad15b8011552167, type: 3}
-  m_Name: Ocb
+  m_Name: Ali
   m_EditorClassIdentifier: 
-  characterName: Ocb
+  characterName: Ali
   level: 1
-  characterSprite: {fileID: -4389871485480736601, guid: df05f2082e2b0ea48a2c7c25ef86f041, type: 3}
+  characterSprite: {fileID: -7626213646343515624, guid: 944810c08d3ffff43a11377b574d1239, type: 3}
   combatStats:
     _strength: 10
     _dexterity: 10
@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdf0d2fde566e264f95ae1d32f06de31, type: 2}
   - {fileID: 11400000, guid: 8b8127c42979e4a4992c2ee09729f609, type: 2}
   - {fileID: 11400000, guid: bf66700efb6b14d4da3fca4013cd1516, type: 2}
+  assetPath: Combatants/Ali
