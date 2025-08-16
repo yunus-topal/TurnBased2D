@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Models.Scriptables {
@@ -13,5 +14,18 @@ namespace Models.Scriptables {
         [SerializeField] public List<Equipment> equipments;
         [SerializeField] public List<Skill> skills;
         
+    }
+
+    public static class CharacterSoExtensions
+    {
+        public static Character ToCharacter(this CharacterSO characterSo)
+        {
+            return new Character(characterSo);
+        }
+
+        public static List<Character> ToCharacters(this List<CharacterSO> characters)
+        {
+            return characters.Select(x => new Character(x)).ToList();
+        }
     }
 }

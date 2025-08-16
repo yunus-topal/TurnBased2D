@@ -5,10 +5,10 @@ using Models.Scriptables;
 using UnityEngine;
 
 namespace Models {
+    public enum Team {Player, Enemy, Neutral}
     public class Character
     {
         private const string characterResourcePath = "Combatants/";
-        
         // character info
         public string Name { get; set; } 
         public int Level { get; set; }
@@ -17,7 +17,8 @@ namespace Models {
         public int MaxHealth { get; set; } 
         public int CurrentHealth { get; set; } 
         public CombatStats CombatStats { get; set; } 
-
+        // only for combat 
+        public Team Team { get; set; }
         // equipment and skills and potentially new features.
         public List<Equipment> Equipments { get; set; }
         public List<Skill> Skills { get; set; }
