@@ -13,6 +13,7 @@ namespace Models.Scriptables {
         [SerializeField] public CombatStats combatStats;
         [SerializeField] public List<Equipment> equipments;
         [SerializeField] public List<Skill> skills;
+        [SerializeField] public Team team;
         
     }
 

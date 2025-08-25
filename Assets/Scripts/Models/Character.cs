@@ -33,7 +33,8 @@ namespace Models {
             CombatStats = characterScriptable.combatStats;
             Equipments = new List<Equipment>(characterScriptable.equipments);
             Skills = new List<Skill>(characterScriptable.skills);
-
+            Team = characterScriptable.team;
+            
             // Calculate health based on combat stats.
             MaxHealth = CalculateHealth(CombatStats);
             CurrentHealth = MaxHealth; // Initialize current health to max health.
@@ -62,5 +63,11 @@ namespace Models {
         {
             
         } 
+        
+        public override string ToString()
+        {
+            return $"Character: {Name}" +
+                   $"Team: {Team.ToString()}";
+        }
     }
 }

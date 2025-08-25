@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Combat.UI;
 using Models;
 using Models.Scriptables;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Combat
 {
@@ -12,6 +12,7 @@ namespace Combat
     {
         [SerializeField] private List<CombatCharacterUIHelper> enemyCharacterUIs  = new ();
         [SerializeField] private List<CombatCharacterUIHelper> playerCharacterUIs  = new ();
+        [SerializeField] private TextMeshProUGUI turnLabel;
 
         private EnemyGroup _enemyGroup;
         private List<Character> _characters = new List<Character>();
@@ -57,6 +58,24 @@ namespace Combat
             if (actual > limit)
                 Debug.LogWarning($"{label} Character Limit exceeded; only first {limit} will be used.");
             return Math.Min(actual, limit);
+        }
+
+        public void SetTurnLabel(string label, int ttl = 2)
+        {
+            turnLabel.gameObject.SetActive(true);
+            turnLabel.text = $"{label}'s Turn";
+            // after ttl seconds, hide label. if -1, do not hide
+            if (ttl >= 0)
+            {
+                Invoke(nameof(HideLabel), ttl);
+            }
+            
+            
+        }
+
+        private void HideLabel()
+        {
+            turnLabel.gameObject.SetActive(false);
         }
     }
 }

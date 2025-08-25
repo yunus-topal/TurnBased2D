@@ -25,3 +25,4 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: cdf0d2fde566e264f95ae1d32f06de31, type: 2}
   - {fileID: 11400000, guid: 8b8127c42979e4a4992c2ee09729f609, type: 2}
+  team: 1

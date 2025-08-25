@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Models;
 using Models.Scriptables;
@@ -7,25 +8,38 @@ using UnityEngine;
 namespace Combat
 {
     // handle combat turns
-    public class TurnManager
+    public class TurnManager : MonoBehaviour
     {
+        private CombatPanelHelper _combatPanelHelper;
+
+        private void Start()
+        {
+            _combatPanelHelper = FindAnyObjectByType<CombatPanelHelper>(FindObjectsInactive.Include);
+            if (_combatPanelHelper == null)
+                Debug.LogError("No CombatPanelHelper found");   
+        }
+
         internal IEnumerator PlayTurn(Character character)
         {
+            Debug.Log($"Playing turn of character: {character.ToString()}");
+            _combatPanelHelper.SetTurnLabel(character.Name);
             // TODO: show a text such as xxx's turn.
             switch (character.Team)
             {
                 case Team.Player:
                     // TODO: update skill UI with this character.
                     // wait until user selects a skill and a target.
-                    break;
+                    yield return new WaitForSeconds(2f); // for testing
+
+                    yield break;
                 case Team.Enemy:
                     yield return new WaitForSeconds(1f); // “think” for 1 second
                     var skill = AIChooseSkill(character);
                     var target = AIChooseTarget(character, skill);
                     //yield return StartCoroutine(ExecuteAction(character, );
-                    break;
+                    yield break;
                 case Team.Neutral:
-                    break;
+                    yield break;
             }
         }
 
