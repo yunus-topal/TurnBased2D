@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Heal
   description: Heal a target
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 177935496237397111, guid: 215b043bdddbb8d4ba2c122bd877f754, type: 3}
+  skillType: 0
   manaCost: 10
   cooldown: 1
   effects:

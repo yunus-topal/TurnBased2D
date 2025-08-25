@@ -65,6 +65,8 @@ namespace Models.Scriptables {
         public string skillName = "New Skill";
         [TextArea] public string description;
         public Sprite skillIcon;
+        [Tooltip("Active or Passive")]
+        public SkillType skillType = SkillType.Active;
 
         [Header("Cost & Cooldown")]
         public int manaCost = 10;

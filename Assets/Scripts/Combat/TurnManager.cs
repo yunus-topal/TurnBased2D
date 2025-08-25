@@ -29,11 +29,12 @@ namespace Combat
                 case Team.Player:
                     // TODO: update skill UI with this character.
                     // wait until user selects a skill and a target.
-                    yield return new WaitForSeconds(2f); // for testing
-
+                    _combatPanelHelper.SetSkillsUI(character);
+                    yield return new WaitForSeconds(10f); // for testing
                     yield break;
                 case Team.Enemy:
-                    yield return new WaitForSeconds(1f); // “think” for 1 second
+                    _combatPanelHelper.SetSkillsUI(character);
+                    yield return new WaitForSeconds(10f); // “think” for 1 second
                     var skill = AIChooseSkill(character);
                     var target = AIChooseTarget(character, skill);
                     //yield return StartCoroutine(ExecuteAction(character, );

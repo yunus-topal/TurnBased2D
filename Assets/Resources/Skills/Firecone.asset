@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Firecone
   description: a firecone that damages all enemies.
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 7679385156476096713, guid: 3ccf749c29277884f9b2d5bd372b1517, type: 3}
+  skillType: 0
   manaCost: 10
   cooldown: 2
   effects:

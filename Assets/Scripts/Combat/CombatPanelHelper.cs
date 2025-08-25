@@ -13,6 +13,7 @@ namespace Combat
         [SerializeField] private List<CombatCharacterUIHelper> enemyCharacterUIs  = new ();
         [SerializeField] private List<CombatCharacterUIHelper> playerCharacterUIs  = new ();
         [SerializeField] private TextMeshProUGUI turnLabel;
+        [SerializeField] private SkillUIHelper skillUIHelper;
 
         private EnemyGroup _enemyGroup;
         private List<Character> _characters = new List<Character>();
@@ -76,6 +77,12 @@ namespace Combat
         private void HideLabel()
         {
             turnLabel.gameObject.SetActive(false);
+        }
+
+        // i want to use this method as a bridge to avoid searching for objects on runtime.
+        public void SetSkillsUI(Character character)
+        {
+            skillUIHelper.InitializeSkillsUI(character);
         }
     }
 }

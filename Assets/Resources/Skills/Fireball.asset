@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Fireball
   description: Throw a fireball to an enemy.
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 5353841184698615464, guid: a41159847fdc2b44287cf5c69bcbec10, type: 3}
+  skillType: 0
   manaCost: 10
   cooldown: 1
   effects:
