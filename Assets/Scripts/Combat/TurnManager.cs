@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Combat.UI;
+using JetBrains.Annotations;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
@@ -15,7 +16,8 @@ namespace Combat
         private SkillUIHelper  _skillUIHelper;
 
         
-        private Skill _selectedSkill;
+        [CanBeNull] private Skill _selectedSkill;
+        [CanBeNull] private Character _targetCharacter;
         
         private void Start()
         {
@@ -34,9 +36,10 @@ namespace Combat
             {
                 case Team.Player:
                     _skillUIHelper.InitializeSkillsUI(character, this);
-                    // wait until user selects a skill and a target.
-                    // if target is invalid, keep waiting.
-                    yield return new WaitForSeconds(50f); // “think” for 1 second
+
+                    // TODO: trigger a check here when selected skill and target character is set.
+                    // if target is not suitable, set target to null and keep waiting.
+                    yield return new WaitForSeconds(50f); 
                     
                     
                     yield break;
@@ -67,6 +70,12 @@ namespace Combat
         {
             Debug.Log($"Turn manager selected skill: {skillButton.BoundSkill}");
             _selectedSkill = skillButton.BoundSkill;
+        }
+
+        public void SetSelectedTarget(Character target)
+        {
+            Debug.Log($"Turn manager selected target: {target.ToString()}");
+            _targetCharacter = target;
         }
 
     }

@@ -20,7 +20,6 @@ namespace Combat.UI {
         [SerializeField] private GameObject detailsPanel; // toggle on hover
 
         private SkillButton _selectedButton; // currently selected (if any)
-        private bool _inTargetSelection;
 
         #region Setup
 
@@ -31,7 +30,7 @@ namespace Combat.UI {
             if (portrait) portrait.sprite = character.Sprite;
             SetupSkills();
             ClearDetailsPanel();
-            ExitTargetSelection(silent: true);
+            DeselectSkillButton(silent: true);
         }
 
         private void SetupSkills()
@@ -80,15 +79,16 @@ namespace Combat.UI {
                 btn.HoverEnter -= OnSkillHoverEnter;
                 btn.HoverExit -= OnSkillHoverExit;
                 btn.Clicked -= OnSkillClicked;
+                btn.Clicked -= _turnManager.SetSelectedSkill;
             }
         }
 
         private void Update()
         {
             // Cancel targeting via Esc
-            if (_inTargetSelection && Input.GetKeyDown(KeyCode.Escape))
+            if (_selectedButton && Input.GetKeyDown(KeyCode.Escape))
             {
-                ExitTargetSelection();
+                DeselectSkillButton();
             }
         }
 
@@ -106,68 +106,50 @@ namespace Combat.UI {
         private void OnSkillHoverExit(SkillButton btn)
         {
             // Hide details only if not targeting; or keep if you prefer always show last hovered
-            if (!_inTargetSelection)
+            if (!_selectedButton)
                 ClearDetailsPanel();
+            else
+                ShowDetails(_selectedButton.BoundSkill);
         }
 
         private void OnSkillClicked(SkillButton btn)
         {
-            if (btn == null || btn.BoundSkill == null) return;
+            if (!btn || !btn.BoundSkill) return;
 
             // Re-click same button while targeting -> cancel
-            if (_inTargetSelection && _selectedButton == btn)
+            if (_selectedButton && _selectedButton == btn)
             {
-                ExitTargetSelection();
+                DeselectSkillButton();
                 return;
             }
-
             // Select new button (or select first time)
-            SelectButton(btn);
-            EnterTargetSelection();
+            SelectSkillButton(btn);
         }
 
         #endregion
 
         #region Skill Selection
-        private void SelectButton(SkillButton btn)
+        private void SelectSkillButton(SkillButton btn)
         {
             // Deselect previous
-            if (_selectedButton != null && _selectedButton != btn)
+            if (_selectedButton && _selectedButton != btn)
             {
                 _selectedButton.SetSelected(false);
-                _selectedButton.SetTargeting(false);
             }
 
             _selectedButton = btn;
             _selectedButton.SetSelected(true);
-            // optional: also show its details while selected
             ShowDetails(btn.BoundSkill);
         }
-
-        private void EnterTargetSelection()
+        
+        private void DeselectSkillButton(bool silent = false)
         {
-            _inTargetSelection = true;
-            if (_selectedButton) _selectedButton.SetTargeting(true);
-
-            // TODO: hand off to your game flow: enable target reticle, raycasts, etc.
-            // Example:
-            // TargetingSystem.BeginSelectTarget(_selectedButton.BoundSkill, onTargetChosen: HandleTargetChosen, onCanceled: ExitTargetSelection);
-        }
-
-        private void ExitTargetSelection(bool silent = false)
-        {
-            _inTargetSelection = false;
-
             if (_selectedButton)
             {
-                _selectedButton.SetTargeting(false);
                 _selectedButton.SetSelected(false);
                 _selectedButton = null;
             }
-
-            // TODO: notify your game flow
-            // TargetingSystem.Cancel();
-
+            
             if (!silent)
                 ClearDetailsPanel();
         }

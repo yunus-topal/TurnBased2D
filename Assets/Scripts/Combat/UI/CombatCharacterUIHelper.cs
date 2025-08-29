@@ -1,5 +1,5 @@
+using System;
 using Models;
-using Models.Scriptables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,12 +16,25 @@ namespace Combat.UI
         [SerializeField] private Button CharacterButton;
         
         private Character _character;
+        private TurnManager _turnManager;
+
+        public event Action<Character> Clicked;
 
         public void Initialize(Character character)
         {
+            _turnManager = FindAnyObjectByType<TurnManager>();
             _character = character;
             SetCharacter(character.Sprite, character.Name, character.MaxHealth);
             CharacterButton.onClick.AddListener(OnCharacterButtonClick);
+
+            if (_turnManager is null)
+            {
+                Debug.LogError($"{nameof(CombatCharacterUIHelper)}.{nameof(Initialize)}: TurnManager is null");
+                return;
+            }
+
+            Clicked += _turnManager.SetSelectedTarget;
+
         }
         
         private void SetCharacter(Sprite sprite, string charName, int maxHealth) {
@@ -42,8 +55,12 @@ namespace Combat.UI
         // callback to TurnManager
         private void OnCharacterButtonClick()
         {
-            
+            Clicked?.Invoke(_character);
         }
-    
+
+        private void OnDestroy()
+        {
+            //Clicked -= _turnManager.SetSelectedTarget;
+        }
     }
 }

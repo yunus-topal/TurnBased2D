@@ -48,7 +48,6 @@ namespace Combat.UI
             if (icon) icon.sprite = skill.skillIcon;
             if (button) button.interactable = skill.skillType == SkillType.Active; // your rule here
             SetSelected(false);
-            SetTargeting(false);
             gameObject.SetActive(true);
         }
 
@@ -60,15 +59,7 @@ namespace Combat.UI
 
         public void SetSelected(bool on)
         {
-            if (on)
-                icon.color = selectedColor;
-            else
-                icon.color = _defaultColor;
-        }
-
-        public void SetTargeting(bool on)
-        {
-            if (targetingFx) targetingFx.SetActive(on);
+            icon.color = on ? selectedColor : _defaultColor;
         }
 
         private void HandleClick()
