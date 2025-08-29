@@ -13,6 +13,7 @@ namespace Combat.UI
         [SerializeField] private TMP_Text HealthText;
         [SerializeField] private Slider HealthBar;
         [SerializeField] private Image HealthBarImage;
+        [SerializeField] private Button CharacterButton;
         
         private Character _character;
 
@@ -20,6 +21,7 @@ namespace Combat.UI
         {
             _character = character;
             SetCharacter(character.Sprite, character.Name, character.MaxHealth);
+            CharacterButton.onClick.AddListener(OnCharacterButtonClick);
         }
         
         private void SetCharacter(Sprite sprite, string charName, int maxHealth) {
@@ -35,6 +37,12 @@ namespace Combat.UI
             HealthText.text = $"{health}/{HealthBar.maxValue}";
             HealthBar.value = health;
             HealthBarImage.color = Color.Lerp(Color.red, Color.green, health / HealthBar.maxValue);
+        }
+
+        // callback to TurnManager
+        private void OnCharacterButtonClick()
+        {
+            
         }
     
     }

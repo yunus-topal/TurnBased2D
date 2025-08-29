@@ -8,6 +8,7 @@ namespace Combat.UI {
     public class SkillUIHelper : MonoBehaviour
     {
         private Character _character;
+        private TurnManager _turnManager;
 
         [Header("UI")] [SerializeField] private Image portrait;
         [SerializeField] private SkillButton[] skillButtons;
@@ -23,9 +24,10 @@ namespace Combat.UI {
 
         #region Setup
 
-        public void InitializeSkillsUI(Character character)
+        public void InitializeSkillsUI(Character character, TurnManager turnManager)
         {
             _character = character;
+            _turnManager = turnManager;
             if (portrait) portrait.sprite = character.Sprite;
             SetupSkills();
             ClearDetailsPanel();
@@ -46,6 +48,7 @@ namespace Combat.UI {
                     btn.HoverEnter += OnSkillHoverEnter;
                     btn.HoverExit += OnSkillHoverExit;
                     btn.Clicked += OnSkillClicked;
+                    btn.Clicked += _turnManager.SetSelectedSkill;
                 }
                 else
                 {
@@ -55,6 +58,7 @@ namespace Combat.UI {
                         skillButtons[i].HoverEnter -= OnSkillHoverEnter;
                         skillButtons[i].HoverExit -= OnSkillHoverExit;
                         skillButtons[i].Clicked -= OnSkillClicked;
+                        skillButtons[i].Clicked -= _turnManager.SetSelectedSkill;
                     }
 
                     skillButtons[i].Unbind();

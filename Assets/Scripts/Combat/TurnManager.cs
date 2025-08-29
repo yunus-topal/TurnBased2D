@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Combat.UI;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
@@ -11,12 +12,17 @@ namespace Combat
     public class TurnManager : MonoBehaviour
     {
         private CombatPanelHelper _combatPanelHelper;
+        private SkillUIHelper  _skillUIHelper;
 
+        
+        private Skill _selectedSkill;
+        
         private void Start()
         {
             _combatPanelHelper = FindAnyObjectByType<CombatPanelHelper>(FindObjectsInactive.Include);
-            if (_combatPanelHelper == null)
-                Debug.LogError("No CombatPanelHelper found");   
+            _skillUIHelper = FindAnyObjectByType<SkillUIHelper>(FindObjectsInactive.Include);
+            if (_combatPanelHelper == null || _skillUIHelper == null)
+                Debug.LogError("Combat Panel Helper or Skill UI Helper not found");   
         }
 
         internal IEnumerator PlayTurn(Character character)
@@ -27,13 +33,15 @@ namespace Combat
             switch (character.Team)
             {
                 case Team.Player:
-                    // TODO: update skill UI with this character.
+                    _skillUIHelper.InitializeSkillsUI(character, this);
                     // wait until user selects a skill and a target.
-                    _combatPanelHelper.SetSkillsUI(character);
-                    yield return new WaitForSeconds(10f); // for testing
+                    // if target is invalid, keep waiting.
+                    yield return new WaitForSeconds(50f); // “think” for 1 second
+                    
+                    
                     yield break;
                 case Team.Enemy:
-                    _combatPanelHelper.SetSkillsUI(character);
+                    _skillUIHelper.InitializeSkillsUI(character, this);
                     yield return new WaitForSeconds(10f); // “think” for 1 second
                     var skill = AIChooseSkill(character);
                     var target = AIChooseTarget(character, skill);
@@ -55,11 +63,11 @@ namespace Combat
             return new();
         }
 
-        private IEnumerator ExecuteAction(Character character, Skill skill)
+        public void SetSelectedSkill(SkillButton skillButton)
         {
-            // play VFX, SFX
-            // update states of effected characters.
-            yield return new WaitForSeconds(1f);
+            Debug.Log($"Turn manager selected skill: {skillButton.BoundSkill}");
+            _selectedSkill = skillButton.BoundSkill;
         }
+
     }
 }

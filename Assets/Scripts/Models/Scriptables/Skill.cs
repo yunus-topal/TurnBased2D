@@ -42,7 +42,7 @@ namespace Models.Scriptables {
     [Serializable]
     public class SkillEffect
     {
-        [Header("Skill Target")]
+        [Header("Target of this specific effect.")]
         public SkillTarget targetType;
         
         [Header("Effect Core")]
@@ -71,8 +71,10 @@ namespace Models.Scriptables {
         [Header("Cost & Cooldown")]
         public int manaCost = 10;
         public int cooldown = 1;
-        
-        [Header("Effects")]
+
+        [Header("Effects")] 
+        [Tooltip("Target to cast this skill.")]
+        public SkillTarget castingTarget; 
         [Tooltip("You can add multiple effects: Damage + Status, Heal + Buff, etc.")]
         public List<SkillEffect> effects = new List<SkillEffect>();
 

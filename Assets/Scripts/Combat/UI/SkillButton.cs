@@ -13,8 +13,10 @@ namespace Combat.UI
         [Header("Wiring")]
         [SerializeField] private Button button;          // required
         [SerializeField] private Image icon;             // required
-        [SerializeField] private GameObject selectedFx;  // optional highlight
+        [SerializeField] private Color selectedColor;  // optional highlight
         [SerializeField] private GameObject targetingFx; // optional “aiming” highlight
+        
+        private Color _defaultColor;
         
         public event Action<SkillButton> HoverEnter;
         public event Action<SkillButton> HoverExit;
@@ -26,6 +28,8 @@ namespace Combat.UI
         {
             if (!button) button = GetComponent<Button>();
             if (!icon)   icon   = GetComponent<Image>();
+            
+            _defaultColor = icon.color;
         }
 
         void OnEnable()
@@ -56,8 +60,10 @@ namespace Combat.UI
 
         public void SetSelected(bool on)
         {
-            if (selectedFx) selectedFx.SetActive(on);
-            // Optional: change icon tint / scale, etc.
+            if (on)
+                icon.color = selectedColor;
+            else
+                icon.color = _defaultColor;
         }
 
         public void SetTargeting(bool on)

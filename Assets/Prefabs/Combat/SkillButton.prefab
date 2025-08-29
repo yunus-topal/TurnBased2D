@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4932606296336997181}
   icon: {fileID: 182858107772917706}
-  selectedFx: {fileID: 0}
+  selectedColor: {r: 0.7830189, g: 0, b: 0, a: 1}
   targetingFx: {fileID: 0}
 --- !u!114 &4932606296336997181
 MonoBehaviour:

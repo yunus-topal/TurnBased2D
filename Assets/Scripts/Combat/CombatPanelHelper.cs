@@ -79,10 +79,5 @@ namespace Combat
             turnLabel.gameObject.SetActive(false);
         }
 
-        // i want to use this method as a bridge to avoid searching for objects on runtime.
-        public void SetSkillsUI(Character character)
-        {
-            skillUIHelper.InitializeSkillsUI(character);
-        }
     }
 }
