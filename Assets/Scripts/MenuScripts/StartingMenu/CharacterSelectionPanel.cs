@@ -25,7 +25,7 @@ namespace MenuScripts.StartingMenu
                     Debug.LogError($"Invalid character index {index} for selector {i}. Using default character.");
                     index = 0; // Fallback to the first character if the index is invalid
                 }
-                charactersToStart[i] = new Character(characters[index]);
+                charactersToStart[i] = characters[index].ToCharacter();
 
             }
             Debug.Log("Starting game with selected characters.");

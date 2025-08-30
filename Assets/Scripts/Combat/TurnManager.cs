@@ -10,11 +10,12 @@ using UnityEngine;
 namespace Combat
 {
     // handle combat turns
+    [RequireComponent(typeof(CombatManager))]
     public class TurnManager : MonoBehaviour
     {
         private CombatPanelHelper _combatPanelHelper;
         private SkillUIHelper  _skillUIHelper;
-
+        private CombatManager _combatManager;
         
         [CanBeNull] private Skill _selectedSkill;
         [CanBeNull] private Character _targetCharacter;
@@ -22,6 +23,7 @@ namespace Combat
         
         private void Start()
         {
+            _combatManager = GetComponent<CombatManager>();
             _combatPanelHelper = FindAnyObjectByType<CombatPanelHelper>(FindObjectsInactive.Include);
             _skillUIHelper = FindAnyObjectByType<SkillUIHelper>(FindObjectsInactive.Include);
             if (_combatPanelHelper == null || _skillUIHelper == null)
@@ -30,7 +32,7 @@ namespace Combat
 
         internal IEnumerator PlayTurn(Character character)
         {
-            Debug.Log($"Playing turn of character: {character.Name}");
+            //Debug.Log($"Playing turn of character: {character.Name}");
             _combatPanelHelper.SetTurnLabel(character.Name);
             _actingCharacter = character;
             _selectedSkill = null;
@@ -44,8 +46,13 @@ namespace Combat
 
                     // if target is not suitable, set target to null and keep waiting.
                     yield return new WaitUntil(SelectionReady);
+                    Debug.Log($"Enemy1s health: {_combatManager.EnemyCharacters[0].CurrentHealth}");
                     
-                    //Debug.Log($"{character.Name} has selected {_selectedSkill?.skillName ?? "null"}");
+                    _selectedSkill!.Cast(_actingCharacter, _targetCharacter, _combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
+                    Debug.Log($"Enemy1s health: {_combatManager.EnemyCharacters[0].CurrentHealth}");
+                    
+                    // reflect character updates on UI.
+                    _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                     break;
                 case Team.Enemy:
                     yield return new WaitForSeconds(10f); // “think” for 1 second
@@ -71,6 +78,7 @@ namespace Combat
 
         public void SetSelectedSkill(SkillButton skillButton)
         {
+            // TODO: check if skill can be cast (mana cost, cooldown etc.)
             Debug.Log($"Turn manager selected skill: {skillButton.BoundSkill}");
             _selectedSkill = skillButton.BoundSkill;
         }
@@ -112,5 +120,6 @@ namespace Combat
                 _ => false
             };
         }
+        
     }
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
   effects:
   - targetType: 1
     effectType: 0
-    magnitude: 10
+    magnitude: 25
     statusEffect: 0
     durationInTurns: 0
   vfxPrefab: {fileID: 0}

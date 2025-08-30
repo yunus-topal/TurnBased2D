@@ -46,10 +46,10 @@ namespace Combat.UI
             HealthBarImage.color = Color.green;
         }
         
-        public void UpdateHealth(int health) {
-            HealthText.text = $"{health}/{HealthBar.maxValue}";
-            HealthBar.value = health;
-            HealthBarImage.color = Color.Lerp(Color.red, Color.green, health / HealthBar.maxValue);
+        public void UpdateCharacter(Character character) {
+            HealthText.text = $"{character.CurrentHealth}/{HealthBar.maxValue}";
+            HealthBar.value = character.CurrentHealth;
+            HealthBarImage.color = Color.Lerp(Color.red, Color.green, character.CurrentHealth / HealthBar.maxValue);
         }
 
         // callback to TurnManager

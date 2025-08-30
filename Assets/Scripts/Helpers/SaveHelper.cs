@@ -152,7 +152,7 @@ namespace Helpers
             try
             {
                 var c = Resources.Load<CharacterSO>(d.scriptableObjectPath);
-                var character = new Character(c);
+                var character = c.ToCharacter();
                 return character;
             }
             catch (Exception e)

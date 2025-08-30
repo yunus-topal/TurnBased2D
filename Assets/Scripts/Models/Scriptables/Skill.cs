@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -84,31 +86,63 @@ namespace Models.Scriptables {
 
         [Header("Casting Logic")]
         public CastBehavior castBehavior; 
-        public void Cast(Character caster, List<Character> target)
+        public void Cast(Character caster, Character target, List<Character> playerChars, List<Character> enemyChars)
         {
             if (castBehavior != null)
-                castBehavior.Cast(caster, target);
+                castBehavior.Cast(caster, target, playerChars, enemyChars);
             else
-                DefaultCast(caster, target);
+                DefaultCast(caster, target, playerChars, enemyChars);
         }
-
-        // your built-in “basic” logic based on skillType, targetType, effects…
-        private void DefaultCast(Character caster, List<Character> targets)
+        [CanBeNull] private static Character ResolveById(IEnumerable<Character> list, Character c)
+            => c == null ? null : list.FirstOrDefault(x => x.InstanceId == c.InstanceId);
+        private void DefaultCast(Character caster, Character target, List<Character> playerChars, List<Character> enemyChars)
         {
-            // check each effect 1 by 1 and apply their effects.
-            // prioritize Heal > Damage > Status
+            bool casterOnPlayers = playerChars.Any(p => p.InstanceId == caster.InstanceId);
+            var allies  = casterOnPlayers ? playerChars : enemyChars;
+            var enemies = casterOnPlayers ? enemyChars  : playerChars;
+                
+            // Snap to canonical instances
+            caster = ResolveById(allies, caster) ?? ResolveById(enemies, caster) ?? caster;
+            target = ResolveById(allies, target) ?? ResolveById(enemies, target) ?? target;
+            
+            //Debug.Log("here");
+            // go over each effect of the skill and apply them to corresponding targets.
             foreach (var effect in effects)
             {
+                List<Character> targets = new();
+
+                // in theory, 1 skill can heal self and deal damage to all allies
+                switch (effect.targetType)
+                {
+                    case SkillTarget.Self:
+                        targets.Add(caster);
+                        break;
+                    case SkillTarget.SingleAlly:
+                        { var t = ResolveById(allies, target); if (t != null) targets.Add(t); }
+                        break;
+                    case SkillTarget.SingleEnemy:
+                        { var t = ResolveById(enemies, target); if (t != null) targets.Add(t); }
+                        break;
+                    case SkillTarget.AllEnemies:
+                        targets.AddRange(enemies);
+                        break;
+                    case SkillTarget.AllAllies:
+                        targets.AddRange(allies);
+                        break;
+                }
+                
+                var uniqueTargets = targets.GroupBy(c => c.InstanceId).Select(g => g.First());
+                
                 switch (effect.effectType)
                 {
                     case EffectType.Heal:
-                        targets.ForEach(t => t.ApplyHeal(effect.magnitude));
+                        foreach (var t in uniqueTargets) t.ApplyHeal(effect.magnitude);
                         break;
                     case EffectType.Damage:
-                        targets.ForEach(t => t.ApplyDamage(effect.magnitude));
+                        foreach (var t in uniqueTargets) t.ApplyDamage(effect.magnitude);
                         break;
                     case EffectType.Status:
-                        targets.ForEach(t => t.ApplyStatus(effect.statusEffect, effect.durationInTurns));
+                        foreach (var t in uniqueTargets) t.ApplyStatus(effect.statusEffect, effect.durationInTurns);
                         break;
                 }
             }

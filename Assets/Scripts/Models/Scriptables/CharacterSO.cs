@@ -26,7 +26,7 @@ namespace Models.Scriptables {
 
         public static List<Character> ToCharacters(this List<CharacterSO> characters)
         {
-            return characters.Select(x => new Character(x)).ToList();
+            return characters.Select(x => x.ToCharacter()).ToList();
         }
     }
 }

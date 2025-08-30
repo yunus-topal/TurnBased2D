@@ -17,6 +17,8 @@ namespace Combat
         private TurnManager _turnManager;
         private List<Character> playerCharacters = new();
         private List<Character> enemyCharacters = new();
+        public List<Character> PlayerCharacters => playerCharacters;
+        public List<Character> EnemyCharacters => enemyCharacters;
 
         private void Start()
         {
@@ -31,7 +33,7 @@ namespace Combat
             var characterDatas = SaveHelper.CurrentSaveFile.Characters;
             playerCharacters = characterDatas.ToList().FromData();
             enemyCharacters = enemyGroup.Characters.ToCharacters();
-            combatPanel.GetComponent<CombatPanelHelper>().Initialize(playerCharacters, enemyGroup);
+            combatPanel.GetComponent<CombatPanelHelper>().Initialize(playerCharacters, enemyCharacters);
             StartCoroutine(StartCombat());
         }
 
