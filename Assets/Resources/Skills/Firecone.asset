@@ -18,6 +18,7 @@ MonoBehaviour:
   skillType: 0
   manaCost: 10
   cooldown: 2
+  castingTarget: 3
   effects:
   - targetType: 3
     effectType: 0

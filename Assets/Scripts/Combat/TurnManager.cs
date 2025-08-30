@@ -18,6 +18,7 @@ namespace Combat
         
         [CanBeNull] private Skill _selectedSkill;
         [CanBeNull] private Character _targetCharacter;
+        [CanBeNull] private Character _actingCharacter;
         
         private void Start()
         {
@@ -29,29 +30,31 @@ namespace Combat
 
         internal IEnumerator PlayTurn(Character character)
         {
-            Debug.Log($"Playing turn of character: {character.ToString()}");
+            Debug.Log($"Playing turn of character: {character.Name}");
             _combatPanelHelper.SetTurnLabel(character.Name);
-            // TODO: show a text such as xxx's turn.
+            _actingCharacter = character;
+            _selectedSkill = null;
+            _targetCharacter = null;
+            
+            _skillUIHelper.InitializeSkillsUI(character, this);
+
             switch (character.Team)
             {
                 case Team.Player:
-                    _skillUIHelper.InitializeSkillsUI(character, this);
 
-                    // TODO: trigger a check here when selected skill and target character is set.
                     // if target is not suitable, set target to null and keep waiting.
-                    yield return new WaitForSeconds(50f); 
+                    yield return new WaitUntil(SelectionReady);
                     
-                    
-                    yield break;
+                    //Debug.Log($"{character.Name} has selected {_selectedSkill?.skillName ?? "null"}");
+                    break;
                 case Team.Enemy:
-                    _skillUIHelper.InitializeSkillsUI(character, this);
                     yield return new WaitForSeconds(10f); // “think” for 1 second
                     var skill = AIChooseSkill(character);
                     var target = AIChooseTarget(character, skill);
                     //yield return StartCoroutine(ExecuteAction(character, );
-                    yield break;
+                    break;
                 case Team.Neutral:
-                    yield break;
+                    break;
             }
         }
 
@@ -77,6 +80,37 @@ namespace Combat
             Debug.Log($"Turn manager selected target: {target.ToString()}");
             _targetCharacter = target;
         }
+        
+        // WaitUntil predicate – true only when the selection is complete and valid.
+        private bool SelectionReady()
+        {
+            if (_targetCharacter == null) return false;
+            if (_selectedSkill == null)   return false;
 
+            if (!IsValidTarget(_actingCharacter, _selectedSkill, _targetCharacter))
+            {
+                // Keep waiting; also make sure we don't proceed with a bad target.
+                _targetCharacter = null;
+                return false;
+            }
+
+            return true;
+        }
+        
+        private bool IsValidTarget(Character actor, Skill skill, Character target)
+        {
+            if (actor == null || skill == null || target == null) return false;
+
+            // Example skeleton:
+            return skill.castingTarget switch // adapt to your Skill Scriptable
+            {
+                SkillTarget.Self => target == actor,
+                SkillTarget.SingleAlly => target.Team == Team.Player && target.CurrentHealth > 0,
+                SkillTarget.AllAllies => target.Team == Team.Player && target.CurrentHealth > 0,
+                SkillTarget.SingleEnemy  => target.Team == Team.Enemy && target.CurrentHealth > 0,
+                SkillTarget.AllEnemies => target.Team == Team.Enemy && target.CurrentHealth > 0,
+                _ => false
+            };
+        }
     }
 }

@@ -70,6 +70,7 @@ namespace Combat
                 {
                     if(character.CurrentHealth <= 0) continue;
                     yield return StartCoroutine(_turnManager.PlayTurn(character));
+                    //Debug.Log($"{character.Name} played their turn.");
                 }
             }
         }

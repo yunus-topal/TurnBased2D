@@ -23,14 +23,31 @@ namespace Combat.UI {
 
         #region Setup
 
+        private bool _isSetup = false;
+
         public void InitializeSkillsUI(Character character, TurnManager turnManager)
         {
             _character = character;
             _turnManager = turnManager;
             if (portrait) portrait.sprite = character.Sprite;
+            _selectedButton = null;
             SetupSkills();
+            RegisterEvents();
             ClearDetailsPanel();
-            DeselectSkillButton(silent: true);
+            DeselectSkillButton();
+        }
+
+        private void RegisterEvents()
+        {
+            if (_isSetup) return;
+            foreach (var btn in skillButtons)
+            {
+                btn.HoverEnter += OnSkillHoverEnter;
+                btn.HoverExit += OnSkillHoverExit;
+                btn.Clicked += OnSkillClicked;
+                btn.Clicked += _turnManager.SetSelectedSkill;
+            }
+            _isSetup = true;
         }
 
         private void SetupSkills()
@@ -42,24 +59,9 @@ namespace Combat.UI {
                 {
                     var btn = skillButtons[i];
                     btn.Bind(_character.Skills[i]);
-
-                    // Subscribe once per setup
-                    btn.HoverEnter += OnSkillHoverEnter;
-                    btn.HoverExit += OnSkillHoverExit;
-                    btn.Clicked += OnSkillClicked;
-                    btn.Clicked += _turnManager.SetSelectedSkill;
                 }
                 else
                 {
-                    // Ensure unbound/hidden and no leaks
-                    if (skillButtons[i].isActiveAndEnabled)
-                    {
-                        skillButtons[i].HoverEnter -= OnSkillHoverEnter;
-                        skillButtons[i].HoverExit -= OnSkillHoverExit;
-                        skillButtons[i].Clicked -= OnSkillClicked;
-                        skillButtons[i].Clicked -= _turnManager.SetSelectedSkill;
-                    }
-
                     skillButtons[i].Unbind();
                 }
             }
