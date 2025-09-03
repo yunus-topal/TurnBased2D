@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Combat.UI;
+using Helpers;
 using JetBrains.Annotations;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Combat
 {
@@ -46,19 +49,16 @@ namespace Combat
 
                     // if target is not suitable, set target to null and keep waiting.
                     yield return new WaitUntil(SelectionReady);
-                    Debug.Log($"Enemy1s health: {_combatManager.EnemyCharacters[0].CurrentHealth}");
-                    
                     _selectedSkill!.Cast(_actingCharacter, _targetCharacter, _combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
-                    Debug.Log($"Enemy1s health: {_combatManager.EnemyCharacters[0].CurrentHealth}");
-                    
                     // reflect character updates on UI.
                     _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                     break;
                 case Team.Enemy:
-                    yield return new WaitForSeconds(10f); // “think” for 1 second
+                    yield return new WaitForSeconds(2f); // “think” for 1 second
                     var skill = AIChooseSkill(character);
                     var target = AIChooseTarget(character, skill);
-                    //yield return StartCoroutine(ExecuteAction(character, );
+                    skill.Cast(_actingCharacter, target,_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
+                    _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                     break;
                 case Team.Neutral:
                     break;
@@ -68,12 +68,17 @@ namespace Combat
         // ideally, skill selection should depend on opponent status.
         private Skill AIChooseSkill(Character character)
         {
-            return null;
+            // get a random number for now
+            var index = Constants.CombatRng.Next(0,character.Skills.Count);
+            return character.Skills[index];
         }
 
-        private List<Character> AIChooseTarget(Character character, Skill skill)
+        private Character AIChooseTarget(Character character, Skill skill)
         {
-            return new();
+            var availableTargets = new List<Character>();
+            availableTargets.AddRange(_combatManager.PlayerCharacters.Where(p => p.CurrentHealth > 0));
+            var index = Constants.CombatRng.Next(0,availableTargets.Count);
+            return availableTargets[index];
         }
 
         public void SetSelectedSkill(SkillButton skillButton)

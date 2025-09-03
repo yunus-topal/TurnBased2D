@@ -42,13 +42,14 @@ namespace Combat.UI
             if (button != null) button.onClick.RemoveListener(HandleClick);
         }
 
-        public void Bind(Skill skill)
+        public void Bind(Skill skill, bool interactable = true)
         {
             BoundSkill = skill;
             if (icon) icon.sprite = skill.skillIcon;
             if (button) button.interactable = skill.skillType == SkillType.Active; // your rule here
             SetSelected(false);
             gameObject.SetActive(true);
+            button.interactable = interactable && skill.skillType == SkillType.Active;
         }
 
         public void Unbind()

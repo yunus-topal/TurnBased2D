@@ -60,7 +60,7 @@ namespace Models {
         {
             if (CurrentHealth > 0)
             {
-                CurrentHealth = Math.Max(MaxHealth, CurrentHealth + heal);
+                CurrentHealth = Math.Min(MaxHealth, CurrentHealth + heal);
             }
         }
         

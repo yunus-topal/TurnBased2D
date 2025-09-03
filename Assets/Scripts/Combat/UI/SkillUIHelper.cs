@@ -58,7 +58,7 @@ namespace Combat.UI {
                 if (_character.Skills != null && i < _character.Skills.Count)
                 {
                     var btn = skillButtons[i];
-                    btn.Bind(_character.Skills[i]);
+                    btn.Bind(_character.Skills[i], _character.Team == Team.Player);
                 }
                 else
                 {

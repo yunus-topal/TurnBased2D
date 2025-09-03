@@ -20,6 +20,7 @@ namespace Helpers
         public static readonly string lastUsedSaveKey = "lastUsedSave";
 
         public static System.Random Rng = new System.Random(0);
+        public static System.Random CombatRng = new System.Random();
 
         public static void SetRngWithSeed(int seed)
         {
