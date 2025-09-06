@@ -15,6 +15,7 @@ namespace Map
     
     public class MapManager : MonoBehaviour
     {
+        private GameManager _gameManager;
         [SerializeField] private GameObject nodePrefab;
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private Transform mapAnchor;
@@ -29,6 +30,7 @@ namespace Map
         private List<List<Node>> _gameMap = new List<List<Node>>();
         private void Start()
         {
+            _gameManager = FindAnyObjectByType<GameManager>();
             _gameMap = GenerateMap(SaveHelper.CurrentSaveFile.SeedNumber);
             for (var floorIndex = 0; floorIndex < _gameMap.Count; floorIndex++)
             {
@@ -47,7 +49,7 @@ namespace Map
                 //CreateConnections(floor);
             }
             
-            UpdateMapState();
+            SetupMapPanel();
             StartCoroutine(scrollView.SmoothScrollToBottom());
         }
 
@@ -134,7 +136,7 @@ namespace Map
             };
         }
 
-        public void UpdateMapState()
+        public void SetupMapPanel()
         {
             // check the current floor number. set interactable true for next floor node buttons.
             var floorNumber = SaveHelper.CurrentSaveFile.floorNumber;
@@ -180,6 +182,31 @@ namespace Map
                     node.view.SetNodeInteractable(false);
                 }
             }
+        }
+
+        public void UpdateMapState()
+        {
+            _gameManager.SetActiveMapPanel(true);
+            var lastNode = _gameManager.CurrentMapNode;
+            if (lastNode.FloorIndex >= (_gameMap.Count - 1))
+            {
+                // trigger game finish.
+                _gameManager.HandleVictory();
+                return;
+            }
+            
+            // make every node in the next floor interactable
+            // make every node in the last floor uninteractable.
+            foreach (var node in _gameMap[lastNode.FloorIndex])
+            {
+                node.view.SetNodeInteractable(false);   
+            }
+            foreach (var node in _gameMap[lastNode.FloorIndex + 1])
+            {
+                node.view.SetNodeInteractable(true);   
+            }
+            
+            // update save file.
         }
     }
 }

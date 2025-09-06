@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
+using Map;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
@@ -15,6 +15,7 @@ namespace Combat
         [SerializeField] private GameObject combatPanel;
 
         private TurnManager _turnManager;
+        private MapManager  _mapManager;
         private List<Character> playerCharacters = new();
         private List<Character> enemyCharacters = new();
         public List<Character> PlayerCharacters => playerCharacters;
@@ -23,6 +24,7 @@ namespace Combat
         private void Start()
         {
             _turnManager = GetComponent<TurnManager>();
+            _mapManager = FindAnyObjectByType<MapManager>();
         }
 
         // node should feed this seed to here.
@@ -34,7 +36,7 @@ namespace Combat
             playerCharacters = characterDatas.ToList().FromData();
             enemyCharacters = enemyGroup.Characters.ToCharacters();
             combatPanel.GetComponent<CombatPanelHelper>().Initialize(playerCharacters, enemyCharacters);
-            StartCoroutine(StartCombat());
+            StartCoroutine(StartCombat(enemyGroup.gold));
         }
 
         private EnemyGroup PickEnemyGroup(double combatSeed)
@@ -58,7 +60,7 @@ namespace Combat
             return enemyGroups[^1];
         }
 
-        private IEnumerator StartCombat()
+        private IEnumerator StartCombat(int gold)
         {
             // Handle turn order.
             List<Character> turns = new();
@@ -75,6 +77,9 @@ namespace Combat
                     //Debug.Log($"{character.Name} played their turn.");
                 }
             }
+            // TODO: show after combat panel (loot, xp etc.)
+            bool victory = playerCharacters.Any(p => p.CurrentHealth > 0);
+            combatPanel.GetComponent<CombatPanelHelper>().ShowCombatSummary(victory, gold, victory ? HandleCombatVictory : HandleGameOver);
         }
 
         
@@ -92,7 +97,22 @@ namespace Combat
         // check if one of the sides are completely dead.
         private bool IsCombatOver()
         {
+            if (playerCharacters.All(p => p.CurrentHealth <= 0)) return true;
+            if (enemyCharacters.All(e => e.CurrentHealth <= 0)) return true;
+            
             return false;
+        }
+
+        private void HandleCombatVictory()
+        {
+            combatPanel.SetActive(false);
+            // notify map.
+            _mapManager.UpdateMapState();
+        }
+
+        private void HandleGameOver()
+        {
+            // cleanup current save file, load main menu.
         }
     }
 }

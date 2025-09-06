@@ -5,6 +5,8 @@ using Models;
 using Models.Scriptables;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Combat
 {
@@ -14,6 +16,9 @@ namespace Combat
         [SerializeField] private List<CombatCharacterUIHelper> playerCharacterUIs  = new ();
         [SerializeField] private TextMeshProUGUI turnLabel;
         [SerializeField] private SkillUIHelper skillUIHelper;
+        [SerializeField] private GameObject combatSummaryObject;
+        [SerializeField] private TextMeshProUGUI combatSummaryText;
+        [SerializeField] private Button combatSummaryButton;
 
         private EnemyGroup _enemyGroup;
         private List<Character> _characters = new List<Character>();
@@ -27,6 +32,11 @@ namespace Combat
         {
             _enemyLimit = enemyCharacterUIs.Count;
             _playerLimit = playerCharacterUIs.Count;
+        }
+
+        private void OnEnable()
+        {
+            SetupCombatUI(true);
         }
 
         public void Initialize(List<Character> characters, List<Character> enemies)
@@ -95,6 +105,28 @@ namespace Combat
             {
                 enemyCharacterUIs[i].UpdateCharacter(enemies[i]);
             }
+        }
+
+        public void ShowCombatSummary(bool victory, int gold, UnityAction proceedAction)
+        {
+            SetupCombatUI(false);
+            combatSummaryText.text = victory ? $"Victory!\nYou earned {gold} gold." : "Defeat";
+            combatSummaryButton.onClick.RemoveAllListeners();
+            combatSummaryButton.onClick.AddListener(proceedAction);
+        }
+
+        private void SetupCombatUI(bool combat)
+        {
+            skillUIHelper.gameObject.SetActive(combat);
+            foreach (var p in playerCharacterUIs)
+            {
+                p.gameObject.SetActive(combat);
+            }
+            foreach (var p in enemyCharacterUIs)
+            {
+                p.gameObject.SetActive(combat);
+            }
+            combatSummaryObject.SetActive(!combat);
         }
     }
 }

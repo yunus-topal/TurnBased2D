@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Combat;
-using Helpers;
 using Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +27,9 @@ namespace Map
 
         private Encounter _encounterType;
         private Dictionary<Encounter, Sprite> _spriteLookup;
+        
+        public int FloorIndex => floorIndex;
+        public int NodeIndex => nodeIndex;
 
         private void Awake()
         {
@@ -92,6 +94,7 @@ namespace Map
         private void OnNodeSelected()
         {
             nodeImage.color = Color.forestGreen;
+            _gameManager.SetCurrentMapNode(this);
         }
         private void CombatSetup()
         {

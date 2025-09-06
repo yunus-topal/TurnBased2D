@@ -1,13 +1,13 @@
-using System;
-using Helpers;
+using Map;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject combatPanel;
     [SerializeField] private GameObject mapPanel;
+    private MapNodeHelper _currentMapNode;
+    public MapNodeHelper CurrentMapNode => _currentMapNode;
 
     private void Start()
     {
@@ -29,5 +29,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void SetCurrentMapNode(MapNodeHelper mapNode)
+    {
+        _currentMapNode = mapNode;
+    }
+    
+    // TODO: after player beats the game.
+    public void HandleVictory(){}
     
 }

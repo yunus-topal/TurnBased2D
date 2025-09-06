@@ -10,6 +10,7 @@ namespace Models.Scriptables
         public float weight = 1f;
         // to have constraints on enemy spawn. Can also create separate lists for each arc.
         public int chapter;
+        public int gold;
 
         
         

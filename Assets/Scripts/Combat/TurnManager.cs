@@ -90,7 +90,7 @@ namespace Combat
 
         public void SetSelectedTarget(Character target)
         {
-            Debug.Log($"Turn manager selected target: {target.ToString()}");
+            //Debug.Log($"Turn manager selected target: {target.ToString()}");
             _targetCharacter = target;
         }
         
