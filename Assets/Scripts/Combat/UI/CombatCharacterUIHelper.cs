@@ -24,7 +24,8 @@ namespace Combat.UI
         {
             _turnManager = FindAnyObjectByType<TurnManager>();
             _character = character;
-            SetCharacter(character.Sprite, character.Name, character.MaxHealth);
+            SetCharacter();
+            CharacterButton.onClick.RemoveAllListeners();
             CharacterButton.onClick.AddListener(OnCharacterButtonClick);
 
             if (_turnManager is null)
@@ -37,12 +38,12 @@ namespace Combat.UI
 
         }
         
-        private void SetCharacter(Sprite sprite, string charName, int maxHealth) {
-            Sprite.sprite = sprite;
-            Name.text = charName;
-            HealthText.text = $"{maxHealth}/{maxHealth}";
-            HealthBar.maxValue = maxHealth;
-            HealthBar.value = maxHealth;
+        private void SetCharacter() {
+            Sprite.sprite = _character.Sprite;
+            Name.text = _character.Name;
+            HealthText.text = $"{_character.CurrentHealth}/{_character.MaxHealth}";
+            HealthBar.maxValue = _character.MaxHealth;
+            HealthBar.value = _character.CurrentHealth;
             HealthBarImage.color = Color.green;
         }
         
