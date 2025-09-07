@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Combat.UI;
+using Helpers;
 using Models;
 using Models.Scriptables;
 using TMPro;
@@ -43,8 +44,8 @@ namespace Combat
         {
             if (characters == null) throw new ArgumentNullException(nameof(characters));
             
-            int playerCount = ClampAndWarn(characters.Count, _playerLimit, "Player");
-            int enemyCount  = ClampAndWarn(enemies.Count,     _enemyLimit,  "Enemy");
+            int playerCount = GeneralHelper.ClampAndWarn(characters.Count, _playerLimit, "Player");
+            int enemyCount  = GeneralHelper.ClampAndWarn(enemies.Count,     _enemyLimit,  "Enemy");
 
             // Players
             for (int i = 0; i < playerCharacterUIs.Count; i++)
@@ -62,14 +63,6 @@ namespace Combat
                 if (active) enemyCharacterUIs[i].Initialize(enemies[i]);
             }
         }
-        
-        private static int ClampAndWarn(int actual, int limit, string label)
-        {
-            if (actual > limit)
-                Debug.LogWarning($"{label} Character Limit exceeded; only first {limit} will be used.");
-            return Math.Min(actual, limit);
-        }
-
 
         #endregion
 

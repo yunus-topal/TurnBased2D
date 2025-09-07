@@ -186,7 +186,7 @@ namespace Map
 
         public void UpdateMapState(Character[] characters)
         {
-            _gameManager.SetActiveMapPanel(true);
+            _gameManager.ActivateMapPanel();
             var lastNode = _gameManager.CurrentMapNode;
             if (lastNode.FloorIndex >= (_gameMap.Count - 1))
             {

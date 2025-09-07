@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Combat;
 using Models;
+using Rest;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,22 +23,22 @@ namespace Map
         private Button button;
         private GameManager _gameManager;
         private CombatManager _combatManager;
+        private RestManager  _restManager;
         private double nodeSeed;
         
         [SerializeField] private List<EncounterSpriteMapping> encounterSprites;
 
         private Encounter _encounterType;
-        private Dictionary<Encounter, Sprite> _spriteLookup;
+        private Dictionary<Encounter, Sprite> _spriteLookup = new();
         
         public int FloorIndex => floorIndex;
         public int NodeIndex => nodeIndex;
 
-        private void Awake()
+        private void Setup()
         {
             nodeImage = GetComponent<Image>();
             button = GetComponent<Button>();
             // Convert list to dictionary for quick lookup
-            _spriteLookup = new Dictionary<Encounter, Sprite>();
             foreach (var mapping in encounterSprites)
             {
                 if (!_spriteLookup.ContainsKey(mapping.encounterType))
@@ -45,11 +47,14 @@ namespace Map
             
             _gameManager = FindAnyObjectByType<GameManager>();
             _combatManager = FindAnyObjectByType<CombatManager>();
+            _restManager = FindAnyObjectByType<RestManager>();
             if (_gameManager == null || _combatManager == null)
                 Debug.LogError("GameManager or CombatManager not found");
         }
         public void Initialize(Encounter encounterType, int floorIndex, int nodeIndex, double nodeSeed)
         {
+            Setup();
+            
             this.floorIndex = floorIndex;
             this.nodeIndex = nodeIndex;
             this.nodeSeed = nodeSeed;
@@ -98,10 +103,6 @@ namespace Map
         }
         private void CombatSetup()
         {
-            // pick enemies for the encounter.
-            _gameManager.SetActiveCombatPanel(true);
-            _gameManager.SetActiveMapPanel(false);
-            
             _combatManager.SetupCombat(nodeSeed);
         }
 
@@ -117,7 +118,7 @@ namespace Map
 
         private void RestSetup()
         {
-            
+            _restManager.Setup();
         }
 
         private void MerchantSetup()

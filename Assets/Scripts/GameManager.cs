@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Map;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,23 +7,39 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject combatPanel;
     [SerializeField] private GameObject mapPanel;
+    [SerializeField] private GameObject restPanel;
     private MapNodeHelper _currentMapNode;
     public MapNodeHelper CurrentMapNode => _currentMapNode;
+    
+    private List<GameObject> panels = new List<GameObject>();
 
     private void Start()
     {
-        SetActiveCombatPanel(false);
-        SetActiveMapPanel(true);
+        panels.Add(combatPanel);
+        panels.Add(mapPanel);
+        panels.Add(restPanel);
+        ActivateMapPanel();
+    }
+    
+    public void ActivateCombatPanel()
+    {
+        foreach (var panel in panels)
+            panel.SetActive(false);
+        combatPanel.SetActive(true);
     }
 
-    public void SetActiveCombatPanel(bool active)
+    public void ActivateMapPanel()
     {
-        combatPanel.SetActive(active);
+        foreach (var panel in panels)
+            panel.SetActive(false);
+        mapPanel.SetActive(true);
     }
 
-    public void SetActiveMapPanel(bool active)
+    public void ActivateRestPanel()
     {
-        mapPanel.SetActive(active);
+        foreach (var panel in panels)
+            panel.SetActive(false);
+        restPanel.SetActive(true);
     }
 
     public void GoBackToMainMenu()

@@ -12,8 +12,9 @@ namespace Combat
     public class CombatManager : MonoBehaviour
     {
         [SerializeField] private List<EnemyGroup> enemyGroups;
-        [SerializeField] private GameObject combatPanel;
-
+        
+        private CombatPanelHelper _combatPanel;
+        private GameManager _gameManager;
         private TurnManager _turnManager;
         private MapManager  _mapManager;
         private List<Character> playerCharacters = new();
@@ -23,6 +24,8 @@ namespace Combat
 
         private void Start()
         {
+            _combatPanel = FindAnyObjectByType<CombatPanelHelper>(FindObjectsInactive.Include);
+            _gameManager = FindAnyObjectByType<GameManager>();
             _turnManager = GetComponent<TurnManager>();
             _mapManager = FindAnyObjectByType<MapManager>();
         }
@@ -30,12 +33,12 @@ namespace Combat
         // node should feed this seed to here.
         public void SetupCombat(double combatSeed)
         {
+            _gameManager.ActivateCombatPanel();
             var enemyGroup = PickEnemyGroup(combatSeed);
-            combatPanel.SetActive(true);
             var characterDatas = SaveHelper.CurrentSaveFile.Characters;
             playerCharacters = characterDatas.ToList().FromData();
             enemyCharacters = enemyGroup.Characters.ToCharacters();
-            combatPanel.GetComponent<CombatPanelHelper>().Initialize(playerCharacters, enemyCharacters);
+            _combatPanel.Initialize(playerCharacters, enemyCharacters);
             StartCoroutine(StartCombat(enemyGroup.gold));
         }
 
@@ -79,7 +82,7 @@ namespace Combat
             }
             // show after combat panel (loot, xp etc.)
             bool victory = playerCharacters.Any(p => p.CurrentHealth > 0);
-            combatPanel.GetComponent<CombatPanelHelper>().ShowCombatSummary(victory, gold, victory ? HandleCombatVictory : HandleGameOver);
+            _combatPanel.ShowCombatSummary(victory, gold, victory ? HandleCombatVictory : HandleGameOver);
         }
 
         
@@ -105,7 +108,6 @@ namespace Combat
 
         private void HandleCombatVictory()
         {
-            combatPanel.SetActive(false);
             // notify map.
             _mapManager.UpdateMapState(playerCharacters.ToArray());
         }
