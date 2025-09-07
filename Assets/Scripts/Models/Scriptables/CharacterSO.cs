@@ -19,6 +19,17 @@ namespace Models.Scriptables {
 
     public static class CharacterSoExtensions
     {
+        public static Character ToCharacter(this CharacterSO characterSo, CharacterData characterData)
+        {
+            var character = new Character(characterSo);
+            character.Name = characterData.name;
+            character.Level = characterData.level;
+            character.XP = characterData.xp;
+            character.CombatStats = characterData.combatStats;
+            character.CurrentHealth = characterData.currentHealth;
+            character.MaxHealth = characterData.maxHealth;
+            return character;
+        }
         public static Character ToCharacter(this CharacterSO characterSo)
         {
             return new Character(characterSo);

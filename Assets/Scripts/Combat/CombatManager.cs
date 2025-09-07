@@ -77,7 +77,7 @@ namespace Combat
                     //Debug.Log($"{character.Name} played their turn.");
                 }
             }
-            // TODO: show after combat panel (loot, xp etc.)
+            // show after combat panel (loot, xp etc.)
             bool victory = playerCharacters.Any(p => p.CurrentHealth > 0);
             combatPanel.GetComponent<CombatPanelHelper>().ShowCombatSummary(victory, gold, victory ? HandleCombatVictory : HandleGameOver);
         }
@@ -107,7 +107,7 @@ namespace Combat
         {
             combatPanel.SetActive(false);
             // notify map.
-            _mapManager.UpdateMapState();
+            _mapManager.UpdateMapState(playerCharacters.ToArray());
         }
 
         private void HandleGameOver()

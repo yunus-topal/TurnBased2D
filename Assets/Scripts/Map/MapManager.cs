@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Helpers;
 using Models;
 using UnityEngine;
@@ -149,25 +150,24 @@ namespace Map
                 return;
             }
             
+            // TODO: handle this by resetting floor index to 0 maybe?
             if (floorNumber < 0 || floorNumber >= _gameMap.Count)
             {
                 Debug.LogError("floor number is wrong!");
                 return;
             }
             
-            var nodeNumber = SaveHelper.CurrentSaveFile.nodeNumber;
-            if (nodeNumber < 0 || nodeNumber >= _gameMap[floorNumber].Count)
-            {
-                Debug.LogError("node number is wrong!");
-                return;
-            }
-            
-            int nextFloor = floorNumber + 1;
-            if(nextFloor >= _gameMap[floorNumber].Count) return;
-
-            // if there is a next floor availabe, make them interactable.
+            // TODO: handle this by resetting node index to 0 maybe?
+            // var nodeNumber = SaveHelper.CurrentSaveFile.nodeNumber;
+            // if (nodeNumber < 0 || nodeNumber >= _gameMap[floorNumber].Count)
+            // {
+            //     Debug.LogError("node number is wrong!");
+            //     return;
+            // }
+            if(floorNumber >= _gameMap.Count) return;
+            // if there is a next floor available, make them interactable.
             DisableAllNodes();
-            foreach (var node in _gameMap[nextFloor])
+            foreach (var node in _gameMap[floorNumber])
             {
                 node.view.SetNodeInteractable(true);
             }
@@ -184,7 +184,7 @@ namespace Map
             }
         }
 
-        public void UpdateMapState()
+        public void UpdateMapState(Character[] characters)
         {
             _gameManager.SetActiveMapPanel(true);
             var lastNode = _gameManager.CurrentMapNode;
@@ -206,7 +206,8 @@ namespace Map
                 node.view.SetNodeInteractable(true);   
             }
             
-            // update save file.
+            // save current character stats.
+            SaveHelper.UpdateSaveFile(characters.ToArray(), lastNode.FloorIndex + 1);
         }
     }
 }

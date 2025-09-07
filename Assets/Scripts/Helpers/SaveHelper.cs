@@ -84,6 +84,15 @@ namespace Helpers
             // write back to same file.
             WriteToDisk(currentSaveFile);
         }
+        
+        internal static void UpdateSaveFile(Character[] characters, int floorNum)
+        {
+            currentSaveFile.Characters = characters.Select(x => x.ToData()).ToArray();
+            currentSaveFile.floorNumber = floorNum;
+            
+            // write back to same file.
+            WriteToDisk(currentSaveFile);
+        }
 
         /// <summary>Read JSON from disk and deserialize into SaveFile</summary>
         public static SaveFile LoadSaveFileFromFileName(string fileName)
@@ -152,7 +161,7 @@ namespace Helpers
             try
             {
                 var c = Resources.Load<CharacterSO>(d.scriptableObjectPath);
-                var character = c.ToCharacter();
+                var character = c.ToCharacter(d);
                 return character;
             }
             catch (Exception e)
