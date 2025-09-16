@@ -165,8 +165,7 @@ namespace Combat.UI {
         {
             if (detailsPanel) detailsPanel.SetActive(true);
             // if skill upgraded, show skill name as skill+
-            bool upgraded = _character.skillsUpgraded[_character.Skills.IndexOf(skill)];
-            string prefix = upgraded ? "+" : "";  
+            string prefix = _character.IsSkillUpgraded(skill) ? "+" : "";  
             if (skillNameText) skillNameText.text = $"{skill.skillName}{prefix}";
             if (skillDescText)
             {

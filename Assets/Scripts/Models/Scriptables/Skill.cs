@@ -103,6 +103,7 @@ namespace Models.Scriptables {
             => c == null ? null : list.FirstOrDefault(x => x.InstanceId == c.InstanceId);
         private void DefaultCast(Character caster, Character target, List<Character> playerChars, List<Character> enemyChars)
         {
+            bool skillUpgraded = caster.IsSkillUpgraded(this);
             bool casterOnPlayers = playerChars.Any(p => p.InstanceId == caster.InstanceId);
             var allies  = casterOnPlayers ? playerChars : enemyChars;
             var enemies = casterOnPlayers ? enemyChars  : playerChars;
@@ -142,13 +143,13 @@ namespace Models.Scriptables {
                 switch (effect.effectType)
                 {
                     case EffectType.Heal:
-                        foreach (var t in uniqueTargets) t.ApplyHeal(effect.magnitude);
+                        foreach (var t in uniqueTargets) t.ApplyHeal(skillUpgraded ? effect.magnitudeUpgraded : effect.magnitude);
                         break;
                     case EffectType.Damage:
-                        foreach (var t in uniqueTargets) t.ApplyDamage(effect.magnitude);
+                        foreach (var t in uniqueTargets) t.ApplyDamage(skillUpgraded ? effect.magnitudeUpgraded : effect.magnitude);
                         break;
                     case EffectType.Status:
-                        foreach (var t in uniqueTargets) t.ApplyStatus(effect.statusEffect, effect.durationInTurns);
+                        foreach (var t in uniqueTargets) t.ApplyStatus(effect.statusEffect, skillUpgraded ? effect.durationInTurnsUpgraded : effect.durationInTurns);
                         break;
                 }
             }

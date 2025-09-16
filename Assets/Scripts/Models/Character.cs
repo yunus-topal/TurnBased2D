@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Helpers;
 using Models.Scriptables;
 using UnityEngine;
@@ -82,6 +83,13 @@ namespace Models {
         {
             return $"Character: {Name}" +
                    $"Team: {Team.ToString()}";
+        }
+
+        public bool IsSkillUpgraded(Skill skill)
+        {
+            var index = Skills.IndexOf(skill);
+            if (index == -1) return false;
+            return skillsUpgraded.ElementAtOrDefault(index);
         }
         
         // Equality by InstanceId
