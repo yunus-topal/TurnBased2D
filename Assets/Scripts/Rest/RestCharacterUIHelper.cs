@@ -13,6 +13,9 @@ namespace Rest
         [SerializeField] private Slider HealthBar;
         [SerializeField] private Image HealthBarImage;
         [SerializeField] private Button CharacterButton;
+        // can this be a list?
+        [SerializeField] private Toggle restToggle;
+        [SerializeField] private Toggle upgradeToggle;
         
         private Character _character;
 
@@ -21,6 +24,9 @@ namespace Rest
             _character = character;
             SetCharacter();
             CharacterButton.onClick.RemoveAllListeners();
+            // toggle rest by default
+            restToggle.isOn = true;
+            upgradeToggle.isOn = false;
         }
         
         private void SetCharacter() {
@@ -36,6 +42,17 @@ namespace Rest
             HealthText.text = $"{character.CurrentHealth}/{HealthBar.maxValue}";
             HealthBar.value = character.CurrentHealth;
             HealthBarImage.color = Color.Lerp(Color.red, Color.green, character.CurrentHealth / HealthBar.maxValue);
+        }
+
+        public void OnRestToggleValueChanged(bool isOn)
+        {
+            if (isOn) upgradeToggle.isOn = false;
+            
+        }
+
+        public void OnUpgradeToggleValueChanged(bool isOn)
+        {
+            if (isOn) restToggle.isOn = false;  
         }
     }
 }
