@@ -42,7 +42,7 @@ namespace Combat.UI
             if (button != null) button.onClick.RemoveListener(HandleClick);
         }
 
-        public void Bind(Skill skill, bool interactable = true)
+        public void Bind(Skill skill, bool interactable = true, bool upgraded = false)
         {
             BoundSkill = skill;
             if (icon) icon.sprite = skill.skillIcon;

@@ -58,7 +58,7 @@ namespace Combat.UI {
                 if (_character.Skills != null && i < _character.Skills.Count)
                 {
                     var btn = skillButtons[i];
-                    btn.Bind(_character.Skills[i], _character.Team == Team.Player);
+                    btn.Bind(_character.Skills[i], _character.Team == Team.Player, _character.skillsUpgraded[i]);
                 }
                 else
                 {
@@ -164,7 +164,10 @@ namespace Combat.UI {
         private void ShowDetails(Skill skill)
         {
             if (detailsPanel) detailsPanel.SetActive(true);
-            if (skillNameText) skillNameText.text = skill.skillName;
+            // if skill upgraded, show skill name as skill+
+            bool upgraded = _character.skillsUpgraded[_character.Skills.IndexOf(skill)];
+            string prefix = upgraded ? "+" : "";  
+            if (skillNameText) skillNameText.text = $"{skill.skillName}{prefix}";
             if (skillDescText)
             {
                 // You can format extended info here (AP cost, range, cooldown, etc.)
