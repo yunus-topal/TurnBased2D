@@ -52,12 +52,18 @@ namespace Models.Scriptables {
 
         [Tooltip("For Damage/Heal: amount; for Status: ignored")]
         public int magnitude;
+        
+        [Tooltip("For Damage/Heal: upgraded amount; for Status: ignored")]
+        public int magnitudeUpgraded;
 
         [Tooltip("If effectType == Status, which status to apply")]
         public StatusEffectType statusEffect;
 
         [Tooltip("Duration in turns (only for status effects)")]
         public int durationInTurns;
+        
+        [Tooltip("Updated duration in turns (only for status effects)")]
+        public int durationInTurnsUpgraded;
     }
     
     [CreateAssetMenu(fileName = "NewSkill", menuName = "Skill/SkillBehavior")]

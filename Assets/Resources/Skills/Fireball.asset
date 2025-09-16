@@ -23,8 +23,10 @@ MonoBehaviour:
   - targetType: 1
     effectType: 0
     magnitude: 25
+    magnitudeUpgraded: 30
     statusEffect: 0
     durationInTurns: 0
+    durationInTurnsUpgraded: 0
   vfxPrefab: {fileID: 0}
   sfxClip: {fileID: 0}
   castBehavior: {fileID: 0}

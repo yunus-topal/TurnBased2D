@@ -46,6 +46,7 @@ namespace Models
         public int xp;
         public int maxHealth;
         public int currentHealth;
+        public bool[] skillsUpgraded;
 
         // Assuming CombatStats is also [Serializable] with public fields
         public CombatStats combatStats;

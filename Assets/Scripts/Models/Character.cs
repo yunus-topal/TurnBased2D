@@ -26,6 +26,8 @@ namespace Models {
         public List<Equipment> Equipments { get; set; }
         public List<Skill> Skills { get; set; }
         
+        public bool[] skillsUpgraded { get; set; }
+        
         public string scriptableObjectPath { get; set; }
         
         public Character(CharacterSO characterScriptable, Team? teamOverride = null)
@@ -46,6 +48,8 @@ namespace Models {
             MaxHealth = CalculateHealth(CombatStats);
             CurrentHealth = MaxHealth; // Initialize current health to max health.
             scriptableObjectPath = characterResourcePath + characterScriptable.name;
+            
+            skillsUpgraded = new bool[characterScriptable.skills.Count];
         }
         public Character() { InstanceId = _nextInstanceId++; }
 

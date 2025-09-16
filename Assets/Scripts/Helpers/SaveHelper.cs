@@ -135,6 +135,7 @@ namespace Helpers
         {
             return characters.Select(c => c.ToData()).ToList();
         }
+        // Update this function whenever there are new fields in Character class needed to be written to disk.
         public static CharacterData ToData(this Character c)
         {
             return new CharacterData
@@ -146,6 +147,7 @@ namespace Helpers
                 currentHealth = c.CurrentHealth,
                 combatStats = c.CombatStats,         // if CombatStats is serializable
                 scriptableObjectPath = c.scriptableObjectPath,
+                skillsUpgraded = c.skillsUpgraded,
             };
         }
 
@@ -153,7 +155,7 @@ namespace Helpers
         {
             return datas.Select(item => item.FromData()).ToList();
         }
-
+        // Update this function whenever there are new fields in Character class needed to be read from disk.
         public static Character FromData(this CharacterData d)
         {
             // You can load the Sprite by Resources.Load<Sprite>(d.spriteAssetPath)
