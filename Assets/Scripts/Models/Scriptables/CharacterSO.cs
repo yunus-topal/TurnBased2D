@@ -28,7 +28,7 @@ namespace Models.Scriptables {
             character.CombatStats = characterData.combatStats;
             character.CurrentHealth = characterData.currentHealth;
             character.MaxHealth = characterData.maxHealth;
-            character.skillsUpgraded = characterData.skillsUpgraded;
+            character.skillsUpgraded = characterData.skillsUpgraded ?? new bool[characterSo.skills.Count];
             return character;
         }
         public static Character ToCharacter(this CharacterSO characterSo)

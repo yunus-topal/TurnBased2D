@@ -154,6 +154,17 @@ namespace Models.Scriptables {
                 }
             }
         }
+
+        public (string, string) GetSkillDetails(bool upgraded = false)
+        {
+            string prefix = upgraded ? "+" : "";  
+            var skillNameText = $"{skillName}{prefix}";
+            // use upgraded magnitude for upgraded skills
+            // TODO: use some placeholders in description and replace them with effects list.
+            var skillDescText = $"{description}\nTarget: {castingTarget}\n";
+            
+            return (skillNameText, skillDescText);
+        }
     }
 
 }

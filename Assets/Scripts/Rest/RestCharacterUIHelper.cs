@@ -1,6 +1,7 @@
 using Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Rest
@@ -19,7 +20,9 @@ namespace Rest
         
         private Character _character;
 
-        public void Initialize(Character character)
+        public UnityEvent<Character, bool> UpgradeToggledEvent = new();
+
+        public void Initialize(Character character, UnityAction<Character, bool> upgradeToggledEvent)
         {
             _character = character;
             SetCharacter();
@@ -27,6 +30,7 @@ namespace Rest
             // toggle rest by default
             restToggle.isOn = true;
             upgradeToggle.isOn = false;
+            UpgradeToggledEvent.AddListener(upgradeToggledEvent);
         }
         
         private void SetCharacter() {
@@ -52,7 +56,11 @@ namespace Rest
 
         public void OnUpgradeToggleValueChanged(bool isOn)
         {
-            if (isOn) restToggle.isOn = false;  
+            UpgradeToggledEvent?.Invoke(_character, isOn);
+            if (isOn)
+            {
+                restToggle.isOn = false;
+            }
         }
     }
 }

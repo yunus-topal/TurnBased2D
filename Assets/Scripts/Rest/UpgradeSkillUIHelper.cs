@@ -1,14 +1,16 @@
+﻿using Combat;
+using Combat.UI;
 using Models;
 using Models.Scriptables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Combat.UI {
-    public class SkillUIHelper : MonoBehaviour
+namespace Rest
+{
+    public class UpgradeSkillUIHelper : MonoBehaviour
     {
         private Character _character;
-        private TurnManager _turnManager;
 
         [Header("UI")] [SerializeField] private Image portrait;
         [SerializeField] private SkillButton[] skillButtons;
@@ -25,10 +27,9 @@ namespace Combat.UI {
 
         private bool _isSetup = false;
 
-        public void InitializeSkillsUI(Character character, TurnManager turnManager)
+        public void InitializeSkillsUI(Character character)
         {
             _character = character;
-            _turnManager = turnManager;
             if (portrait) portrait.sprite = character.Sprite;
             _selectedButton = null;
             SetupSkills();
@@ -45,7 +46,6 @@ namespace Combat.UI {
                 btn.HoverEnter += OnSkillHoverEnter;
                 btn.HoverExit += OnSkillHoverExit;
                 btn.Clicked += OnSkillClicked;
-                btn.Clicked += _turnManager.SetSelectedSkill;
             }
             _isSetup = true;
         }
@@ -59,6 +59,7 @@ namespace Combat.UI {
                 {
                     var btn = skillButtons[i];
                     btn.Bind(_character.Skills[i], _character.Team == Team.Player, _character.skillsUpgraded[i]);
+                    btn.SetButtonInteractable(_character.skillsUpgraded[i]);
                 }
                 else
                 {
@@ -81,7 +82,6 @@ namespace Combat.UI {
                 btn.HoverEnter -= OnSkillHoverEnter;
                 btn.HoverExit -= OnSkillHoverExit;
                 btn.Clicked -= OnSkillClicked;
-                btn.Clicked -= _turnManager.SetSelectedSkill;
             }
         }
 

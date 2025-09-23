@@ -58,10 +58,5 @@ namespace Combat.UI
         {
             Clicked?.Invoke(_character);
         }
-
-        private void OnDestroy()
-        {
-            //Clicked -= _turnManager.SetSelectedTarget;
-        }
     }
 }

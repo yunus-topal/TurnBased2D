@@ -38,6 +38,9 @@ namespace Combat
             var characterDatas = SaveHelper.CurrentSaveFile.Characters;
             playerCharacters = characterDatas.ToList().FromData();
             enemyCharacters = enemyGroup.Characters.ToCharacters();
+            playerCharacters.ForEach(character => character.Team = Team.Player);
+            enemyCharacters.ForEach(character => character.Team = Team.Enemy);
+            
             _combatPanel.Initialize(playerCharacters, enemyCharacters);
             StartCoroutine(StartCombat(enemyGroup.gold));
         }

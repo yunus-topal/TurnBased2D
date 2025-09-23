@@ -77,5 +77,10 @@ namespace Combat.UI
         {
             HoverExit?.Invoke(this);
         }
+
+        public void SetButtonInteractable(bool b)
+        {
+            button.interactable = b;
+        }
     }
 }
