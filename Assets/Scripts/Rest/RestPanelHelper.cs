@@ -24,11 +24,23 @@ namespace Rest
             }
         }
 
-        private void SetSubMenuOverlayActive(Character character, bool active)
+        public void SetSubMenuOverlayActive(Character character, bool active)
         {
-            // TODO: also fetch the character info from toggle event so we can initialize upgrade ui helper.
+            // also fetch the character info from toggle event so we can initialize upgrade ui helper.
             subMenuOverlay.SetActive(active);
             if (active) upgradeSkillUIHelper.InitializeSkillsUI(character);
+        }
+
+        public void CancelUpgrade(Character character)
+        {
+            var index = characterUIs.FindIndex(c => c.Character.InstanceId == character.InstanceId);
+            if (index == -1)
+            {
+                Debug.LogError("Character not found!");
+                return;
+            }
+            
+            characterUIs[index].SetCharacterUIRest();
         }
     }
 }

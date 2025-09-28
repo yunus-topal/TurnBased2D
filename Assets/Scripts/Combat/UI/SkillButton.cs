@@ -46,7 +46,6 @@ namespace Combat.UI
         {
             BoundSkill = skill;
             if (icon) icon.sprite = skill.skillIcon;
-            if (button) button.interactable = skill.skillType == SkillType.Active; // your rule here
             SetSelected(false);
             gameObject.SetActive(true);
             button.interactable = interactable && skill.skillType == SkillType.Active;
@@ -76,11 +75,6 @@ namespace Combat.UI
         public void OnPointerExit(PointerEventData eventData)
         {
             HoverExit?.Invoke(this);
-        }
-
-        public void SetButtonInteractable(bool b)
-        {
-            button.interactable = b;
         }
     }
 }

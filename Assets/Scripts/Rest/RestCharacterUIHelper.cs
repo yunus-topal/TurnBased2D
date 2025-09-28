@@ -19,6 +19,7 @@ namespace Rest
         [SerializeField] private Toggle upgradeToggle;
         
         private Character _character;
+        public Character Character => _character;
 
         public UnityEvent<Character, bool> UpgradeToggledEvent = new();
 
@@ -61,6 +62,11 @@ namespace Rest
             {
                 restToggle.isOn = false;
             }
+        }
+
+        public void SetCharacterUIRest()
+        {
+            restToggle.isOn = true;
         }
     }
 }

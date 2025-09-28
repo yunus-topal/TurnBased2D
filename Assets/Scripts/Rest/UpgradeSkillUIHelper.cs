@@ -1,5 +1,7 @@
-﻿using Combat;
+﻿using System;
+using Combat;
 using Combat.UI;
+using Helpers;
 using Models;
 using Models.Scriptables;
 using TMPro;
@@ -12,7 +14,12 @@ namespace Rest
     {
         private Character _character;
 
-        [Header("UI")] [SerializeField] private Image portrait;
+        [Header("UI")] 
+        [SerializeField] private Image portrait;
+
+        [SerializeField] private Button backButton;
+        [SerializeField] private Button upgradeSelectButton;
+        [SerializeField] private TextMeshProUGUI warningText;
         [SerializeField] private SkillButton[] skillButtons;
 
         [Header("Details Panel")] [SerializeField]
@@ -22,10 +29,18 @@ namespace Rest
         [SerializeField] private GameObject detailsPanel; // toggle on hover
 
         private SkillButton _selectedButton; // currently selected (if any)
+        private RestManager _restManager;
+        private RestPanelHelper _restPanelHelper;
 
         #region Setup
 
         private bool _isSetup = false;
+
+        private void Awake()
+        {
+            _restPanelHelper = FindAnyObjectByType<RestPanelHelper>();
+            _restManager = FindAnyObjectByType<RestManager>();
+        }
 
         public void InitializeSkillsUI(Character character)
         {
@@ -36,6 +51,12 @@ namespace Rest
             RegisterEvents();
             ClearDetailsPanel();
             DeselectSkillButton();
+            
+            upgradeSelectButton.onClick.RemoveAllListeners();
+            upgradeSelectButton.onClick.AddListener(OnUpgradeSelected);
+            
+            backButton.onClick.RemoveAllListeners();
+            backButton.onClick.AddListener(OnUpgradeCancelled);
         }
 
         private void RegisterEvents()
@@ -58,8 +79,8 @@ namespace Rest
                 if (_character.Skills != null && i < _character.Skills.Count)
                 {
                     var btn = skillButtons[i];
-                    btn.Bind(_character.Skills[i], _character.Team == Team.Player, _character.skillsUpgraded[i]);
-                    btn.SetButtonInteractable(_character.skillsUpgraded[i]);
+                    var upgraded = _character.skillsUpgraded[i];
+                    btn.Bind(_character.Skills[i], !upgraded, upgraded);
                 }
                 else
                 {
@@ -68,6 +89,29 @@ namespace Rest
             }
         }
 
+        private void OnUpgradeCancelled()
+        {
+            // Hide submenu overlay
+            // toggle rest on.
+            _selectedButton = null;
+            warningText.gameObject.SetActive(false);
+            _restManager.UpdateChoiceAsRest(_character, RestAction.Rest);
+            _restPanelHelper.CancelUpgrade(_character);
+            _restPanelHelper.SetSubMenuOverlayActive(_character, false);
+        }
+        private void OnUpgradeSelected()
+        {
+            if (_selectedButton is null)
+            {
+                // activate warning text
+                warningText.gameObject.SetActive(true);
+                StartCoroutine(SystemHelper.InvokeLambda(() => warningText.gameObject.SetActive(false), 3f));
+                return;
+            }
+            // send selected skill to rest manager.
+            _restManager.UpdateChoiceAsUpgrade(_character, _selectedButton.BoundSkill);
+            _restPanelHelper.SetSubMenuOverlayActive(_character, false);
+        }
 
         #endregion
 
