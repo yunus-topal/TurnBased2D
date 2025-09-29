@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Helpers;
 using Models;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Rest
 {
@@ -10,6 +12,15 @@ namespace Rest
         [SerializeField] private GameObject subMenuOverlay;
         [SerializeField] private UpgradeSkillUIHelper upgradeSkillUIHelper;
         [SerializeField] private List<RestCharacterUIHelper> characterUIs;
+        [SerializeField] private Button confirmButton;
+        private RestManager _restManager;
+
+        private void Awake()
+        {
+            _restManager = FindAnyObjectByType<RestManager>();
+            confirmButton.onClick.RemoveAllListeners();
+            confirmButton.onClick.AddListener(_restManager.FinishRest);
+        }
 
         public void Initialize(List<Character> characters)
         {

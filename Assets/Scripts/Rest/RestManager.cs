@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
+using Map;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
@@ -11,10 +13,10 @@ namespace Rest
     {
         // Show each character. Show their status.
         // Allow healing and
-        // TODO: maybe other options such as increasing their stats (like training)
-
+        [SerializeField] private int healAmount = 25;
         private RestPanelHelper _restPanel;
         private GameManager _gameManager;
+        private MapManager _mapManager;
         private List<Character> _playerCharacters = new();
         private List<RestChoice> _choices = new();
         
@@ -23,6 +25,7 @@ namespace Rest
         {
             _restPanel = FindAnyObjectByType<RestPanelHelper>(FindObjectsInactive.Include);
             _gameManager = FindAnyObjectByType<GameManager>();
+            _mapManager = FindAnyObjectByType<MapManager>();
         }
 
         public void Setup()
@@ -31,7 +34,9 @@ namespace Rest
             var characterDatas = SaveHelper.CurrentSaveFile.Characters;
             _playerCharacters = characterDatas.ToList().FromData();
             
-            _choices = Enumerable.Repeat<RestChoice>(new RestChoice(), _playerCharacters.Count).ToList();
+            _choices = Enumerable.Range(0, _playerCharacters.Count)
+                .Select(_ => new RestChoice())
+                .ToList();
             _restPanel.Initialize(_playerCharacters);
         }
 
@@ -67,6 +72,27 @@ namespace Rest
 
             _choices[charIndex].Index = 0;
             _choices[charIndex].RestAction = action;
+        }
+
+        public void FinishRest()
+        {
+            // update each character, save and move to next level.
+            for (var i = 0; i < _choices.Count; i++)
+            {
+                switch (_choices[i].RestAction)
+                {
+                    case RestAction.Rest:
+                        _playerCharacters[i].ApplyHeal(healAmount);
+                        break;
+                    case RestAction.Upgrade:
+                        _playerCharacters[i].skillsUpgraded[_choices[i].Index] = true;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            _mapManager.UpdateMapState(_playerCharacters.ToArray());
         }
 
     }
