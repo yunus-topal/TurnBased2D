@@ -2,11 +2,13 @@ using Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace MenuScripts.MainMenu
 {
     public class MainMenuManager : MonoBehaviour
     {
+        [SerializeField] private Button continueButton;
         [SerializeField] private GameObject mainPanel;
         [SerializeField] private GameObject savePanel;
         [SerializeField] private GameObject optionsPanel;
@@ -29,6 +31,16 @@ namespace MenuScripts.MainMenu
                 DisableAllPanels();
                 mainPanel.SetActive(true);
                 saveNameText.text = lastSave.SaveName; // Display the last used save name
+                
+                
+                if(lastSave.Characters is null)
+                {
+                    continueButton.interactable = false;
+                }
+                else
+                {
+                    continueButton.interactable = true;
+                }
             }
             else
             {
@@ -57,5 +69,9 @@ namespace MenuScripts.MainMenu
             optionsPanel.SetActive(false);
         }
 
+        public void LoadContinueGameScene()
+        {
+            SceneManager.LoadScene("GameScene");
+        }
     }
 }
