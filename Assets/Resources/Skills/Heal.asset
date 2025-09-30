@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   skillName: Heal
-  description: Heal a target
+  description: Heal a target by {{0}}.
   skillIcon: {fileID: 177935496237397111, guid: 215b043bdddbb8d4ba2c122bd877f754, type: 3}
   skillType: 0
   manaCost: 10
@@ -22,9 +22,11 @@ MonoBehaviour:
   effects:
   - targetType: 2
     effectType: 1
-    magnitude: 5
+    magnitude: 15
+    magnitudeUpgraded: 0
     statusEffect: 0
-    durationInTurns: 0
+    durationInTurns: 20
+    durationInTurnsUpgraded: 0
   vfxPrefab: {fileID: 0}
   sfxClip: {fileID: 0}
   castBehavior: {fileID: 0}

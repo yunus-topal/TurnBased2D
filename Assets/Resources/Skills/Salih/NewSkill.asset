@@ -10,23 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80e79285b325418380c36c432bd58ac1, type: 3}
-  m_Name: Firecone
+  m_Name: NewSkill
   m_EditorClassIdentifier: 
-  skillName: Firecone
-  description: A firecone that deals {{0}} damage to all enemies.
-  skillIcon: {fileID: 7679385156476096713, guid: 3ccf749c29277884f9b2d5bd372b1517, type: 3}
+  skillName: New Skill
+  description: 
+  skillIcon: {fileID: 0}
   skillType: 0
   manaCost: 10
-  cooldown: 2
-  castingTarget: 3
-  effects:
-  - targetType: 3
-    effectType: 0
-    magnitude: 12
-    magnitudeUpgraded: 15
-    statusEffect: 0
-    durationInTurns: 0
-    durationInTurnsUpgraded: 0
+  cooldown: 1
+  castingTarget: 0
+  effects: []
   vfxPrefab: {fileID: 0}
   sfxClip: {fileID: 0}
   castBehavior: {fileID: 0}

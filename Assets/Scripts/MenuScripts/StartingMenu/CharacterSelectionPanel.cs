@@ -31,7 +31,7 @@ namespace MenuScripts.StartingMenu
             Debug.Log("Starting game with selected characters.");
 
             // save to persistent storage
-            SaveHelper.UpdateSaveFile(charactersToStart);
+            SaveHelper.UpdateSaveFile(charactersToStart, -1);
             
             Constants.SetRngWithSeed(SaveHelper.CurrentSaveFile.SeedNumber);
             

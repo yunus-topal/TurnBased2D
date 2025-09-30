@@ -160,8 +160,27 @@ namespace Models.Scriptables {
             string prefix = upgraded ? "+" : "";  
             var skillNameText = $"{skillName}{prefix}";
             // use upgraded magnitude for upgraded skills
-            // TODO: use some placeholders in description and replace them with effects list.
-            var skillDescText = $"{description}\nTarget: {castingTarget}\n";
+            
+            // go over each skill effect, check {{i}} placeholder in description to write actual values.
+            //var skillDescText = $"{description}\nTarget: {castingTarget}\n";
+            var skillDescText = description;
+
+            for (int i = 0; i < effects.Count; i++)
+            {
+                // replace {{i}} with correct magnitude
+                int value;
+
+                if (effects[i].effectType == EffectType.Status)
+                {
+                    value = upgraded ? effects[i].durationInTurnsUpgraded : effects[i].durationInTurns;
+                }
+                else
+                {
+                    value = upgraded ? effects[i].magnitudeUpgraded : effects[i].magnitude;
+                }
+
+                skillDescText = skillDescText.Replace("{{" + i + "}}", value.ToString());
+            }
             
             return (skillNameText, skillDescText);
         }
