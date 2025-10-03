@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3151a7f14e6f43a40ad15b8011552167, type: 3}
+  m_Name: Ocb
+  m_EditorClassIdentifier: 
+  characterName: Ocb
+  level: 1
+  characterSprite: {fileID: -4389871485480736601, guid: df05f2082e2b0ea48a2c7c25ef86f041, type: 3}
+  combatStats:
+    _strength: 10
+    _dexterity: 10
+    _intelligence: 10
+    _constitution: 10
+    _luck: 10
+  equipments: []
+  skills:
+  - {fileID: 11400000, guid: cdf0d2fde566e264f95ae1d32f06de31, type: 2}
+  - {fileID: 11400000, guid: 8b8127c42979e4a4992c2ee09729f609, type: 2}
+  - {fileID: 11400000, guid: bf66700efb6b14d4da3fca4013cd1516, type: 2}
+  assetPath: Combatants/Ocb

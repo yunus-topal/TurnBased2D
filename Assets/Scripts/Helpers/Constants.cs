@@ -15,7 +15,17 @@ namespace Helpers
         public static readonly string musicText = "Music";
         public static readonly string soundText = "Sound";
 
-        // save file location
         public static readonly string saveFileLocation = Application.persistentDataPath + "/Saves/";
+        // check player prefs using this
+        public static readonly string lastUsedSaveKey = "lastUsedSave";
+
+        public static System.Random Rng = new System.Random(0);
+        public static System.Random CombatRng = new System.Random();
+
+        public static void SetRngWithSeed(int seed)
+        {
+            Rng = new System.Random(seed);
+        }
+        //public static System.Random Rng = new System.Random(SaveHelper.CurrentSaveFile.SeedNumber);
     }
 }

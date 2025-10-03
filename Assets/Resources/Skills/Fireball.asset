@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e79285b325418380c36c432bd58ac1, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: 
+  skillName: Fireball
+  description: Throw a fireball to an enemy that deals {{0}} damage.
+  skillIcon: {fileID: 5353841184698615464, guid: a41159847fdc2b44287cf5c69bcbec10, type: 3}
+  skillType: 0
+  manaCost: 10
+  cooldown: 1
+  castingTarget: 1
+  effects:
+  - targetType: 1
+    effectType: 0
+    magnitude: 25
+    magnitudeUpgraded: 30
+    statusEffect: 0
+    durationInTurns: 0
+    durationInTurnsUpgraded: 0
+  vfxPrefab: {fileID: 0}
+  sfxClip: {fileID: 0}
+  castBehavior: {fileID: 0}

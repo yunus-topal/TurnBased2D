@@ -1,39 +1,60 @@
 
-using Models.Combatants;
-using UnityEngine;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Models
 {
-    /// <summary>
-    /// Represents a save file for the game.
-    /// must include the following properties:
-    ///     - FileName: string
-    ///     - Character : Character
-    ///     - PlayTime : float
-    /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class SaveFile
     {
-        public string FileName { get; set; }
-        public string Character { get; set; }
-        public float PlayTime { get; set; }
+        // party of the current run
+        [MaybeNull] public CharacterData[] Characters { get; set; }
+        public string SaveName { get; set; } // Name of the save file
+        public int SeedNumber { get; set; }
+        public int floorNumber { get; set; }
+        public int nodeNumber { get; set; }
+        //public DateTime SaveDate { get; set; } // Date when the last save was made
 
-        // In the future, these can be added:
-        // public List<Quest> Quests { get; set; }
-        // public string location { get; set; }
-        // public vector3 position { get; set; }
-
-        public SaveFile(string fileName, Character character, float playTime)
+        public SaveFile(string saveName, CharacterData[] characters = null)
         {
-            FileName = fileName;
-            Character = JsonUtility.ToJson(character);
-            PlayTime = playTime;
+            this.SaveName = saveName;
+            this.Characters = characters;
+            Random random = new Random();
+            this.SeedNumber = random.Next();
+            this.floorNumber = -1;
+            this.nodeNumber = -1;
         }
 
-        public Character GetCharacter()
+        public void SetSeed(int seed)
         {
-            // Assuming Character is a JSON string representation of a Character object
-            return JsonUtility.FromJson<Character>(Character);
+            this.SeedNumber = seed;
         }
+        
+        // override to string method
+        public override string ToString()
+        {
+            return $"SaveFile: {SaveName}, Characters: {Characters?.Length ?? 0}, SeedNumber: {SeedNumber}";
+        }
+    }
+
+    [Serializable]
+    public class CharacterData
+    {
+        public string name;
+        public int level;
+        public int xp;
+        public int maxHealth;
+        public int currentHealth;
+        public bool[] skillsUpgraded;
+
+        // Assuming CombatStats is also [Serializable] with public fields
+        public CombatStats combatStats;
+
+        // Store only the data you need; e.g. asset path instead of Sprite
+        public string scriptableObjectPath;
+
+        public string[] equipmentResourcePaths;
+        public string[] skillResourcePaths;
     }
 }

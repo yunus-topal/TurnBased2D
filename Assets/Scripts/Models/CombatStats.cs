@@ -1,5 +1,12 @@
 ﻿namespace Models {
 
+    public static class CombatStatsExtensions
+    {
+        public static CombatStats Clone(this CombatStats stats)
+        {
+            return new CombatStats(stats.Strength, stats.Dexterity, stats.Intelligence, stats.Constitution, stats.Luck);
+        }
+    }
     [System.Serializable]
     public class CombatStats {
         [UnityEngine.SerializeField]

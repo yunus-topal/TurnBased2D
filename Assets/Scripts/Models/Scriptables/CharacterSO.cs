@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Models.Scriptables {
@@ -6,42 +7,38 @@ namespace Models.Scriptables {
     public class CharacterSO : ScriptableObject
     {
         // health will be automatically calculated from combat stats.
-        [SerializeField] private string characterName;
-        [SerializeField] private int level;
-        [SerializeField] private int experience;
-        [SerializeField] private Sprite characterSprite;
-        [SerializeField] private CombatStats combatStats;
-        [SerializeField] private List<Equipment> equipments;
-        [SerializeField] private List<Skill> skills;
+        [SerializeField] public string characterName;
+        [SerializeField] public int level;
+        [SerializeField] public Sprite characterSprite;
+        [SerializeField] public CombatStats combatStats;
+        [SerializeField] public List<Equipment> equipments;
+        [SerializeField] public List<Skill> skills;
+        [SerializeField] public Team team;
         
-        public string CharacterName {
-            get => characterName;
-            set => characterName = value;
+    }
+
+    public static class CharacterSoExtensions
+    {
+        public static Character ToCharacter(this CharacterSO characterSo, CharacterData characterData)
+        {
+            var character = new Character(characterSo);
+            character.Name = characterData.name;
+            character.Level = characterData.level;
+            character.XP = characterData.xp;
+            character.CombatStats = characterData.combatStats;
+            character.CurrentHealth = characterData.currentHealth;
+            character.MaxHealth = characterData.maxHealth;
+            character.skillsUpgraded = characterData.skillsUpgraded ?? new bool[characterSo.skills.Count];
+            return character;
+        }
+        public static Character ToCharacter(this CharacterSO characterSo)
+        {
+            return new Character(characterSo);
         }
 
-        public int Level {
-            get => level;
-            set => level = value;
-        }
-
-        public int Experience {
-            get => experience;
-            set => experience = value;
-        }
-
-        public Sprite CharacterSprite {
-            get => characterSprite;
-            set => characterSprite = value;
-        }
-        
-        public List<Skill> Skills {
-            get => skills;
-            set => skills = value;
-        }
-        
-        public List<Equipment> Equipments {
-            get => equipments;
-            set => equipments = value;
+        public static List<Character> ToCharacters(this List<CharacterSO> characters)
+        {
+            return characters.Select(x => x.ToCharacter()).ToList();
         }
     }
 }
