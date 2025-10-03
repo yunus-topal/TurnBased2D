@@ -78,6 +78,7 @@ namespace Combat
                 // skip if a character's health is less than 0
                 foreach (var character in turns)
                 {
+                    if (IsCombatOver()) break;
                     if(character.CurrentHealth <= 0) continue;
                     yield return StartCoroutine(_turnManager.PlayTurn(character));
                     //Debug.Log($"{character.Name} played their turn.");
