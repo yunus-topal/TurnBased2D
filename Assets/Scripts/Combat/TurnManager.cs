@@ -35,6 +35,10 @@ namespace Combat
 
         internal IEnumerator PlayTurn(Character character)
         {
+            // on turn start, apply status effects such as bleed, poison etc.
+            var canAct = character.TickTurnStartAndCheckCanAct();
+            // check if character still play (stun, sleep etc.)
+            
             //Debug.Log($"Playing turn of character: {character.Name}");
             _combatPanelHelper.SetTurnLabel(character.Name);
             _actingCharacter = character;
@@ -50,19 +54,20 @@ namespace Combat
                     // if target is not suitable, set target to null and keep waiting.
                     yield return new WaitUntil(SelectionReady);
                     _selectedSkill!.Cast(_actingCharacter, _targetCharacter, _combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
-                    // reflect character updates on UI.
-                    _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                     break;
                 case Team.Enemy:
                     yield return new WaitForSeconds(2f); // “think” for 1 second
                     var skill = AIChooseSkill(character);
                     var target = AIChooseTarget(character, skill);
                     skill.Cast(_actingCharacter, target,_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
-                    _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                     break;
                 case Team.Neutral:
                     break;
             }
+            character.TickTurnEnd();
+            // reflect character updates on UI.
+            _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
+            
         }
 
         // ideally, skill selection should depend on opponent status.

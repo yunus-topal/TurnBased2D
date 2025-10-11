@@ -23,7 +23,7 @@ MonoBehaviour:
   - targetType: 3
     effectType: 0
     magnitude: 12
-    magnitudeUpgraded: 15
+    magnitudeUpgraded: 16
     statusEffect: 0
     durationInTurns: 0
     durationInTurnsUpgraded: 0

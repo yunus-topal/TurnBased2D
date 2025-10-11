@@ -28,18 +28,6 @@ namespace Models.Scriptables {
         Heal,
         Status
     }
-
-    public enum StatusEffectType
-    {
-        None,
-        Stun,
-        Sleep,
-        Burn,
-        Poison,
-        Bleed,
-        Slow,
-        Rush
-    }
     
     [Serializable]
     public class SkillEffect
