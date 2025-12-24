@@ -47,27 +47,29 @@ namespace Combat
             
             _skillUIHelper.InitializeSkillsUI(character, this);
 
-            switch (character.Team)
+            if (canAct)
             {
-                case Team.Player:
-
-                    // if target is not suitable, set target to null and keep waiting.
-                    yield return new WaitUntil(SelectionReady);
-                    _selectedSkill!.Cast(_actingCharacter, _targetCharacter, _combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
-                    break;
-                case Team.Enemy:
-                    yield return new WaitForSeconds(2f); // “think” for 1 second
-                    var skill = AIChooseSkill(character);
-                    var target = AIChooseTarget(character, skill);
-                    skill.Cast(_actingCharacter, target,_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
-                    break;
-                case Team.Neutral:
-                    break;
+                switch (character.Team)
+                {
+                    case Team.Player:
+                        // if target is not suitable, set target to null and keep waiting.
+                        yield return new WaitUntil(SelectionReady);
+                        _selectedSkill!.Cast(_actingCharacter, _targetCharacter, _combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
+                        break;
+                    case Team.Enemy:
+                        yield return new WaitForSeconds(2f); // “think” for 1 second
+                        var skill = AIChooseSkill(character);
+                        var target = AIChooseTarget(character, skill);
+                        skill.Cast(_actingCharacter, target,_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
+                        break;
+                    case Team.Neutral:
+                        break;
+                }
             }
+
             character.TickTurnEnd();
             // reflect character updates on UI.
             _combatPanelHelper.UpdateCharUIs(_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
-            
         }
 
         // ideally, skill selection should depend on opponent status.

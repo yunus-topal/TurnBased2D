@@ -26,4 +26,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdf0d2fde566e264f95ae1d32f06de31, type: 2}
   - {fileID: 11400000, guid: 8b8127c42979e4a4992c2ee09729f609, type: 2}
   - {fileID: 11400000, guid: bf66700efb6b14d4da3fca4013cd1516, type: 2}
-  assetPath: Combatants/Ocb
+  - {fileID: 11400000, guid: fd42ab5af07b8a04c8c89e1cc3e0057f, type: 2}
+  team: 0

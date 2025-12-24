@@ -44,10 +44,10 @@ namespace Combat.UI
 
         public void Bind(Skill skill, bool interactable = true, bool upgraded = false)
         {
+            gameObject.SetActive(true);
             BoundSkill = skill;
             if (icon) icon.sprite = skill.skillIcon;
             SetSelected(false);
-            gameObject.SetActive(true);
             button.interactable = interactable && skill.skillType == SkillType.Active;
         }
 
