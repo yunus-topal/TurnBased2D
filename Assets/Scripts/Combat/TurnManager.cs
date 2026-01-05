@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Combat.UI;
@@ -8,7 +7,6 @@ using JetBrains.Annotations;
 using Models;
 using Models.Scriptables;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Combat
 {
@@ -16,6 +14,9 @@ namespace Combat
     [RequireComponent(typeof(CombatManager))]
     public class TurnManager : MonoBehaviour
     {
+        [SerializeField] private StatusEffectIconDatabase statusEffectIconDb;
+        [SerializeField] private Sprite statusEffectPlaceholderIcon;
+        
         private CombatPanelHelper _combatPanelHelper;
         private SkillUIHelper  _skillUIHelper;
         private CombatManager _combatManager;
@@ -132,6 +133,9 @@ namespace Combat
                 _ => false
             };
         }
-        
+        public StatusEffectIconDatabase.StatusEffectIconEntry GetStatusEffectIconEntry(StatusInstance effect)
+        {
+            return statusEffectIconDb.TryGet(effect.Type);
+        }
     }
 }

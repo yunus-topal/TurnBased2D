@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Models.Scriptables.Skill
   skillName: Stun
   description: Stuns for 1 turn
-  skillIcon: {fileID: 21300000, guid: 163692a773039cb4c8017e2fbb659610, type: 3}
+  skillIcon: {fileID: 21300000, guid: 101aebc00b4cc2b43b74e38f38910680, type: 3}
   skillType: 0
   manaCost: 10
   cooldown: 1

@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce88f4e02cbb4af291e13289831c545c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statusEffectIconDb: {fileID: 11400000, guid: 9d429fd6b855e314eaaba70a45a5758b, type: 2}
+  statusEffectPlaceholderIcon: {fileID: 7482667652216324306, guid: 699b205084b23cd40bd4434fbdfc5f5f, type: 3}
 --- !u!114 &732888959 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3920161413353240174, guid: bba6f3e69a3ce3849b2309f0e1cb6444, type: 3}
@@ -234,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99aeb05a568ad314b9039f15e2d8e106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healAmount: 25
 --- !u!1 &837578046
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +975,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

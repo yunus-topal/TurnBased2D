@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6438173593091582001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5228462144627216987}
+  - component: {fileID: 5684931817832686888}
+  m_Layer: 0
+  m_Name: StatusEffetcts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5228462144627216987
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438173593091582001}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8067694611410863823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -150}
+  m_SizeDelta: {x: 150, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5684931817832686888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438173593091582001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 25, y: 25}
+  m_Spacing: {x: 3, y: 2}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1001 &756961727028374002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,7 +163,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4616597558387537254, guid: 5b664b31496a50c43bf0916637b937b9, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7311436966961999677, guid: 5b664b31496a50c43bf0916637b937b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5228462144627216987}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 17714038537790733, guid: 5b664b31496a50c43bf0916637b937b9, type: 3}
       insertIndex: -1
@@ -132,6 +195,8 @@ MonoBehaviour:
   HealthBar: {fileID: 7823016459412024842}
   HealthBarImage: {fileID: 2387902299219892002}
   CharacterButton: {fileID: 2346264365666873899}
+  statusIconParent: {fileID: 6438173593091582001}
+  statusIcon: {fileID: 6351305107553126376, guid: 0602016e9d83a76419e9362c47fae588, type: 3}
 --- !u!114 &2346264365666873899 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3030605530447780825, guid: 5b664b31496a50c43bf0916637b937b9, type: 3}
@@ -198,3 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &8067694611410863823 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7311436966961999677, guid: 5b664b31496a50c43bf0916637b937b9, type: 3}
+  m_PrefabInstance: {fileID: 756961727028374002}
+  m_PrefabAsset: {fileID: 0}

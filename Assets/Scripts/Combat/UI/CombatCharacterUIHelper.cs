@@ -14,6 +14,8 @@ namespace Combat.UI
         [SerializeField] private Slider HealthBar;
         [SerializeField] private Image HealthBarImage;
         [SerializeField] private Button CharacterButton;
+        [SerializeField] private GameObject statusIconParent;
+        [SerializeField] private GameObject statusIcon;
         
         private Character _character;
         private TurnManager _turnManager;
@@ -45,18 +47,35 @@ namespace Combat.UI
             HealthBar.maxValue = _character.MaxHealth;
             HealthBar.value = _character.CurrentHealth;
             HealthBarImage.color = Color.green;
+            SetStatusIcons();
         }
         
         public void UpdateCharacter(Character character) {
             HealthText.text = $"{character.CurrentHealth}/{HealthBar.maxValue}";
             HealthBar.value = character.CurrentHealth;
             HealthBarImage.color = Color.Lerp(Color.red, Color.green, character.CurrentHealth / HealthBar.maxValue);
+            SetStatusIcons();
         }
 
         // callback to TurnManager
         private void OnCharacterButtonClick()
         {
             Clicked?.Invoke(_character);
+        }
+
+        private void SetStatusIcons()
+        {
+            // clear status icon parent.
+            foreach (Transform child in statusIconParent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            // spawn status icon helper for each.
+            foreach (var activeEffect in _character.ActiveEffects)
+            {
+                var newEffect = Instantiate(statusIcon, statusIconParent.transform);
+                newEffect.GetComponent<StatusEffectIconHelper>().Initialize(activeEffect, _turnManager.GetStatusEffectIconEntry(activeEffect));
+            }
         }
     }
 }
