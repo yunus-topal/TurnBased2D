@@ -67,6 +67,13 @@ namespace Combat
                         break;
                 }
             }
+            else
+            {
+                // find incapacitating status for the character
+                var blockingEffect = character.GetBlockingEffect();
+                _combatPanelHelper.SetTurnLabelIncapacitated(character.Name, blockingEffect, 2);
+                yield return new WaitForSeconds(2f);
+            }
 
             character.TickTurnEnd();
             // reflect character updates on UI.

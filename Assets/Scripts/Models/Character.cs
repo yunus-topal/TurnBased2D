@@ -148,6 +148,13 @@ namespace Models {
             return false;
         }
 
+        public StatusEffectType GetBlockingEffect()
+        {
+            foreach (var kv in _effects)
+                if (StatusLibrary.Rules[kv.Key].BlocksTurn) return kv.Key;
+            return StatusEffectType.None;
+        }
+
         // Called at the very start of the character’s turn.
         // Returns false if the character is prevented from acting.
         public bool TickTurnStartAndCheckCanAct(Action<string>? debugLog = null)

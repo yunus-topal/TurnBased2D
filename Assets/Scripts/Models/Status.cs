@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Models
 {
-    public enum StatusEffectType { Bleed, Poison, Stun, Sleep } // extend as needed
+    public enum StatusEffectType { Bleed, Poison, Stun, Sleep, None } // extend as needed
 
     // How stacking works for each effect
     public enum StackMode { None, Additive } // "None" = single instance (e.g., Stun). "Additive" = stack count (e.g., Poison).

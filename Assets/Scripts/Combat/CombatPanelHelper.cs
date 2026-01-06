@@ -75,10 +75,27 @@ namespace Combat
             // after ttl seconds, hide label. if -1, do not hide
             if (ttl >= 0)
             {
+                CancelInvoke(nameof(HideLabel));
                 Invoke(nameof(HideLabel), ttl);
             }
+        }
+
+        Dictionary<StatusEffectType, string> StatusLabels = new Dictionary<StatusEffectType, string>()
+        {
+            { StatusEffectType.Stun, "stunned" },
+            { StatusEffectType.Sleep, "sleeping" },
+        };
+        public void SetTurnLabelIncapacitated(string label, StatusEffectType statusEffectType, int ttl = 2)
+        {
+            var statusLabel = StatusLabels.GetValueOrDefault(statusEffectType, "incapacitated");
             
-            
+            turnLabel.gameObject.SetActive(true);
+            turnLabel.text = $"{label} is {statusLabel}";
+            if (ttl >= 0)
+            {
+                CancelInvoke(nameof(HideLabel));
+                Invoke(nameof(HideLabel), ttl);
+            }
         }
 
         private void HideLabel()
