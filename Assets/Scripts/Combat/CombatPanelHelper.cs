@@ -67,6 +67,18 @@ namespace Combat
         #endregion
 
         #region Label
+        
+        public void SetCastLabel(string casterLabel, string targetLabel, string skillLabel,int ttl = 1)
+        {
+            turnLabel.gameObject.SetActive(true);
+            turnLabel.text = $"{casterLabel} casts {skillLabel} to {targetLabel}";
+            // after ttl seconds, hide label. if -1, do not hide
+            if (ttl >= 0)
+            {
+                CancelInvoke(nameof(HideLabel));
+                Invoke(nameof(HideLabel), ttl);
+            }
+        }
 
         public void SetTurnLabel(string label, int ttl = 2)
         {

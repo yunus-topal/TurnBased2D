@@ -55,12 +55,17 @@ namespace Combat
                     case Team.Player:
                         // if target is not suitable, set target to null and keep waiting.
                         yield return new WaitUntil(SelectionReady);
+                        _combatPanelHelper.SetCastLabel(_actingCharacter.Name, _targetCharacter!.Name, _selectedSkill!.skillName);
+                        yield return new WaitForSeconds(1); 
                         _selectedSkill!.Cast(_actingCharacter, _targetCharacter, _combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                         break;
                     case Team.Enemy:
                         yield return new WaitForSeconds(2f); // “think” for 1 second
                         var skill = AIChooseSkill(character);
                         var target = AIChooseTarget(character, skill);
+                        _combatPanelHelper.SetCastLabel(_actingCharacter.Name, target.Name, skill.skillName);
+                        yield return new WaitForSeconds(1); 
+                        
                         skill.Cast(_actingCharacter, target,_combatManager.PlayerCharacters, _combatManager.EnemyCharacters);
                         break;
                     case Team.Neutral:
