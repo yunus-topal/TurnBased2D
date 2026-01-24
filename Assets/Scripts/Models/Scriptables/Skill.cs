@@ -56,8 +56,8 @@ namespace Models.Scriptables {
         [Tooltip("For status effects such as poison/bleed")]
         public int stackCount; 
         
-        [Tooltip("For status effects such as poison/bleed")]
-        public int updatedStackCount; 
+        [FormerlySerializedAs("updatedStackCount")] [Tooltip("For status effects such as poison/bleed")]
+        public int stackCountUpgraded; 
     }
     
     [CreateAssetMenu(fileName = "NewSkill", menuName = "Skill/SkillBehavior")]
@@ -73,7 +73,7 @@ namespace Models.Scriptables {
         [Header("Cost & Cooldown")]
         public int manaCost = 10;
         public int cooldown = 1;
-        public int upgradedCooldown = 1;
+        public int cooldownUpgraded = 1;
 
         [Header("Effects")] 
         [Tooltip("Target to cast this skill.")]
@@ -144,7 +144,7 @@ namespace Models.Scriptables {
                         foreach (var t in uniqueTargets) t.ApplyDamage(skillUpgraded ? effect.magnitudeUpgraded : effect.magnitude);
                         break;
                     case EffectType.Status:
-                        foreach (var t in uniqueTargets) t.ApplyStatus(effect.statusEffect, skillUpgraded ? effect.durationInTurnsUpgraded : effect.durationInTurns);
+                        foreach (var t in uniqueTargets) t.ApplyStatus(effect.statusEffect, skillUpgraded ? effect.durationInTurnsUpgraded : effect.durationInTurns, potencyPerStack: 1, stacks: skillUpgraded ? effect.stackCount : effect.stackCountUpgraded);
                         break;
                 }
             }

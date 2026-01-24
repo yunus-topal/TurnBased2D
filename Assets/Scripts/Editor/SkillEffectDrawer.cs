@@ -1,5 +1,7 @@
 // Assets/Scripts/Editor/SkillEffectDrawer.cs
 
+using System.Collections.Generic;
+using Models;
 using Models.Scriptables;
 using UnityEditor;
 using UnityEngine;
@@ -9,15 +11,30 @@ namespace Editor
     [CustomPropertyDrawer(typeof(SkillEffect))]
     public class SkillEffectDrawer : PropertyDrawer
     {
+        private const StatusEffectType StackableEffect = StatusEffectType.Bleed | StatusEffectType.Poison;
         const float VSpace = 4f;
-
+        
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             var etProp = property.FindPropertyRelative("effectType");
             var et = (EffectType)etProp.enumValueIndex;
+            
+            var statusEffectType = GetStatusEffectTypeFromProperty(property);
 
             int lines = 2; // Effect Type + Target
-            lines += (et == EffectType.Status) ? 5 : 2; // status: statusEffect + 2 durations, else: 2 magnitudes
+            
+            if (et == EffectType.Status && StackableEffect.HasFlag(statusEffectType))
+            {
+                lines += 5;
+            }
+            else if (et == EffectType.Status)
+            {
+                lines += 3;
+            }
+            else
+            {
+                lines += 2;
+            }
 
             return lines * (EditorGUIUtility.singleLineHeight + VSpace) - VSpace;
         }
@@ -45,7 +62,7 @@ namespace Editor
             var durProp          = property.FindPropertyRelative("durationInTurns");
             var durUpProp        = property.FindPropertyRelative("durationInTurnsUpgraded");
             var stackCountProp    = property.FindPropertyRelative("stackCount");
-            var updatedStackCountProp    = property.FindPropertyRelative("updatedStackCount");
+            var stackCountUpProp    = property.FindPropertyRelative("stackCountUpgraded");
 
             // Tidy labels
             float oldLW = EditorGUIUtility.labelWidth;
@@ -75,8 +92,13 @@ namespace Editor
 
                 DrawNumberField(Row(), durProp,   "Duration (turns)");
                 DrawNumberField(Row(), durUpProp, "Duration Upgraded (turns)");
-                DrawNumberField(Row(), stackCountProp,   "Stack Count");
-                DrawNumberField(Row(), updatedStackCountProp, "Updated Stack Count");
+
+                var statusEffectType = GetStatusEffectTypeFromProperty(property);
+                if (StackableEffect.HasFlag(statusEffectType))
+                {
+                    DrawNumberField(Row(), stackCountProp,   "Stack Count");
+                    DrawNumberField(Row(), stackCountUpProp, "Updated Stack Count");
+                }
             }
             else
             {
@@ -106,6 +128,12 @@ namespace Editor
                 else
                     p.intValue = value;
             }
+        }
+        
+        private StatusEffectType GetStatusEffectTypeFromProperty(SerializedProperty property)
+        {
+            var statusEffectProp = property.FindPropertyRelative("statusEffect");
+            return (StatusEffectType)statusEffectProp.enumValueIndex;
         }
 
     }

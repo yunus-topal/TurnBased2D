@@ -10,7 +10,7 @@ namespace Editor
     [CustomEditor(typeof(Skill))]
     public class SkillEditor : UnityEditor.Editor
     {
-        SerializedProperty skillName, description, skillIcon, skillType, manaCost, cooldown, upgradedCooldown,
+        SerializedProperty skillName, description, skillIcon, skillType, manaCost, cooldown, cooldownUpgraded,
             castingTarget, effects, vfxPrefab, sfxClip, castBehavior;
 
         ReorderableList effectsList;
@@ -27,7 +27,7 @@ namespace Editor
             skillType     = serializedObject.FindProperty("skillType");
             manaCost      = serializedObject.FindProperty("manaCost");
             cooldown      = serializedObject.FindProperty("cooldown");
-            upgradedCooldown = serializedObject.FindProperty("upgradedCooldown");
+            cooldownUpgraded = serializedObject.FindProperty("cooldownUpgraded");
             castingTarget = serializedObject.FindProperty("castingTarget");
             effects       = serializedObject.FindProperty("effects");
             vfxPrefab     = serializedObject.FindProperty("vfxPrefab");
@@ -84,7 +84,7 @@ namespace Editor
             EditorGUILayout.LabelField("Cost & Cooldown", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(manaCost);
             EditorGUILayout.PropertyField(cooldown);
-            EditorGUILayout.PropertyField(upgradedCooldown);
+            EditorGUILayout.PropertyField(cooldownUpgraded);
 
             EditorGUILayout.Space(6);
             EditorGUILayout.LabelField("Casting", EditorStyles.boldLabel);
