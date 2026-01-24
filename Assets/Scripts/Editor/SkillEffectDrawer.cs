@@ -1,104 +1,112 @@
 // Assets/Scripts/Editor/SkillEffectDrawer.cs
+
+using Models.Scriptables;
 using UnityEditor;
 using UnityEngine;
-using Models.Scriptables;
 
-[CustomPropertyDrawer(typeof(SkillEffect))]
-public class SkillEffectDrawer : PropertyDrawer
+namespace Editor
 {
-    const float VSpace = 4f;
-
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(SkillEffect))]
+    public class SkillEffectDrawer : PropertyDrawer
     {
-        var etProp = property.FindPropertyRelative("effectType");
-        var et = (EffectType)etProp.enumValueIndex;
+        const float VSpace = 4f;
 
-        int lines = 2; // Effect Type + Target
-        lines += (et == EffectType.Status) ? 3 : 2; // status: statusEffect + 2 durations, else: 2 magnitudes
-
-        return lines * (EditorGUIUtility.singleLineHeight + VSpace) - VSpace;
-    }
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        EditorGUI.BeginProperty(position, label, property);
-
-        float y = position.y;
-        float h = EditorGUIUtility.singleLineHeight;
-
-        Rect Row()
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            var r = new Rect(position.x, y, position.width, h);
-            y += h + VSpace;
-            return r;
+            var etProp = property.FindPropertyRelative("effectType");
+            var et = (EffectType)etProp.enumValueIndex;
+
+            int lines = 2; // Effect Type + Target
+            lines += (et == EffectType.Status) ? 5 : 2; // status: statusEffect + 2 durations, else: 2 magnitudes
+
+            return lines * (EditorGUIUtility.singleLineHeight + VSpace) - VSpace;
         }
 
-        // Grab props
-        var effectTypeProp   = property.FindPropertyRelative("effectType");
-        var targetTypeProp   = property.FindPropertyRelative("targetType");
-        var magnitudeProp    = property.FindPropertyRelative("magnitude");
-        var magnitudeUpProp  = property.FindPropertyRelative("magnitudeUpgraded");
-        var statusEffectProp = property.FindPropertyRelative("statusEffect");
-        var durProp          = property.FindPropertyRelative("durationInTurns");
-        var durUpProp        = property.FindPropertyRelative("durationInTurnsUpgraded");
-
-        // Tidy labels
-        float oldLW = EditorGUIUtility.labelWidth;
-        EditorGUIUtility.labelWidth = 140f;
-
-        // ---- Effect Type FIRST (explicit dropdown) ----
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var et = (EffectType)effectTypeProp.enumValueIndex;
-            var newEt = (EffectType)EditorGUI.EnumPopup(Row(), "Effect Type", et);
-            if (newEt != et) effectTypeProp.enumValueIndex = (int)newEt;
-        }
+            EditorGUI.BeginProperty(position, label, property);
 
-        // ---- Target dropdown (explicit) ----
-        {
-            var t = targetTypeProp.enumDisplayNames.Length > 0
-                ? (SkillTarget)targetTypeProp.enumValueIndex
-                : 0;
-            var newT = (SkillTarget)EditorGUI.EnumPopup(Row(), "Target", t);
-            if ((int)newT != targetTypeProp.enumValueIndex) targetTypeProp.enumValueIndex = (int)newT;
-        }
+            float y = position.y;
+            float h = EditorGUIUtility.singleLineHeight;
 
-        // ---- Conditional block ----
-        if ((EffectType)effectTypeProp.enumValueIndex == EffectType.Status)
-        {
-            // statusEffect: keep PropertyField (usually no headers on this one)
-            EditorGUI.PropertyField(Row(), statusEffectProp, new GUIContent("Status Effect"), false);
+            Rect Row()
+            {
+                var r = new Rect(position.x, y, position.width, h);
+                y += h + VSpace;
+                return r;
+            }
 
-            DrawNumberField(Row(), durProp,   "Duration (turns)");
-            DrawNumberField(Row(), durUpProp, "Duration Upgraded (turns)");
-        }
-        else
-        {
-            DrawNumberField(Row(), magnitudeProp,   "Magnitude");
-            DrawNumberField(Row(), magnitudeUpProp, "Magnitude Upgraded");
-        }
+            // Grab props
+            var effectTypeProp   = property.FindPropertyRelative("effectType");
+            var targetTypeProp   = property.FindPropertyRelative("targetType");
+            var magnitudeProp    = property.FindPropertyRelative("magnitude");
+            var magnitudeUpProp  = property.FindPropertyRelative("magnitudeUpgraded");
+            var statusEffectProp = property.FindPropertyRelative("statusEffect");
+            var durProp          = property.FindPropertyRelative("durationInTurns");
+            var durUpProp        = property.FindPropertyRelative("durationInTurnsUpgraded");
+            var stackCountProp    = property.FindPropertyRelative("stackCount");
+            var updatedStackCountProp    = property.FindPropertyRelative("updatedStackCount");
 
-        EditorGUIUtility.labelWidth = oldLW;
-        EditorGUI.EndProperty();
-    }
+            // Tidy labels
+            float oldLW = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = 140f;
 
-    static void DrawNumberField(Rect r, SerializedProperty p, string label)
-    {
-        EditorGUI.BeginChangeCheck();
+            // ---- Effect Type FIRST (explicit dropdown) ----
+            {
+                var et = (EffectType)effectTypeProp.enumValueIndex;
+                var newEt = (EffectType)EditorGUI.EnumPopup(Row(), "Effect Type", et);
+                if (newEt != et) effectTypeProp.enumValueIndex = (int)newEt;
+            }
 
-        // Draw an int field even if it's a float property, to ensure integers only
-        int value = (p.propertyType == SerializedPropertyType.Float)
-            ? Mathf.RoundToInt(p.floatValue)
-            : p.intValue;
+            // ---- Target dropdown (explicit) ----
+            {
+                var t = targetTypeProp.enumDisplayNames.Length > 0
+                    ? (SkillTarget)targetTypeProp.enumValueIndex
+                    : 0;
+                var newT = (SkillTarget)EditorGUI.EnumPopup(Row(), "Target", t);
+                if ((int)newT != targetTypeProp.enumValueIndex) targetTypeProp.enumValueIndex = (int)newT;
+            }
 
-        value = EditorGUI.DelayedIntField(r, label, Mathf.Max(0, value));
+            // ---- Conditional block ----
+            if ((EffectType)effectTypeProp.enumValueIndex == EffectType.Status)
+            {
+                // statusEffect: keep PropertyField (usually no headers on this one)
+                EditorGUI.PropertyField(Row(), statusEffectProp, new GUIContent("Status Effect"), false);
 
-        if (EditorGUI.EndChangeCheck())
-        {
-            if (p.propertyType == SerializedPropertyType.Float)
-                p.floatValue = value;
+                DrawNumberField(Row(), durProp,   "Duration (turns)");
+                DrawNumberField(Row(), durUpProp, "Duration Upgraded (turns)");
+                DrawNumberField(Row(), stackCountProp,   "Stack Count");
+                DrawNumberField(Row(), updatedStackCountProp, "Updated Stack Count");
+            }
             else
-                p.intValue = value;
-        }
-    }
+            {
+                DrawNumberField(Row(), magnitudeProp,   "Magnitude");
+                DrawNumberField(Row(), magnitudeUpProp, "Magnitude Upgraded");
+            }
 
+            EditorGUIUtility.labelWidth = oldLW;
+            EditorGUI.EndProperty();
+        }
+
+        static void DrawNumberField(Rect r, SerializedProperty p, string label)
+        {
+            EditorGUI.BeginChangeCheck();
+
+            // Draw an int field even if it's a float property, to ensure integers only
+            int value = (p.propertyType == SerializedPropertyType.Float)
+                ? Mathf.RoundToInt(p.floatValue)
+                : p.intValue;
+
+            value = EditorGUI.DelayedIntField(r, label, Mathf.Max(0, value));
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                if (p.propertyType == SerializedPropertyType.Float)
+                    p.floatValue = value;
+                else
+                    p.intValue = value;
+            }
+        }
+
+    }
 }

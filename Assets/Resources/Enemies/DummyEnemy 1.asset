@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3151a7f14e6f43a40ad15b8011552167, type: 3}
+  m_Name: DummyEnemy 1
+  m_EditorClassIdentifier: 
+  characterName: Skeleton
+  level: 1
+  characterSprite: {fileID: -1817060305782440824, guid: ccba7f7e1e0f32d468b2f8946c5c2983, type: 3}
+  combatStats:
+    _strength: 10
+    _dexterity: 10
+    _intelligence: 10
+    _constitution: 10
+    _luck: 10
+  equipments: []
+  skills:
+  - {fileID: 11400000, guid: cdf0d2fde566e264f95ae1d32f06de31, type: 2}
+  - {fileID: 11400000, guid: 8b8127c42979e4a4992c2ee09729f609, type: 2}
+  team: 1

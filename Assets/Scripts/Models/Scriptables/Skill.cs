@@ -52,6 +52,12 @@ namespace Models.Scriptables {
         
         [Tooltip("Updated duration in turns (only for status effects)")]
         public int durationInTurnsUpgraded;
+        
+        [Tooltip("For status effects such as poison/bleed")]
+        public int stackCount; 
+        
+        [Tooltip("For status effects such as poison/bleed")]
+        public int updatedStackCount; 
     }
     
     [CreateAssetMenu(fileName = "NewSkill", menuName = "Skill/SkillBehavior")]
@@ -67,6 +73,7 @@ namespace Models.Scriptables {
         [Header("Cost & Cooldown")]
         public int manaCost = 10;
         public int cooldown = 1;
+        public int upgradedCooldown = 1;
 
         [Header("Effects")] 
         [Tooltip("Target to cast this skill.")]
